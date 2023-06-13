@@ -52,6 +52,8 @@ TIMI_scores(data, classify)
 \item{Gender}{a binary character vector of sex values. Categories should include
 only 'male' or 'female'.}
 
+\item{classify}{set TRUE if wish to add a column with the scores' categories}
+
 \item{data}{A data frame with all the variables needed for calculation:
 typical_symptoms.num, ecg.normal, abn.repolarisation, ecg.st.depression,Age,
 diabetes, smoker, hypertension, hyperlipidaemia, family.history,

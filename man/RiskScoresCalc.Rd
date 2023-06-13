@@ -25,7 +25,7 @@ calc_scores(
   pleuritic_df = "pleuritic",
   palpation_df = "palpation",
   ecg.twi_df = "ecg.twi",
-  Δ2nd_hstni_df = "Δ2nd_hstni",
+  second_hstni_df = "second_hstni",
   killip.class_df = "killip.class",
   heart.rate_df = "heart.rate",
   systolic.bp_df = "systolic.bp",
@@ -39,62 +39,62 @@ calc_scores(
 )
 }
 \arguments{
-\item{typical_symptoms.num}{a numeric vector of the number of typical symptoms}
+\item{typical_symptoms.num_df}{a numeric vector of the number of typical symptoms; renames alternative column name}
 
-\item{ecg.normal}{a binary numeric vector,  1 = yes and 0 = no}
+\item{ecg.normal_df}{a binary numeric vector,  1 = yes and 0 = no; renames alternative column name}
 
-\item{abn.repolarisation}{a binary numeric vector,  1 = yes and 0 = no}
+\item{abn.repolarisation_df}{a binary numeric vector,  1 = yes and 0 = no; renames alternative column name}
 
-\item{ecg.st.depression}{a binary numeric vector, 1 = yes and 0 = no}
+\item{ecg.st.depression_df}{a binary numeric vector, 1 = yes and 0 = no; renames alternative column name}
 
-\item{Age}{a numeric vector of age values, in years}
+\item{Age_df}{a numeric vector of age values, in years; renames alternative column name}
 
-\item{diabetes}{a binary numeric vector, 1 = yes and 0 = no}
+\item{diabetes_df}{a binary numeric vector, 1 = yes and 0 = no; renames alternative column name}
 
-\item{smoker}{a binary numeric vector, 1 = yes and 0 = no}
+\item{smoker_df}{a binary numeric vector, 1 = yes and 0 = no; renames alternative column name}
 
-\item{hypertension}{a binary numeric vector, 1 = yes and 0 = no}
+\item{hypertension_df}{a binary numeric vector, 1 = yes and 0 = no; renames alternative column name}
 
-\item{hyperlipidaemia}{a binary numeric vector, 1 = yes and 0 = no}
+\item{hyperlipidaemia_df}{a binary numeric vector, 1 = yes and 0 = no; renames alternative column name}
 
-\item{family.history}{a binary numeric vector, 1 = yes and 0 = no}
+\item{family.history_df}{a binary numeric vector, 1 = yes and 0 = no; renames alternative column name}
 
-\item{atherosclerotic.disease}{a binary numeric vector, 1 = yes and 0 = no}
+\item{atherosclerotic.disease_df}{a binary numeric vector, 1 = yes and 0 = no; renames alternative column name}
 
-\item{presentation_hstni}{a continuous numeric vector of the troponin levels}
+\item{presentation_hstni_df}{a continuous numeric vector of the troponin levels; renames alternative column name}
 
-\item{Gender}{a binary character vector of sex values. Categories should include
-only 'male' or 'female'.}
+\item{Gender_df}{a binary character vector of sex values. Categories should include
+only 'male' or 'female'; renames alternative column name}
 
-\item{sweating}{a binary numeric vector, 1 = yes and 0 = no}
+\item{sweating_df}{a binary numeric vector, 1 = yes and 0 = no; renames alternative column name}
 
-\item{pain.radiation}{a binary numeric vector, 1 = yes and 0 = no}
+\item{pain.radiation_df}{a binary numeric vector, 1 = yes and 0 = no; renames alternative column name}
 
-\item{pleuritic}{a binary numeric vector, 1 = yes and 0 = no}
+\item{pleuritic_df}{a binary numeric vector, 1 = yes and 0 = no; renames alternative column name}
 
-\item{palpation}{a binary numeric vector, 1 = yes and 0 = no}
+\item{palpation_df}{a binary numeric vector, 1 = yes and 0 = no; renames alternative column name}
 
-\item{ecg.twi}{a binary numeric vector, 1 = yes and 0 = no}
+\item{ecg.twi_df}{a binary numeric vector, 1 = yes and 0 = no; renames alternative column name}
 
-\item{2nd_hstni}{a binary numeric vector, 1 = yes and 0 = no}
+\item{second_hstni_df}{a binary numeric vector, 1 = yes and 0 = no; renames alternative column name}
 
-\item{killip.class}{a numeric vector of killip class values, 1 to 4}
+\item{killip.class_df}{a numeric vector of killip class values, 1 to 4; renames alternative column name}
 
-\item{heart.rate}{a numeric vector of heart rate continuous values}
+\item{heart.rate_df}{a numeric vector of heart rate continuous values; renames alternative column name}
 
-\item{systolic.bp}{a numeric vector of systolic blood pressure continuous values}
+\item{systolic.bp_df}{a numeric vector of systolic blood pressure continuous values; renames alternative column name}
 
-\item{aspirin}{a binary numeric vector, 1 = yes and 0 = no}
+\item{aspirin_df}{a binary numeric vector, 1 = yes and 0 = no; renames alternative column name}
 
-\item{number.of.episodes.24h}{a numeric vector of number of angina episodes in 24 hours}
+\item{number.of.episodes.24h_df}{a numeric vector of number of angina episodes in 24 hours; renames alternative column name}
 
-\item{previous.pci}{a binary numeric vector, 1 = yes and 0 = no}
+\item{previous.pci_df}{a binary numeric vector, 1 = yes and 0 = no; renames alternative column name}
 
-\item{previous.cabg}{a binary numeric vector, 1 = yes and 0 = no}
+\item{previous.cabg_df}{a binary numeric vector, 1 = yes and 0 = no; renames alternative column name}
 
-\item{total.chol}{a numeric vector of total cholesterol values, in mmol/L}
+\item{total.chol_df}{a numeric vector of total cholesterol values, in mmol/L; renames alternative column name}
 
-\item{total.hdl}{a numeric vector of total high density lipoprotein HDL values, in mmol/L}
+\item{total.hdl_df}{a numeric vector of total high density lipoprotein HDL values, in mmol/L; renames alternative column name}
 }
 \value{
 a data frame with two extra columns including all the cardiovascular risk score calculations

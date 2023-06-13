@@ -10,6 +10,8 @@ GRACE_scores(data, classify)
 \item{data}{A data frame with all the variables needed for calculation:
 killip.class, systolic.bp, heart.rate, Age, creat, ecg.st.depression,
 presentation_hstni, cardiac.arrest, Gender, classify}
+
+\item{classify}{a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"}
 }
 \value{
 data frame with two extra columns including the 'GRACE_score' calculations

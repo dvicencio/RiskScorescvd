@@ -19,7 +19,7 @@ EDACS(
   ecg.st.depression,
   ecg.twi,
   presentation_hstni,
-  Δ2nd_hstni,
+  second_hstni,
   classify
 )
 }
@@ -53,15 +53,9 @@ only 'male' or 'female'.}
 
 \item{presentation_hstni}{a continuous numeric vector of the troponin levels}
 
-\item{typical_symptoms.num}{a numeric vector of the number of typical symptoms}
+\item{second_hstni}{a binary numeric vector, 1 = yes and 0 = no}
 
-\item{ecg.normal}{a binary numeric vector,  1 = yes and 0 = no}
-
-\item{abn.repolarisation}{a binary numeric vector,  1 = yes and 0 = no}
-
-\item{atherosclerotic.disease}{a binary numeric vector, 1 = yes and 0 = no}
-
-\item{2nd_hstni}{a binary numeric vector, 1 = yes and 0 = no}
+\item{classify}{a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"}
 }
 \value{
 A vector with EDACS score calculations
@@ -111,7 +105,7 @@ EKG shows new ischemia or
 0-hr or 2-hr troponin positive.
 }
 \examples{
- results <- cohort_xx \%>\% rowwise() \%>\% mutate(EDACS_score = EDACS(Age, Gender, diabetes, smoker, hypertension, hyperlipidaemia, family.history, sweating, pain.radiation, pleuritic, palpation, ecg.st.depression, ecg.twi,  presentation_hstni, Δ2nd_hstni, classify = FALSE))
+ results <- cohort_xx \%>\% rowwise() \%>\% mutate(EDACS_score = EDACS(Age, Gender, diabetes, smoker, hypertension, hyperlipidaemia, family.history, sweating, pain.radiation, pleuritic, palpation, ecg.st.depression, ecg.twi,  presentation_hstni, second_hstni, classify = FALSE))
 
 }
 \keyword{Age,}
@@ -128,6 +122,6 @@ EKG shows new ischemia or
 \keyword{palpation,}
 \keyword{pleuritic,}
 \keyword{presentation_hstni,}
+\keyword{second_hstni,}
 \keyword{smoker,}
 \keyword{sweating,}
-\keyword{Δ2nd_hstni,}

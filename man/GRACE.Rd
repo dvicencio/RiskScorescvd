@@ -26,12 +26,18 @@ GRACE(
 
 \item{Age}{a numeric vector of age values, in years}
 
+\item{creat}{a continuous numeric vector of the creatine levels}
+
 \item{ecg.st.depression}{a binary numeric vector, 1 = yes and 0 = no}
 
 \item{presentation_hstni}{a continuous numeric vector of the troponin levels}
 
+\item{cardiac.arrest}{a binary numeric vector, 1 = yes and 0 = no}
+
 \item{Gender}{a binary character vector of sex values. Categories should include
 only 'male' or 'female'.}
+
+\item{classify}{a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"}
 }
 \value{
 A vector with GRACE score calculations

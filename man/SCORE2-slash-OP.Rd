@@ -26,9 +26,13 @@ only 'male' or 'female'.}
 
 \item{systolic.bp}{a numeric vector of systolic blood pressure continuous values}
 
+\item{diabetes}{a binary numeric vector, 1 = yes and 0 = no}
+
 \item{total.chol}{a numeric vector of total cholesterol values, in mmol/L}
 
-\item{total.total.hdl}{a numeric vector of total high density lipoprotein total.hdl values, in mmol/L}
+\item{total.hdl}{a numeric vector of total high density lipoprotein total.hdl values, in mmol/L}
+
+\item{classify}{set TRUE if wish to add a column with the scores' categories}
 }
 \value{
 A vector with SCORE2/OP score calculations

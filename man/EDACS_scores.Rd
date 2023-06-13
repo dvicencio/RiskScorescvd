@@ -11,7 +11,9 @@ EDACS_scores(data, classify)
 \item{data}{A data frame with all the variables needed for calculation:
 Age, Gender, diabetes, smoker, hypertension, hyperlipidaemia,
 family.history, sweating, pain.radiation, pleuritic, palpation,
-ecg.st.depression, ecg.twi,  presentation_hstni, Δ2nd_hstni, classify}
+ecg.st.depression, ecg.twi,  presentation_hstni, second_hstni, classify}
+
+\item{classify}{a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"}
 }
 \value{
 data frame with two extra columns including the 'EDACS_score' calculations
@@ -47,11 +49,11 @@ cohort_xx <- data.frame(
   pleuritic = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
   palpation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
   ecg.twi = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
-  Δ2nd_hstni = as.numeric(sample(1:200, num_rows, replace = TRUE))
+  second_hstni = as.numeric(sample(1:200, num_rows, replace = TRUE))
 )
 # Call the function with the cohort_xx
+
 result <- EDACS_scores(data = cohort_xx, classify = TRUE)
-Print the results
 summary(result$EDACS_strat)
 summary(result$EDACS_score)
 
@@ -70,6 +72,6 @@ summary(result$EDACS_score)
 \keyword{palpation,}
 \keyword{pleuritic,}
 \keyword{presentation_hstni,}
+\keyword{second_hstni,}
 \keyword{smoker,}
 \keyword{sweating,}
-\keyword{Δ2nd_hstni,}

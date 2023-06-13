@@ -5,7 +5,20 @@
 \title{ASCVD risk score function
 ASCVD = Atherosclerotic Cardiovascular Disease}
 \usage{
-ASCVD_scores(data, classify)
+ASCVD_scores(
+  data,
+  classify,
+  Age_df = "Age",
+  diabetes_df = "diabetes",
+  smoker_df = "smoker",
+  hypertension_df = "hypertension",
+  family.history_df = "family.history",
+  Gender_df = "Gender",
+  systolic.bp = systolic.bp_df,
+  total.chol = total.chol_df,
+  total.hdl = total.hdl_df,
+  Ethnicity = Ethnicity_df
+)
 }
 \arguments{
 \item{data}{A data frame with all the variables needed for calculation:

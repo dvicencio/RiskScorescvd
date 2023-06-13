@@ -48,6 +48,8 @@ HEART(
 
 \item{Gender}{a binary character vector of sex values. Categories should include
 only 'male' or 'female'.}
+
+\item{classify}{a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"}
 }
 \value{
 A vector with HEART score calculations

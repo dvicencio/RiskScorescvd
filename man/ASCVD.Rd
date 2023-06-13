@@ -21,6 +21,8 @@ ASCVD(
 \item{Gender}{a binary character vector of sex values. Categories should include
 only 'male' or 'female'.}
 
+\item{Ethnicity}{a character vector, 'white', 'black', 'asian', or other}
+
 \item{Age}{a numeric vector of age values, in years}
 
 \item{total.chol}{a numeric vector of total cholesterol values, in mmol/L}
@@ -35,7 +37,7 @@ only 'male' or 'female'.}
 
 \item{diabetes}{a binary numeric vector, 1 = yes and 0 = no}
 
-\item{race}{a character vector, 'white', 'black', 'asian', or other}
+\item{classify}{a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"}
 }
 \value{
 A vector with ASCVD score calculations

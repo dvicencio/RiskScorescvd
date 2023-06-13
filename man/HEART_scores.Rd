@@ -12,6 +12,8 @@ HEART_scores(data, classify)
 typical_symptoms.num, ecg.normal, abn.repolarisation, ecg.st.depression,Age,
 diabetes, smoker, hypertension, hyperlipidaemia, family.history,
 atherosclerotic.disease, presentation_hstni, Gender}
+
+\item{classify}{a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"}
 }
 \value{
 a data frame with two extra columns including the HEART score calculations
