@@ -54,11 +54,11 @@
 
 
 #' # Call the function with the cohort_xx
+#'
 #' result <- EDACS_scores(data = cohort_xx, classify = TRUE)
 #' summary(result$EDACS_strat)
 #' summary(result$EDACS_score)
 #'
-#' @import dplyr
 #' @export
 
 EDACS_scores <- function(data, classify) {
