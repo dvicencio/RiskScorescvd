@@ -59,7 +59,7 @@
 #' summary(result$EDACS_strat)
 #' summary(result$EDACS_score)
 #'
-#'@import dplyr
+#' @import dplyr
 #' @export
 
 EDACS_scores <- function(data, classify) {
