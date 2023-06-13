@@ -1,0 +1,18 @@
+Package: RiskScorescvd
+Type: Package
+Title: What the Package Does (Cardiovascular Risk Scores Calculator)
+Version: 0.1.0
+Author: Daniel Perez Vicencio
+Maintainer: The package maintainer <dvicencio947@gmail.com>
+Description: A package to calculate Cardiovascular Risk Scores in large dataframes
+License:UoE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.3
+Depends: 
+  R (>= 4.3.0),
+  tidyverse (>= 2.0.0),
+  PooledCohort (>= 0.0.1)
+Imports: 
+  tidyverse (>= 2.0.0),
+  PooledCohort (>= 0.0.1)
