@@ -10,12 +10,13 @@
 #' A data frame with all the variables needed for calculation:
 #' Age, Gender, diabetes, smoker, hypertension, hyperlipidaemia,
 #' family.history, sweating, pain.radiation, pleuritic, palpation,
-#' ecg.st.depression, ecg.twi,  presentation_hstni, Δ2nd_hstni, classify
+#' ecg.st.depression, ecg.twi,  presentation_hstni, second_hstni, classify
+#' @param classify a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"
 #'
 #' @keywords
 #' EDACS, Age, Gender, diabetes, smoker, hypertension, hyperlipidaemia,
 #' family.history, sweating, pain.radiation, pleuritic, palpation,
-#' ecg.st.depression, ecg.twi,  presentation_hstni, Δ2nd_hstni, classify
+#' ecg.st.depression, ecg.twi,  presentation_hstni, second_hstni, classify
 #'
 #' @return
 #' data frame with two extra columns including the 'EDACS_score' calculations
@@ -48,14 +49,12 @@
 #'   pleuritic = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
 #'   palpation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
 #'   ecg.twi = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
-#'   Δ2nd_hstni = as.numeric(sample(1:200, num_rows, replace = TRUE))
+#'   second_hstni = as.numeric(sample(1:200, num_rows, replace = TRUE))
 #' )
 
 
 #' # Call the function with the cohort_xx
 #' result <- EDACS_scores(data = cohort_xx, classify = TRUE)
-
-#' Print the results
 #' summary(result$EDACS_strat)
 #' summary(result$EDACS_score)
 #'
@@ -63,7 +62,7 @@
 #' @export
 
 EDACS_scores <- function(data, classify) {
-  library(tidyverse)
+
   if (classify == TRUE) {
     results <- data  %>% rowwise() %>% mutate(
       EDACS_score = EDACS(
@@ -81,7 +80,7 @@ EDACS_scores <- function(data, classify) {
         ecg.st.depression,
         ecg.twi,
         presentation_hstni,
-        Δ2nd_hstni,
+        second_hstni,
         classify = FALSE
       ),
       EDACS_strat = EDACS(
@@ -99,7 +98,7 @@ EDACS_scores <- function(data, classify) {
         ecg.st.depression,
         ecg.twi,
         presentation_hstni,
-        Δ2nd_hstni,
+        second_hstni,
         classify = classify
         ) %>% as.factor() %>% ordered(levels = c(
           "Low risk", "Not low risk"
@@ -124,7 +123,7 @@ EDACS_scores <- function(data, classify) {
       ecg.st.depression,
       ecg.twi,
       presentation_hstni,
-      Δ2nd_hstni,
+      second_hstni,
       classify = classify
      )
    )

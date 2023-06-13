@@ -9,6 +9,7 @@
 #' A data frame with all the variables needed for calculation:
 #' killip.class, systolic.bp, heart.rate, Age, creat, ecg.st.depression,
 #' presentation_hstni, cardiac.arrest, Gender, classify
+#' @param classify a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"
 #'
 #' @keywords
 #' GRACE, killip.class, systolic.bp, heart.rate, Age, creat, ecg.st.depression,
@@ -66,7 +67,7 @@
 
 
 GRACE_scores <- function(data, classify) {
-  library(tidyverse)
+
   if (classify == TRUE) {
     results <- data  %>% rowwise() %>% mutate(
       GRACE_score = GRACE(

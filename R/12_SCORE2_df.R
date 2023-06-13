@@ -77,7 +77,7 @@
 
 
 SCORE2_scores <- function(data, classify) {
-  library(tidyverse)
+
 
   if (classify == TRUE) {
     results <- data  %>% rowwise() %>% mutate(

@@ -41,9 +41,6 @@
 #' EDACS ≥16 or
 #' EKG shows new ischemia or
 #' 0-hr or 2-hr troponin positive.
-#' @param  typical_symptoms.num a numeric vector of the number of typical symptoms
-#' @param ecg.normal a binary numeric vector,  1 = yes and 0 = no
-#' @param abn.repolarisation a binary numeric vector,  1 = yes and 0 = no
 #' @param ecg.st.depression a binary numeric vector, 1 = yes and 0 = no
 #' @param Age a numeric vector of age values, in years
 #' @param diabetes a binary numeric vector, 1 = yes and 0 = no
@@ -51,7 +48,6 @@
 #' @param hypertension a binary numeric vector, 1 = yes and 0 = no
 #' @param hyperlipidaemia a binary numeric vector, 1 = yes and 0 = no
 #' @param family.history a binary numeric vector, 1 = yes and 0 = no
-#' @param atherosclerotic.disease a binary numeric vector, 1 = yes and 0 = no
 #' @param presentation_hstni a continuous numeric vector of the troponin levels
 #' @param Gender a binary character vector of sex values. Categories should include
 #' only 'male' or 'female'.
@@ -60,30 +56,31 @@
 #' @param pleuritic a binary numeric vector, 1 = yes and 0 = no
 #' @param palpation a binary numeric vector, 1 = yes and 0 = no
 #' @param ecg.twi a binary numeric vector, 1 = yes and 0 = no
-#' @param 2nd_hstni a binary numeric vector, 1 = yes and 0 = no
+#' @param second_hstni a binary numeric vector, 1 = yes and 0 = no
+#' @param classify a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"
 #'
 #' @keywords
 #' EDACS, Age, Gender, diabetes, smoker, hypertension, hyperlipidaemia,
 #' family.history, sweating, pain.radiation, pleuritic, palpation,
-#' ecg.st.depression, ecg.twi,  presentation_hstni, Δ2nd_hstni, classify
+#' ecg.st.depression, ecg.twi,  presentation_hstni, second_hstni, classify
 #'
 #' @return
 #' A vector with EDACS score calculations
 #' and/or a vector of their classifications if indicated
 #'
-#' @examples  results <- cohort_xx %>% rowwise() %>% mutate(EDACS_score = EDACS(Age, Gender, diabetes, smoker, hypertension, hyperlipidaemia, family.history, sweating, pain.radiation, pleuritic, palpation, ecg.st.depression, ecg.twi,  presentation_hstni, Δ2nd_hstni, classify = FALSE))
+#' @examples  results <- cohort_xx %>% rowwise() %>% mutate(EDACS_score = EDACS(Age, Gender, diabetes, smoker, hypertension, hyperlipidaemia, family.history, sweating, pain.radiation, pleuritic, palpation, ecg.st.depression, ecg.twi,  presentation_hstni, second_hstni, classify = FALSE))
 #'
 #' @name EDACS
 #' @import dplyr
 #' @export
 EDACS <- function(Age, Gender, diabetes, smoker, hypertension, hyperlipidaemia,
                    family.history, sweating, pain.radiation, pleuritic, palpation,
-                   ecg.st.depression, ecg.twi,  presentation_hstni, Δ2nd_hstni, classify){
-  library(tidyverse)
+                   ecg.st.depression, ecg.twi,  presentation_hstni, second_hstni, classify){
+
   if (missing(sweating) || missing(pain.radiation) || missing(pleuritic) ||
       missing(ecg.st.depression) || missing(palpation) || missing(ecg.twi) ||
       missing(Age) || missing(diabetes) || missing(smoker) ||
-      missing(hypertension) || missing(Δ2nd_hstni) ||
+      missing(hypertension) || missing(second_hstni) ||
       missing(hyperlipidaemia) || missing(family.history) ||
       missing(presentation_hstni) || missing(Gender)) {
     warning("One or more required variables are missing.")
@@ -93,7 +90,7 @@ EDACS <- function(Age, Gender, diabetes, smoker, hypertension, hyperlipidaemia,
       !is.numeric(pain.radiation) || !is.numeric(pleuritic) ||
       !is.numeric(ecg.st.depression) || !is.numeric(ecg.twi) ||
       !is.numeric(Age) || !is.numeric(diabetes) || !is.numeric(smoker) ||
-      !is.numeric(hypertension) || !is.numeric(Δ2nd_hstni) ||
+      !is.numeric(hypertension) || !is.numeric(second_hstni) ||
       !is.numeric(hyperlipidaemia) || !is.numeric(family.history) ||
       !is.numeric(palpation) ||
       !is.numeric(presentation_hstni) || !is.character(Gender) ||
@@ -174,22 +171,22 @@ EDACS <- function(Age, Gender, diabetes, smoker, hypertension, hyperlipidaemia,
   # 5. Make a decision based on score, ECG and Troponin levels
 
   if ((!is.na(Gender) & Gender == "male") & ((!is.na(score) & score >= 16) | ((!is.na(ecg.st.depression) & ecg.st.depression == 1) | (!is.na(ecg.twi) & ecg.twi == 1)) |
-                                             ((!is.na(presentation_hstni) & presentation_hstni >= 34) | (!is.na(Δ2nd_hstni) & Δ2nd_hstni >= 34 )))) {
+                                             ((!is.na(presentation_hstni) & presentation_hstni >= 34) | (!is.na(second_hstni) & second_hstni >= 34 )))) {
     fact <- "Not low risk"
   }
 
   else if ((!is.na(Gender) & Gender == "male") & ((!is.na(score) & score < 16) & ((!is.na(ecg.st.depression) & ecg.st.depression == 0) & (ecg.twi == 0 | is.na(ecg.twi))) &
-                                                  ((!is.na(presentation_hstni) & presentation_hstni < 34) & (is.na(Δ2nd_hstni) | Δ2nd_hstni < 34) ))) {
+                                                  ((!is.na(presentation_hstni) & presentation_hstni < 34) & (is.na(second_hstni) | second_hstni < 34) ))) {
     fact <- "Low risk"
   }
 
   else if ((!is.na(Gender) & Gender == "female") & ((!is.na(score) & score >= 16) | ((!is.na(ecg.st.depression) & ecg.st.depression == 1) | (!is.na(ecg.twi) & ecg.twi == 1)) |
-                                                    ((!is.na(presentation_hstni) & presentation_hstni >= 16) | (!is.na(Δ2nd_hstni) & Δ2nd_hstni >= 16 )))) {
+                                                    ((!is.na(presentation_hstni) & presentation_hstni >= 16) | (!is.na(second_hstni) & second_hstni >= 16 )))) {
     fact <- "Not low risk"
   }
 
   else if ((!is.na(Gender) & Gender == "female") & ((!is.na(score) & score < 16) & ((!is.na(ecg.st.depression) & ecg.st.depression == 0) & (ecg.twi == 0 | is.na(ecg.twi  ))) &
-                                                    ((!is.na(presentation_hstni) & presentation_hstni < 16) & (is.na(Δ2nd_hstni) | Δ2nd_hstni < 16) ))) {
+                                                    ((!is.na(presentation_hstni) & presentation_hstni < 16) & (is.na(second_hstni) | second_hstni < 16) ))) {
     fact <- "Low risk"
   }
 

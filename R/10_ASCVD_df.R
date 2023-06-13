@@ -78,8 +78,6 @@
 
 
 ASCVD_scores <- function(data, classify) {
-  library(tidyverse)
-  library(PooledCohort)
 
   if (classify == TRUE) {
     results <- data  %>% rowwise() %>% mutate(

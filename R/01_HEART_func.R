@@ -69,6 +69,7 @@
 #' @param presentation_hstni a continuous numeric vector of the troponin levels
 #' @param Gender a binary character vector of sex values. Categories should include
 #' only 'male' or 'female'.
+#' @param classify a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"
 #'
 #' @keywords
 #' HEART, typical_symptoms.num, ecg.normal, abn.repolarisation, ecg.st.depression,
@@ -109,7 +110,7 @@
                     Gender ,
                     classify = classify) {
 
-    library(tidyverse)
+
     if (missing(typical_symptoms.num) ||
         missing(ecg.normal) || missing(abn.repolarisation) ||
         missing(ecg.st.depression) ||
@@ -133,7 +134,7 @@
       warning("Invalid variable type detected.")
     }
 
-    library(dplyr)
+
     # 1. History - classical or not classical cardiac features
     Hist <- case_when(
       is.na(typical_symptoms.num) ~ NA_real_,

@@ -46,7 +46,7 @@
 #' @param number.of.episodes.24h a numeric vector of number of angina episodes in 24 hours
 #' @param previous.pci a binary numeric vector, 1 = yes and 0 = no
 #' @param previous.cabg a binary numeric vector, 1 = yes and 0 = no
-#'
+#' @param classify set TRUE if wish to add a column with the scores' categories
 #' @keywords
 #'  TIMI, Age, hypertension, hyperlipidaemia, family.history, diabetes,
 #'  smoker, previous.pci, previous.cabg, aspirin,
@@ -72,7 +72,7 @@ TIMI <- function(Age, hypertension, hyperlipidaemia, family.history, diabetes,
                   smoker, previous.pci, previous.cabg, aspirin,
                   number.of.episodes.24h, ecg.st.depression,
                   presentation_hstni, Gender, classify){
-  library(tidyverse)
+
 
   score <- case_when(
     is.na(Age) ~ NA_real_,

@@ -36,11 +36,12 @@
 #' only 'male' or 'female'.
 #' @param smoker a binary numeric vector, 1 = yes and 0 = no
 #' @param systolic.bp a numeric vector of systolic blood pressure continuous values
-#' @param race a character vector, 'white', 'black', 'asian', or other
+#' @param Ethnicity a character vector, 'white', 'black', 'asian', or other
 #' @param total.chol a numeric vector of total cholesterol values, in mmol/L
 #' @param total.hdl a numeric vector of total high density lipoprotein HDL values, in mmol/L
 #' @param diabetes a binary numeric vector, 1 = yes and 0 = no
 #' @param hypertension a binary numeric vector, 1 = yes and 0 = no
+#' @param classify a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"
 #'
 #' @keywords
 #' ASCVD, Gender, Ethnicity, Age, total.chol, total.hdl,
@@ -60,9 +61,15 @@
 
 ASCVD <- function(Gender, Ethnicity, Age, total.chol, total.hdl,
                   systolic.bp, hypertension, smoker, diabetes, classify ){
-  library(tidyverse)
-  library(PooledCohort)
 
+  round_DD <- function(x, n) {
+    posneg = sign(x)
+    z = abs(x) * 10^n
+    z = z + 0.5
+    z = trunc(z)
+    z = z / 10^n
+    z * posneg
+  }
   score <- round_DD(predict_10yr_ascvd_risk(sex = Gender,
                                    race = Ethnicity, age_years = Age,
                                    chol_total_mgdl = total.chol*38.67,
