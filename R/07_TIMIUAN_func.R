@@ -73,7 +73,7 @@
 #'   smoker = sample(c(1, 0), num_rows, replace = TRUE),
 #'   hypertension = sample(c(1, 0), num_rows, replace = TRUE),
 #'   hyperlipidaemia = sample(c(1, 0), num_rows, replace = TRUE),
-#'   family_history = sample(c(1, 0), num_rows, replace = TRUE),
+#'   family.history = sample(c(1, 0), num_rows, replace = TRUE),
 #'   atherosclerotic.disease = sample(c(1, 0), num_rows, replace = TRUE),
 #'   presentation_hstni = as.numeric(sample(10:100, num_rows, replace = TRUE)),
 #'   Gender = sample(c("male", "female"), num_rows, replace = TRUE)
