@@ -86,6 +86,10 @@ https://www.outcomes-umassmed.org/grace/acs_risk2/index.html
 }
 \examples{
 
+# Create a data frame or list with the necessary variables
+# Set the number of rows
+num_rows <- 100
+
 # Create a larger dataset with 100 rows
 cohort_xx <- data.frame(
   typical_symptoms.num = as.numeric(sample(0:6, num_rows, replace = TRUE)),
