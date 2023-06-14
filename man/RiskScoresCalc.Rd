@@ -32,6 +32,7 @@ calc_scores(
   aspirin = aspirin,
   number.of.episodes.24h = number.of.episodes.24h,
   previous.pci = previous.pci,
+  creat = creat,
   previous.cabg = previous.cabg,
   total.chol = total.chol,
   total.hdl = total.hdl,
@@ -39,6 +40,8 @@ calc_scores(
 )
 }
 \arguments{
+\item{data}{A data frame with all the variables needed for calculation:}
+
 \item{typical_symptoms.num}{a numeric vector of the number of typical symptoms; renames alternative column name}
 
 \item{ecg.normal}{a binary numeric vector,  1 = yes and 0 = no; renames alternative column name}
@@ -90,13 +93,15 @@ only 'male' or 'female'; renames alternative column name}
 
 \item{previous.pci}{a binary numeric vector, 1 = yes and 0 = no; renames alternative column name}
 
+\item{creat}{a continuous numeric vector of the creatine levels}
+
 \item{previous.cabg}{a binary numeric vector, 1 = yes and 0 = no; renames alternative column name}
 
 \item{total.chol}{a numeric vector of total cholesterol values, in mmol/L; renames alternative column name}
 
 \item{total.hdl}{a numeric vector of total high density lipoprotein HDL values, in mmol/L; renames alternative column name}
 
-\item{creat}{a continuous numeric vector of the creatine levels}
+\item{Ethnicity}{a character vector, 'white', 'black', 'asian', or other}
 }
 \value{
 a data frame with two extra columns including all the cardiovascular risk score calculations
@@ -111,7 +116,6 @@ frame with two extra columns for each risk score including their calculations an
 new_data_frame <- calc_scores(data = cohort_xx)
 
 }
-\keyword{2nd_hstni,}
 \keyword{Age,}
 \keyword{Cardiovascular}
 \keyword{Gender,}
@@ -136,6 +140,7 @@ new_data_frame <- calc_scores(data = cohort_xx)
 \keyword{previous.pci,}
 \keyword{risk}
 \keyword{scores,}
+\keyword{second_hstni,}
 \keyword{smoker,}
 \keyword{sweating,}
 \keyword{systolic.bp,}

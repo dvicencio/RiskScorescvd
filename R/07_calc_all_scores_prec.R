@@ -5,7 +5,8 @@
 #' in a data frame with the required variables. It would then retrieve a data
 #' frame with two extra columns for each risk score including their calculations and classifications
 #'
-#'
+#' @param data
+#' A data frame with all the variables needed for calculation:
 #' @param  typical_symptoms.num a numeric vector of the number of typical symptoms; renames alternative column name
 #' @param ecg.normal a binary numeric vector,  1 = yes and 0 = no; renames alternative column name
 #' @param abn.repolarisation a binary numeric vector,  1 = yes and 0 = no; renames alternative column name
@@ -36,12 +37,13 @@
 #' @param total.chol a numeric vector of total cholesterol values, in mmol/L; renames alternative column name
 #' @param total.hdl a numeric vector of total high density lipoprotein HDL values, in mmol/L; renames alternative column name
 #' @param creat a continuous numeric vector of the creatine levels
+#' @param Ethnicity a character vector, 'white', 'black', 'asian', or other
 #'
 #' @keywords
 #' Cardiovascular risk scores, typical_symptoms.num, ecg.normal, abn.repolarisation, ecg.st.depression,
 #' Age, diabetes, smoker, hypertension, hyperlipidaemia, family.history,
 #' atherosclerotic.disease, presentation_hstni, Gender, sweating, pain.radiation, pleuritic, palpation, ecg.twi,
-#' 2nd_hstni, killip.class, heart.rate, systolic.bp, aspirin, number.of.episodes.24h, previous.pci,
+#' second_hstni, killip.class, heart.rate, systolic.bp, aspirin, number.of.episodes.24h, previous.pci,
 #' previous.cabg, total.chol, total.hdl
 #'
 #' @return
@@ -69,7 +71,7 @@ calc_scores <- function(data, typical_symptoms.num = typical_symptoms.num, ecg.n
                        pleuritic = pleuritic, palpation = palpation, ecg.twi = ecg.twi,
                        second_hstni = second_hstni, killip.class = killip.class, heart.rate = heart.rate,
                        systolic.bp = systolic.bp, aspirin = aspirin, number.of.episodes.24h = number.of.episodes.24h,
-                       previous.pci = previous.pci, previous.cabg = previous.cabg, total.chol = total.chol, total.hdl = total.hdl, Ethnicity = Ethnicity
+                       previous.pci = previous.pci, creat = creat, previous.cabg = previous.cabg, total.chol = total.chol, total.hdl = total.hdl, Ethnicity = Ethnicity
                        ) {
 
 data <- data %>% rename(typical_symptoms.num = typical_symptoms.num, ecg.normal = ecg.normal,
@@ -81,7 +83,7 @@ data <- data %>% rename(typical_symptoms.num = typical_symptoms.num, ecg.normal 
                         pleuritic = pleuritic, palpation = palpation, ecg.twi = ecg.twi,
                         second_hstni = second_hstni, killip.class = killip.class, heart.rate = heart.rate,
                         systolic.bp = systolic.bp, aspirin = aspirin, number.of.episodes.24h = number.of.episodes.24h,
-                        previous.pci = previous.pci, previous.cabg = previous.cabg, total.chol = total.chol, total.hdl = total.hdl, Ethnicity = Ethnicity)
+                        previous.pci = previous.pci, creat = creat, previous.cabg = previous.cabg, total.chol = total.chol, total.hdl = total.hdl, Ethnicity = Ethnicity)
 
   all_scores <- data %>% rowwise() %>% mutate(HEART_score =
                                                         HEART(typical_symptoms.num = typical_symptoms.num,
