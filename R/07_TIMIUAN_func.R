@@ -115,7 +115,7 @@
 # Function ----------------------------------------------------------------
 
 TIMI <- function(Age = Age, hypertension = hypertension, hyperlipidaemia = hyperlipidaemia, family.history = family.history, diabetes = diabetes,
-                  smoker = smoker, previous.pci = previous.pci, previous.cabg = previous.pci, aspirin = aspirin,
+                  smoker = smoker, previous.pci = previous.pci, previous.cabg = previous.cabg, aspirin = aspirin,
                   number.of.episodes.24h = number.of.episodes.24h, ecg.st.depression = ecg.st.depression,
                   presentation_hstni = presentation_hstni, Gender = Gender, classify){
 
