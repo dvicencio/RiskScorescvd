@@ -52,6 +52,44 @@ Age	10-year risk of fatal and non-fatal cardiovascular disease
 above classifications referred from https://www.inanutshell.ch/en/digital-doctors-bag/score2-and-score2-op/#:~:text=SCORE2%20(%C2%ABSystematic%20COronary%20Risk%20Evaluation,Society%20of%20Cardiology%20(ESC).
 }
 \examples{
+
+# Create a larger dataset with 100 rows
+cohort_xx <- data.frame(
+  typical_symptoms.num = as.numeric(sample(0:6, num_rows, replace = TRUE)),
+  ecg.normal = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  abn.repolarisation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  ecg.st.depression = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  Age = as.numeric(sample(30:80, num_rows, replace = TRUE)),
+  diabetes = sample(c(1, 0), num_rows, replace = TRUE),
+  smoker = sample(c(1, 0), num_rows, replace = TRUE),
+  hypertension = sample(c(1, 0), num_rows, replace = TRUE),
+  hyperlipidaemia = sample(c(1, 0), num_rows, replace = TRUE),
+  family_history = sample(c(1, 0), num_rows, replace = TRUE),
+  atherosclerotic.disease = sample(c(1, 0), num_rows, replace = TRUE),
+  presentation_hstni = as.numeric(sample(10:100, num_rows, replace = TRUE)),
+  Gender = sample(c("male", "female"), num_rows, replace = TRUE),
+  sweating = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  pain.radiation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  pleuritic = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  palpation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  ecg.twi = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  second_hstni = as.numeric(sample(1:200, num_rows, replace = TRUE)),
+  killip.class = as.numeric(sample(1:4, num_rows, replace = TRUE)),
+  systolic.bp = as.numeric(sample(0:300, num_rows, replace = TRUE)),
+  heart.rate = as.numeric(sample(0:300, num_rows, replace = TRUE)),
+  creat = as.numeric(sample(0:4, num_rows, replace = TRUE)),
+  cardiac.arrest = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  previous.pci = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  previous.cabg = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  aspirin = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  number.of.episodes.24h = as.numeric(sample(0:20, num_rows, replace = TRUE)),
+  total.chol = as.numeric(sample(5:100, num_rows, replace = TRUE)),
+  total.hdl = as.numeric(sample(2:5, num_rows, replace = TRUE)),
+  Ethnicity = sample(c("white", "black", "asian", "other"), num_rows, replace = TRUE)
+)
+
+# Call the function with the cohort_xx
+
   results <- cohort_xx \%>\% rowwise() \%>\%
   mutate(SCORE2OP_score = SCORE2(Age, Gender, smoker, systolic.bp, diabetes,
   total.chol, total.hdl, classify = FALSE))

@@ -33,7 +33,7 @@
 #' # Create a data frame or list with the necessary variables
 #' # Set the number of rows
 #' num_rows <- 100
-
+#'
 #' # Create a larger dataset with 100 rows
 #' cohort_xx <- data.frame(
 #'   typical_symptoms.num = as.numeric(sample(0:6, num_rows, replace = TRUE)),
@@ -68,11 +68,10 @@
 #'   total.hdl = as.numeric(sample(2:5, num_rows, replace = TRUE)),
 #'   Ethnicity = sample(c("white", "black", "asian", "other"), num_rows, replace = TRUE)
 #' )
-
-
+#'
 #' # Call the function with the cohort_xx
 #' result <- SCORE2_scores(data = cohort_xx, classify = TRUE)
-
+#'
 #' # Print the results
 #' summary(result$SCORE2_score)
 #' summary(result$SCORE2_strat)
