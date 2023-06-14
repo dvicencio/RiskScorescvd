@@ -13,6 +13,3 @@ Depends:
   R (>= 4.3.0),
   dplyr (>= 1.1.2),
   PooledCohort (>= 0.0.1)
-Imports: 
-  dplyr (>= 1.1.2),
-  PooledCohort (>= 0.0.1)
