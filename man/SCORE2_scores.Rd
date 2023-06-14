@@ -92,7 +92,6 @@ result <- SCORE2_scores(data = cohort_xx, classify = TRUE)
 summary(result$SCORE2_score)
 summary(result$SCORE2_strat)
 
- @importFrom dplyr mutate
 }
 \keyword{Age,}
 \keyword{Gender,}

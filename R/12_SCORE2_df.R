@@ -77,7 +77,7 @@
 #' summary(result$SCORE2_score)
 #' summary(result$SCORE2_strat)
 #'
-#'  @importFrom dplyr mutate
+#' @importFrom dplyr mutate
 #' @importFrom dplyr rename
 #' @importFrom dplyr %>%
 #' @importFrom dplyr rowwise
