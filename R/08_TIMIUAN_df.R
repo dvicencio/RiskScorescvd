@@ -57,10 +57,21 @@
 #'   family.history = sample(c(1, 0), num_rows, replace = TRUE),
 #'   atherosclerotic.disease = sample(c(1, 0), num_rows, replace = TRUE),
 #'   presentation_hstni = as.numeric(sample(10:100, num_rows, replace = TRUE)),
-#'   Gender = sample(c("male", "female"), num_rows, replace = TRUE)
+#'   Gender = sample(c("male", "female"), num_rows, replace = TRUE),
+#'   sweating = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+#'   pain.radiation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+#'   pleuritic = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+#'   palpation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+#'   ecg.twi = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+#'   second_hstni = as.numeric(sample(1:200, num_rows, replace = TRUE)),
+#'   killip.class = as.numeric(sample(1:4, num_rows, replace = TRUE)),
+#'   systolic.bp = as.numeric(sample(0:300, num_rows, replace = TRUE)),
+#'   heart.rate = as.numeric(sample(0:300, num_rows, replace = TRUE)),
+#'   creat = as.numeric(sample(0:4, num_rows, replace = TRUE)),
+#'   cardiac.arrest = as.numeric(sample(c(0, 1), num_rows, replace = TRUE))
 #' )
-
-
+#'
+#'
 #' # Call the function with the cohort_xx
 #' result <- TIMI_scores(data = cohort_xx, classify = TRUE)
 
