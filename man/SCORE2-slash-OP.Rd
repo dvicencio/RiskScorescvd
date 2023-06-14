@@ -53,6 +53,10 @@ above classifications referred from https://www.inanutshell.ch/en/digital-doctor
 }
 \examples{
 
+# Create a data frame or list with the necessary variables
+# Set the number of rows
+num_rows <- 100
+
 # Create a larger dataset with 100 rows
 cohort_xx <- data.frame(
   typical_symptoms.num = as.numeric(sample(0:6, num_rows, replace = TRUE)),
