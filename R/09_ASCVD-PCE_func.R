@@ -32,8 +32,7 @@
 #' Low-Intensity Statin Therapy
 #'
 #' @param Age a numeric vector of age values, in years
-#' @param Gender a binary character vector of sex values. Categories should include
-#' only 'male' or 'female'.
+#' @param Gender a binary character vector of sex values. Categories should include only 'male' or 'female'
 #' @param smoker a binary numeric vector, 1 = yes and 0 = no
 #' @param systolic.bp a numeric vector of systolic blood pressure continuous values
 #' @param Ethnicity a character vector, 'white', 'black', 'asian', or other
@@ -52,7 +51,9 @@
 #' and/or a vector of their classifications if indicated
 #'
 #' @examples
-#' results <- cohort_xx %>% rowwise() %>% mutate(ASCVD_score = ASCVD(Gender, Ethnicity, Age, total.chol, total.hdl, systolic.bp,hypertension, smoker, diabetes, classify = FALSE))
+#' results <- cohort_xx %>% rowwise() %>%
+#'  mutate(ASCVD_score = ASCVD(Gender, Ethnicity, Age, total.chol, total.hdl,
+#'  systolic.bp,hypertension, smoker, diabetes, classify = FALSE))
 #'
 #' @importFrom PooledCohort predict_10yr_ascvd_risk
 #'

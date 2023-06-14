@@ -12,7 +12,7 @@
 #' family.history, sweating, pain.radiation, pleuritic, palpation,
 #' ecg.st.depression, ecg.twi,  presentation_hstni, second_hstni, classify
 #' @param classify a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"
-#'@param ecg.st.depression a binary numeric vector, 1 = yes and 0 = no
+#' @param ecg.st.depression a binary numeric vector, 1 = yes and 0 = no
 #' @param Age a numeric vector of age values, in years
 #' @param diabetes a binary numeric vector, 1 = yes and 0 = no
 #' @param smoker a binary numeric vector, 1 = yes and 0 = no
@@ -20,8 +20,7 @@
 #' @param hyperlipidaemia a binary numeric vector, 1 = yes and 0 = no
 #' @param family.history a binary numeric vector, 1 = yes and 0 = no
 #' @param presentation_hstni a continuous numeric vector of the troponin levels
-#' @param Gender a binary character vector of sex values. Categories should include
-#' only 'male' or 'female'.
+#' @param Gender a binary character vector of sex values. Categories should include only 'male' or 'female'
 #' @param sweating a binary numeric vector, 1 = yes and 0 = no
 #' @param pain.radiation a binary numeric vector, 1 = yes and 0 = no
 #' @param pleuritic a binary numeric vector, 1 = yes and 0 = no

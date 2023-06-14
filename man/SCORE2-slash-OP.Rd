@@ -19,8 +19,7 @@ SCORE2(
 \arguments{
 \item{Age}{a numeric vector of age values, in years}
 
-\item{Gender}{a binary character vector of Gender values. Categories should include
-only 'male' or 'female'.}
+\item{Gender}{a binary character vector of Gender values. Categories should include only 'male' or 'female'.}
 
 \item{smoker}{a binary numeric vector, 1 = yes and 0 = no}
 
@@ -53,7 +52,9 @@ Age	10-year risk of fatal and non-fatal cardiovascular disease
 above classifications referred from https://www.inanutshell.ch/en/digital-doctors-bag/score2-and-score2-op/#:~:text=SCORE2%20(%C2%ABSystematic%20COronary%20Risk%20Evaluation,Society%20of%20Cardiology%20(ESC).
 }
 \examples{
-  results <- cohort_xx \%>\% rowwise() \%>\% mutate(SCORE2OP_score = SCORE2(Age, Gender, smoker, systolic.bp, diabetes, total.chol, total.hdl, classify = FALSE))
+  results <- cohort_xx \%>\% rowwise() \%>\%
+  mutate(SCORE2OP_score = SCORE2(Age, Gender, smoker, systolic.bp, diabetes,
+  total.chol, total.hdl, classify = FALSE))
 
 }
 \keyword{Age,}

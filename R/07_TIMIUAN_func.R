@@ -40,8 +40,7 @@
 #' @param hyperlipidaemia a binary numeric vector, 1 = yes and 0 = no
 #' @param family.history a binary numeric vector, 1 = yes and 0 = no
 #' @param presentation_hstni a continuous numeric vector of the troponin levels
-#' @param Gender a binary character vector of sex values. Categories should include
-#' only 'male' or 'female'.
+#' @param Gender a binary character vector of sex values. Categories should include only 'male' or 'female'
 #' @param aspirin a binary numeric vector, 1 = yes and 0 = no
 #' @param number.of.episodes.24h a numeric vector of number of angina episodes in 24 hours
 #' @param previous.pci a binary numeric vector, 1 = yes and 0 = no
@@ -59,7 +58,10 @@
 #'
 #' @examples
 #'
-#'   results <- cohort_xx %>% rowwise() %>% mutate(TIMI_score = TIMI(Age, hypertension, hyperlipidaemia, family.history, diabetes, smoker, previous.pci, previous.cabg, aspirin, number.of.episodes.24h, ecg.st.depression, presentation_hstni, Gender, classify = FALSE))
+#'   results <- cohort_xx %>% rowwise() %>%
+#'   mutate(TIMI_score = TIMI(Age, hypertension, hyperlipidaemia, family.history,
+#'   diabetes, smoker, previous.pci, previous.cabg, aspirin, number.of.episodes.24h,
+#'   ecg.st.depression, presentation_hstni, Gender, classify = FALSE))
 #'
 #'
 #'@importFrom dplyr casewhen

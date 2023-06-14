@@ -66,8 +66,7 @@ calc_scores(
 
 \item{presentation_hstni}{a continuous numeric vector of the troponin levels; renames alternative column name}
 
-\item{Gender}{a binary character vector of sex values. Categories should include
-only 'male' or 'female'; renames alternative column name}
+\item{Gender}{a binary character vector of sex values. Categories should include only 'male' or 'female'; renames alternative column name}
 
 \item{sweating}{a binary numeric vector, 1 = yes and 0 = no; renames alternative column name}
 

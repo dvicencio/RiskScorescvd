@@ -13,8 +13,7 @@
 #' @param ecg.st.depression a binary numeric vector, 1 = yes and 0 = no
 #' @param Age a numeric vector of age values, in years
 #' @param presentation_hstni a continuous numeric vector of the troponin levels
-#' @param Gender a binary character vector of sex values. Categories should include
-#' only 'male' or 'female'.
+#' @param Gender a binary character vector of sex values. Categories should include only 'male' or 'female'
 #' @param killip.class a numeric vector of killip class values, 1 to 4
 #' @param heart.rate a numeric vector of heart rate continuous values
 #' @param systolic.bp a numeric vector of systolic blood pressure continuous values
@@ -56,7 +55,7 @@
 #'   pleuritic = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
 #'   palpation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
 #'   ecg.twi = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
-#'   Δ2nd_hstni = as.numeric(sample(1:200, num_rows, replace = TRUE)),
+#'   second_hstni = as.numeric(sample(1:200, num_rows, replace = TRUE)),
 #'   killip.class = as.numeric(sample(1:4, num_rows, replace = TRUE)),
 #'   systolic.bp = as.numeric(sample(0:300, num_rows, replace = TRUE)),
 #'   heart.rate = as.numeric(sample(0:300, num_rows, replace = TRUE)),

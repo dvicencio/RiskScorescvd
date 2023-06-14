@@ -39,8 +39,7 @@ presentation_hstni, cardiac.arrest, Gender, classify}
 
 \item{cardiac.arrest}{a binary numeric vector, 1 = yes and 0 = no}
 
-\item{Gender}{a binary character vector of sex values. Categories should include
-only 'male' or 'female'.}
+\item{Gender}{a binary character vector of sex values. Categories should include only 'male' or 'female'}
 
 \item{classify}{a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"}
 }
@@ -78,7 +77,7 @@ cohort_xx <- data.frame(
   pleuritic = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
   palpation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
   ecg.twi = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
-  Δ2nd_hstni = as.numeric(sample(1:200, num_rows, replace = TRUE)),
+  second_hstni = as.numeric(sample(1:200, num_rows, replace = TRUE)),
   killip.class = as.numeric(sample(1:4, num_rows, replace = TRUE)),
   systolic.bp = as.numeric(sample(0:300, num_rows, replace = TRUE)),
   heart.rate = as.numeric(sample(0:300, num_rows, replace = TRUE)),

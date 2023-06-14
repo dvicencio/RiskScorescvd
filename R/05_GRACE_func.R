@@ -45,8 +45,7 @@
 #' @param ecg.st.depression a binary numeric vector, 1 = yes and 0 = no
 #' @param Age a numeric vector of age values, in years
 #' @param presentation_hstni a continuous numeric vector of the troponin levels
-#' @param Gender a binary character vector of sex values. Categories should include
-#' only 'male' or 'female'.
+#' @param Gender a binary character vector of sex values. Categories should include only 'male' or 'female'
 #' @param killip.class a numeric vector of killip class values, 1 to 4
 #' @param heart.rate a numeric vector of heart rate continuous values
 #' @param systolic.bp a numeric vector of systolic blood pressure continuous values
@@ -62,7 +61,9 @@
 #' A vector with GRACE score calculations
 #' and/or a vector of their classifications if indicated
 #' @examples
-#'   results <- cohort_xx %>% rowwise() %>% mutate(GRACE_score = GRACE(killip.class, systolic.bp, heart.rate, Age, creat, ecg.st.depression, presentation_hstni, cardiac.arrest, Gender, classify = FALSE))
+#'   results <- cohort_xx %>% rowwise() %>%
+#'   mutate(GRACE_score = GRACE(killip.class, systolic.bp, heart.rate,
+#'   Age, creat, ecg.st.depression, presentation_hstni, cardiac.arrest, Gender, classify = FALSE))
 #'
 #'@importFrom dplyr caswhen
 #'

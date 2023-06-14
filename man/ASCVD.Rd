@@ -18,8 +18,7 @@ ASCVD(
 )
 }
 \arguments{
-\item{Gender}{a binary character vector of sex values. Categories should include
-only 'male' or 'female'.}
+\item{Gender}{a binary character vector of sex values. Categories should include only 'male' or 'female'}
 
 \item{Ethnicity}{a character vector, 'white', 'black', 'asian', or other}
 
@@ -76,7 +75,9 @@ Moderate-Intensity Statin Therapy
 Low-Intensity Statin Therapy
 }
 \examples{
-results <- cohort_xx \%>\% rowwise() \%>\% mutate(ASCVD_score = ASCVD(Gender, Ethnicity, Age, total.chol, total.hdl, systolic.bp,hypertension, smoker, diabetes, classify = FALSE))
+results <- cohort_xx \%>\% rowwise() \%>\%
+ mutate(ASCVD_score = ASCVD(Gender, Ethnicity, Age, total.chol, total.hdl,
+ systolic.bp,hypertension, smoker, diabetes, classify = FALSE))
 
 }
 \keyword{ASCVD,}

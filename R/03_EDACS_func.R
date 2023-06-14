@@ -49,8 +49,7 @@
 #' @param hyperlipidaemia a binary numeric vector, 1 = yes and 0 = no
 #' @param family.history a binary numeric vector, 1 = yes and 0 = no
 #' @param presentation_hstni a continuous numeric vector of the troponin levels
-#' @param Gender a binary character vector of sex values. Categories should include
-#' only 'male' or 'female'.
+#' @param Gender a binary character vector of sex values. Categories should include only 'male' or 'female'.
 #' @param sweating a binary numeric vector, 1 = yes and 0 = no
 #' @param pain.radiation a binary numeric vector, 1 = yes and 0 = no
 #' @param pleuritic a binary numeric vector, 1 = yes and 0 = no
@@ -68,7 +67,10 @@
 #' A vector with EDACS score calculations
 #' and/or a vector of their classifications if indicated
 #'
-#' @examples  results <- cohort_xx %>% rowwise() %>% mutate(EDACS_score = EDACS(Age, Gender, diabetes, smoker, hypertension, hyperlipidaemia, family.history, sweating, pain.radiation, pleuritic, palpation, ecg.st.depression, ecg.twi,  presentation_hstni, second_hstni, classify = FALSE))
+#' @examples  results <- cohort_xx %>% rowwise() %>%
+#' mutate(EDACS_score = EDACS(Age, Gender, diabetes, smoker, hypertension,
+#' hyperlipidaemia, family.history, sweating, pain.radiation, pleuritic,
+#'  palpation, ecg.st.depression, ecg.twi,  presentation_hstni, second_hstni, classify = FALSE))
 #'
 #'
 #'@importFrom dplyr casewhen

@@ -11,8 +11,7 @@
 #'  Age, Gender, smoker, systolic.bp, diabetes, total.chol,
 #' total.hdl
 #' @param Age a numeric vector of age values, in years
-#' @param Gender a binary character vector of Gender values. Categories should include
-#' only 'male' or 'female'.
+#' @param Gender a binary character vector of Gender values. Categories should include only 'male' or 'female'.
 #' @param smoker a binary numeric vector, 1 = yes and 0 = no
 #' @param systolic.bp a numeric vector of systolic blood pressure continuous values
 #' @param total.chol a numeric vector of total cholesterol values, in mmol/L
@@ -51,23 +50,23 @@
 #'   presentation_hstni = as.numeric(sample(10:100, num_rows, replace = TRUE)),
 #'   Gender = sample(c("male", "female"), num_rows, replace = TRUE)
 #'   sweating = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
-#'  pain.radiation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
-#'  pleuritic = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
-#'  palpation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
-#'  ecg.twi = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
-#'  Δ2nd_hstni = as.numeric(sample(1:200, num_rows, replace = TRUE)),
-#'  killip.class = as.numeric(sample(1:4, num_rows, replace = TRUE)),
-#'  systolic.bp = as.numeric(sample(0:300, num_rows, replace = TRUE)),
-#'  heart.rate = as.numeric(sample(0:300, num_rows, replace = TRUE)),
-#'  creat = as.numeric(sample(0:4, num_rows, replace = TRUE)),
-#'  cardiac.arrest = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
-#'  previous.pci = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
-#'  previous.cabg = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
-#'  aspirin = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
-#'  number.of.episodes.24h = as.numeric(sample(0:20, num_rows, replace = TRUE)),
-#'  total.chol = as.numeric(sample(5:100, num_rows, replace = TRUE)),
-#'  total.hdl = as.numeric(sample(2:5, num_rows, replace = TRUE)),
-#'  Ethnicity = sample(c("white", "black", "asian", "other"), num_rows, replace = TRUE)
+#'   pain.radiation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+#'   pleuritic = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+#'   palpation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+#'   ecg.twi = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+#'   second_hstni = as.numeric(sample(1:200, num_rows, replace = TRUE)),
+#'   killip.class = as.numeric(sample(1:4, num_rows, replace = TRUE)),
+#'   systolic.bp = as.numeric(sample(0:300, num_rows, replace = TRUE)),
+#'   heart.rate = as.numeric(sample(0:300, num_rows, replace = TRUE)),
+#'   creat = as.numeric(sample(0:4, num_rows, replace = TRUE)),
+#'   cardiac.arrest = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+#'   previous.pci = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+#'   previous.cabg = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+#'   aspirin = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+#'   number.of.episodes.24h = as.numeric(sample(0:20, num_rows, replace = TRUE)),
+#'   total.chol = as.numeric(sample(5:100, num_rows, replace = TRUE)),
+#'   total.hdl = as.numeric(sample(2:5, num_rows, replace = TRUE)),
+#'   Ethnicity = sample(c("white", "black", "asian", "other"), num_rows, replace = TRUE)
 #' )
 
 

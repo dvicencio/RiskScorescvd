@@ -46,8 +46,7 @@ HEART(
 
 \item{presentation_hstni}{a continuous numeric vector of the troponin levels}
 
-\item{Gender}{a binary character vector of sex values. Categories should include
-only 'male' or 'female'.}
+\item{Gender}{a binary character vector of sex values. Categories should include only 'male' or 'female'}
 
 \item{classify}{a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"}
 }
@@ -88,7 +87,7 @@ current or recent (<90 days) smoker, /
 diagnosed and/or treated hypertension, /
 diagnosed hypercholesterolemia, /
 family history of coronary artery disease,
-obesity (body mass index [BMI] >30),
+obesity (body mass index BMI >30),
 or a history of significant atherosclerosis, /
 (coronary revascularization, myocardial infarction, stroke, /
 or peripheral arterial disease, /
@@ -111,7 +110,10 @@ The HEART score: A guide to its application in the emergency department paper re
 Website: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6005932/
 }
 \examples{
-results <- cohort_xx \%>\% rowwise() \%>\% mutate(HEART_score = HEART(typical_symptoms.num, ecg.normal, abn.repolarisation, ecg.st.depression, Age, diabetes, smoker, hypertension, hyperlipidaemia, family.history, atherosclerotic.disease, presentation_hstni, Gender, classify = FALSE))
+results <- cohort_xx \%>\% rowwise() \%>\%
+mutate(HEART_score = HEART(typical_symptoms.num, ecg.normal,
+ abn.repolarisation, ecg.st.depression, Age, diabetes, smoker, hypertension,
+ hyperlipidaemia, family.history, atherosclerotic.disease, presentation_hstni, Gender, classify = FALSE))
 
 }
 \keyword{Age,}

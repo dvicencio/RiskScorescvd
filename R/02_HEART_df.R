@@ -24,8 +24,7 @@
 #' @param family.history a binary numeric vector, 1 = yes and 0 = no
 #' @param atherosclerotic.disease a binary numeric vector, 1 = yes and 0 = no
 #' @param presentation_hstni a continuous numeric vector of the troponin levels
-#' @param Gender a binary character vector of sex values. Categories should include
-#' only 'male' or 'female'.
+#' @param Gender a binary character vector of sex values. Categories should include only 'male' or 'female'
 #'
 #' @keywords
 #' HEART, typical_symptoms.num, ecg.normal, abn.repolarisation, ecg.st.depression,

@@ -53,8 +53,7 @@ atherosclerotic.disease, presentation_hstni, Gender}
 
 \item{presentation_hstni}{a continuous numeric vector of the troponin levels}
 
-\item{Gender}{a binary character vector of sex values. Categories should include
-only 'male' or 'female'.}
+\item{Gender}{a binary character vector of sex values. Categories should include only 'male' or 'female'}
 
 \item{classify}{a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"}
 }

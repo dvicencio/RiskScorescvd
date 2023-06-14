@@ -19,8 +19,7 @@
 #' @param family.history a binary numeric vector, 1 = yes and 0 = no; renames alternative column name
 #' @param atherosclerotic.disease a binary numeric vector, 1 = yes and 0 = no; renames alternative column name
 #' @param presentation_hstni a continuous numeric vector of the troponin levels; renames alternative column name
-#' @param Gender a binary character vector of sex values. Categories should include
-#' only 'male' or 'female'; renames alternative column name
+#' @param Gender a binary character vector of sex values. Categories should include only 'male' or 'female'; renames alternative column name
 #' @param sweating a binary numeric vector, 1 = yes and 0 = no; renames alternative column name
 #' @param pain.radiation a binary numeric vector, 1 = yes and 0 = no; renames alternative column name
 #' @param pleuritic a binary numeric vector, 1 = yes and 0 = no; renames alternative column name

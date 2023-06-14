@@ -15,8 +15,7 @@
 #' above classifications referred from https://www.inanutshell.ch/en/digital-doctors-bag/score2-and-score2-op/#:~:text=SCORE2%20(%C2%ABSystematic%20COronary%20Risk%20Evaluation,Society%20of%20Cardiology%20(ESC).
 #'
 #' @param Age a numeric vector of age values, in years
-#' @param Gender a binary character vector of Gender values. Categories should include
-#' only 'male' or 'female'.
+#' @param Gender a binary character vector of Gender values. Categories should include only 'male' or 'female'.
 #' @param smoker a binary numeric vector, 1 = yes and 0 = no
 #' @param systolic.bp a numeric vector of systolic blood pressure continuous values
 #' @param total.chol a numeric vector of total cholesterol values, in mmol/L
@@ -33,7 +32,9 @@
 #' and/or a vector of their classifications if indicated
 #'
 #' @examples
-#'   results <- cohort_xx %>% rowwise() %>% mutate(SCORE2OP_score = SCORE2(Age, Gender, smoker, systolic.bp, diabetes, total.chol, total.hdl, classify = FALSE))
+#'   results <- cohort_xx %>% rowwise() %>%
+#'   mutate(SCORE2OP_score = SCORE2(Age, Gender, smoker, systolic.bp, diabetes,
+#'   total.chol, total.hdl, classify = FALSE))
 #'
 #' @name SCORE2/OP
 #'

@@ -34,8 +34,7 @@ GRACE(
 
 \item{cardiac.arrest}{a binary numeric vector, 1 = yes and 0 = no}
 
-\item{Gender}{a binary character vector of sex values. Categories should include
-only 'male' or 'female'.}
+\item{Gender}{a binary character vector of sex values. Categories should include only 'male' or 'female'}
 
 \item{classify}{a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"}
 }
@@ -86,7 +85,9 @@ https://www.outcomes-umassmed.org/grace/acs_risk2/index.html
 •	High 			     119-263
 }
 \examples{
-  results <- cohort_xx \%>\% rowwise() \%>\% mutate(GRACE_score = GRACE(killip.class, systolic.bp, heart.rate, Age, creat, ecg.st.depression, presentation_hstni, cardiac.arrest, Gender, classify = FALSE))
+  results <- cohort_xx \%>\% rowwise() \%>\%
+  mutate(GRACE_score = GRACE(killip.class, systolic.bp, heart.rate,
+  Age, creat, ecg.st.depression, presentation_hstni, cardiac.arrest, Gender, classify = FALSE))
 
 }
 \keyword{Age,}

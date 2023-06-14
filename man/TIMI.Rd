@@ -65,8 +65,7 @@ TIMI_scores(
 
 \item{presentation_hstni}{a continuous numeric vector of the troponin levels}
 
-\item{Gender}{a binary character vector of sex values. Categories should include
-only 'male' or 'female'.}
+\item{Gender}{a binary character vector of sex values. Categories should include only 'male' or 'female'}
 
 \item{classify}{set TRUE if wish to add a column with the scores' categories}
 
@@ -124,7 +123,10 @@ TIMI = Thrombolysis In Myocardial Infarction
 }
 \examples{
 
-  results <- cohort_xx \%>\% rowwise() \%>\% mutate(TIMI_score = TIMI(Age, hypertension, hyperlipidaemia, family.history, diabetes, smoker, previous.pci, previous.cabg, aspirin, number.of.episodes.24h, ecg.st.depression, presentation_hstni, Gender, classify = FALSE))
+  results <- cohort_xx \%>\% rowwise() \%>\%
+  mutate(TIMI_score = TIMI(Age, hypertension, hyperlipidaemia, family.history,
+  diabetes, smoker, previous.pci, previous.cabg, aspirin, number.of.episodes.24h,
+  ecg.st.depression, presentation_hstni, Gender, classify = FALSE))
 
 
 
@@ -148,10 +150,10 @@ cohort_xx <- data.frame(
   Gender = sample(c("male", "female"), num_rows, replace = TRUE)
 )
 # Call the function with the cohort_xx
-result <- HEART_scores(data = cohort_xx, classify = TRUE)
+result <- TIMI_scores(data = cohort_xx, classify = TRUE)
 # Print the results
-summary(result$HEART_score)
-summary(result$HEART_strat)
+summary(result$TIMI_score)
+summary(result$TIMI_strat)
 
 
 }

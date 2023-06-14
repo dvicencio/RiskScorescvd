@@ -24,8 +24,7 @@ ASCVD_scores(
 Gender, Ethnicity, Age, total.chol, total.hd,
 systolic.bp,hypertension, smoker, diabetes}
 
-\item{Gender}{a binary character vector of sex values. Categories should include
-only 'male' or 'female'.}
+\item{Gender}{a binary character vector of sex values. Categories should include only 'male' or 'female'.}
 
 \item{Ethnicity}{a character vector, 'white', 'black', 'asian', or other}
 
@@ -75,23 +74,23 @@ cohort_xx <- data.frame(
   presentation_hstni = as.numeric(sample(10:100, num_rows, replace = TRUE)),
   Gender = sample(c("male", "female"), num_rows, replace = TRUE),
   sweating = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
- pain.radiation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
- pleuritic = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
- palpation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
- ecg.twi = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
- Δ2nd_hstni = as.numeric(sample(1:200, num_rows, replace = TRUE)),
- killip.class = as.numeric(sample(1:4, num_rows, replace = TRUE)),
- systolic.bp = as.numeric(sample(0:300, num_rows, replace = TRUE)),
- heart.rate = as.numeric(sample(0:300, num_rows, replace = TRUE)),
- creat = as.numeric(sample(0:4, num_rows, replace = TRUE)),
- cardiac.arrest = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
- previous.pci = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
- previous.cabg = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
- aspirin = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
- number.of.episodes.24h = as.numeric(sample(0:20, num_rows, replace = TRUE)),
- total.chol = as.numeric(sample(5:100, num_rows, replace = TRUE)),
- total.hdl = as.numeric(sample(2:5, num_rows, replace = TRUE)),
- Ethnicity = sample(c("white", "black", "asian", "other"), num_rows, replace = TRUE)
+  pain.radiation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  pleuritic = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  palpation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  ecg.twi = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  second_hstni = as.numeric(sample(1:200, num_rows, replace = TRUE)),
+  killip.class = as.numeric(sample(1:4, num_rows, replace = TRUE)),
+  systolic.bp = as.numeric(sample(0:300, num_rows, replace = TRUE)),
+  heart.rate = as.numeric(sample(0:300, num_rows, replace = TRUE)),
+  creat = as.numeric(sample(0:4, num_rows, replace = TRUE)),
+  cardiac.arrest = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  previous.pci = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  previous.cabg = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  aspirin = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  number.of.episodes.24h = as.numeric(sample(0:20, num_rows, replace = TRUE)),
+  total.chol = as.numeric(sample(5:100, num_rows, replace = TRUE)),
+  total.hdl = as.numeric(sample(2:5, num_rows, replace = TRUE)),
+  Ethnicity = sample(c("white", "black", "asian", "other"), num_rows, replace = TRUE)
 )
 # Call the function with the cohort_xx
 result <- ASCVD_scores(data = cohort_xx, classify = TRUE)

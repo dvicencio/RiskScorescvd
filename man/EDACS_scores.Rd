@@ -33,8 +33,7 @@ ecg.st.depression, ecg.twi,  presentation_hstni, second_hstni, classify}
 
 \item{Age}{a numeric vector of age values, in years}
 
-\item{Gender}{a binary character vector of sex values. Categories should include
-only 'male' or 'female'.}
+\item{Gender}{a binary character vector of sex values. Categories should include only 'male' or 'female'}
 
 \item{diabetes}{a binary numeric vector, 1 = yes and 0 = no}
 
