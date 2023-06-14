@@ -6,13 +6,13 @@
 \title{Systematic COronary Risk Evaluation (SCORE) model}
 \usage{
 SCORE2(
-  Age,
-  Gender,
-  smoker,
-  systolic.bp,
-  diabetes,
-  total.chol,
-  total.hdl,
+  Age = Age,
+  Gender = Gender,
+  smoker = smoker,
+  systolic.bp = systolic.bp,
+  diabetes = diabetes,
+  total.chol = total.chol,
+  total.hdl = total.hdl,
   classify
 )
 }

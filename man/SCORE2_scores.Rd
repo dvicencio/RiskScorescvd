@@ -5,7 +5,17 @@
 \title{SCORE2/OP risk score function
 SCORE2/OP = Systematic COronary Risk Evaluation /and Older Population}
 \usage{
-SCORE2_scores(data, classify)
+SCORE2_scores(
+  data,
+  Age = Age,
+  Gender = Gender,
+  smoker = smoker,
+  systolic.bp = systolic.bp,
+  diabetes = diabetes,
+  total.chol = total.chol,
+  total.hdl = total.hdl,
+  classify
+)
 }
 \arguments{
 \item{data}{A data frame with all the variables needed for calculation:

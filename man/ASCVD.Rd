@@ -5,16 +5,16 @@
 \title{ASCVD (Atherosclerotic Cardiovascular Disease) Risk Algorithm including Known ASCVD from AHA/ACC}
 \usage{
 ASCVD(
-  Gender,
-  Ethnicity,
-  Age,
-  total.chol,
-  total.hdl,
-  systolic.bp,
-  hypertension,
-  smoker,
-  diabetes,
-  classify
+  Gender = Gender,
+  Ethnicity = Ethnicity,
+  Age = Age,
+  total.chol = total.chol,
+  total.hdl = total.hdl,
+  systolic.bp = systolic.bp,
+  hypertension = hypertension,
+  smoker = smoker,
+  diabetes = diabetes,
+  classify = FALSE
 )
 }
 \arguments{

@@ -62,16 +62,15 @@
 #'   results <- cohort_xx %>% rowwise() %>% mutate(TIMI_score = TIMI(Age, hypertension, hyperlipidaemia, family.history, diabetes, smoker, previous.pci, previous.cabg, aspirin, number.of.episodes.24h, ecg.st.depression, presentation_hstni, Gender, classify = FALSE))
 #'
 #' @name TIMI
-#' @import dplyr
 #' @export
 
 
 # Function ----------------------------------------------------------------
 
-TIMI <- function(Age, hypertension, hyperlipidaemia, family.history, diabetes,
-                  smoker, previous.pci, previous.cabg, aspirin,
-                  number.of.episodes.24h, ecg.st.depression,
-                  presentation_hstni, Gender, classify){
+TIMI <- function(Age = Age, hypertension = hypertension, hyperlipidaemia = hyperlipidaemia, family.history = family.history, diabetes = diabetes,
+                  smoker = smoker, previous.pci = previous.pci, previous.cabg = previous.pci, aspirin = aspirin,
+                  number.of.episodes.24h = number.of.episodes.24h, ecg.st.depression = ecg.st.depression,
+                  presentation_hstni = presentation_hstni, Gender = Gender, classify){
 
 
   score <- case_when(

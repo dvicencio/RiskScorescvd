@@ -62,14 +62,14 @@
 #' A vector with GRACE score calculations
 #' and/or a vector of their classifications if indicated
 #' @examples
-#'   results <- cohort_xx %>% rowwise() %>% mutate(GRACE_score = GRACE(killip.class, systolic.bp, heart.rate, Age, creat, ecg.st.depression, presentation_hstni, cardiac.arrest, Gender, classify = FALSE)) print(result$EDACS_score)
+#'   results <- cohort_xx %>% rowwise() %>% mutate(GRACE_score = GRACE(killip.class, systolic.bp, heart.rate, Age, creat, ecg.st.depression, presentation_hstni, cardiac.arrest, Gender, classify = FALSE))
 #'
 #' @import dplyr
 #' @export
 
 
-GRACE <- function(killip.class, systolic.bp, heart.rate, Age, creat, ecg.st.depression,
-                   presentation_hstni, cardiac.arrest, Gender, classify) {
+GRACE <- function(killip.class = killip.class, systolic.bp = systolic.bp, heart.rate = heart.rate, Age = Age, creat = creat, ecg.st.depression = ecg.st.depression,
+                   presentation_hstni = presentation_hstni, cardiac.arrest = cardiac.arrest, Gender = Gender, classify = FALSE) {
 
   # 1. killip.class class I,II,III,IV;
   killip.class2 <- case_when(

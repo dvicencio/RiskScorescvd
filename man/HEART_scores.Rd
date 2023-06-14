@@ -5,7 +5,23 @@
 \title{HEART risk score function
 HEART = History, ECG, Age, Risk factors, Troponin}
 \usage{
-HEART_scores(data, classify)
+HEART_scores(
+  data,
+  typical_symptoms.num = typical_symptoms.num,
+  ecg.normal = ecg.normal,
+  abn.repolarisation = abn.repolarisation,
+  ecg.st.depression = ecg.st.depression,
+  Age = Age,
+  diabetes = diabetes,
+  smoker = smoker,
+  hypertension = hypertension,
+  hyperlipidaemia = hyperlipidaemia,
+  family.history = family.history,
+  atherosclerotic.disease = atherosclerotic.disease,
+  presentation_hstni = presentation_hstni,
+  Gender = Gender,
+  classify
+)
 }
 \arguments{
 \item{data}{A data frame with all the variables needed for calculation:

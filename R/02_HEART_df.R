@@ -54,11 +54,35 @@
 #' summary(result$HEART_score)
 #' summary(result$HEART_strat)
 #'
-#'@import dplyr
 #' @export
 
-HEART_scores <- function(data, classify) {
+HEART_scores <- function(data, typical_symptoms.num = typical_symptoms.num,
+                         ecg.normal = ecg.normal,
+                         abn.repolarisation = abn.repolarisation,
+                         ecg.st.depression = ecg.st.depression,
+                         Age = Age,
+                         diabetes = diabetes,
+                         smoker = smoker,
+                         hypertension = hypertension,
+                         hyperlipidaemia = hyperlipidaemia,
+                         family.history = family.history,
+                         atherosclerotic.disease = atherosclerotic.disease,
+                         presentation_hstni = presentation_hstni,
+                         Gender = Gender, classify) {
 
+  data <- data %>% rename(typical_symptoms.num = typical_symptoms.num,
+                          ecg.normal = ecg.normal,
+                          abn.repolarisation = abn.repolarisation,
+                          ecg.st.depression = ecg.st.depression,
+                          Age = Age,
+                          diabetes = diabetes,
+                          smoker = smoker,
+                          hypertension = hypertension,
+                          hyperlipidaemia = hyperlipidaemia,
+                          family.history = family.history,
+                          atherosclerotic.disease = atherosclerotic.disease,
+                          presentation_hstni = presentation_hstni,
+                          Gender = Gender)
 
   if (classify == TRUE) {
     results <- data  %>% rowwise() %>% mutate(

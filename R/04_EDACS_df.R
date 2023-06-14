@@ -61,7 +61,13 @@
 #'
 #' @export
 
-EDACS_scores <- function(data, classify) {
+EDACS_scores <- function(data,Age =Age, Gender = Gender, diabetes= diabetes, smoker = smoker, hypertension = hypertension, hyperlipidaemia = hyperlipidaemia,
+                         family.history = family.history, sweating = sweating, pain.radiation = pain.radiation, pleuritic = pleuritic, palpation = palpation,
+                         ecg.st.depression = ecg.st.depression, ecg.twi = ecg.twi,  presentation_hstni = presentation_hstni, second_hstni = second_hstni, classify) {
+
+  data <- data %>% rename(Age = Age, Gender = Gender, diabetes= diabetes, smoker = smoker, hypertension = hypertension, hyperlipidaemia = hyperlipidaemia,
+                          family.history = family.history, sweating = sweating, pain.radiation = pain.radiation, pleuritic = pleuritic, palpation = palpation,
+                          ecg.st.depression = ecg.st.depression, ecg.twi = ecg.twi,  presentation_hstni = presentation_hstni, second_hstni = second_hstni)
 
   if (classify == TRUE) {
     results <- data  %>% rowwise() %>% mutate(

@@ -5,22 +5,22 @@
 \title{Emergency Department Assessment of Chest Pain Score (EDACS)}
 \usage{
 EDACS(
-  Age,
-  Gender,
-  diabetes,
-  smoker,
-  hypertension,
-  hyperlipidaemia,
-  family.history,
-  sweating,
-  pain.radiation,
-  pleuritic,
-  palpation,
-  ecg.st.depression,
-  ecg.twi,
-  presentation_hstni,
-  second_hstni,
-  classify
+  Age = Age,
+  Gender = Gender,
+  diabetes = diabetes,
+  smoker = smoker,
+  hypertension = hypertension,
+  hyperlipidaemia = hyperlipidaemia,
+  family.history = family.history,
+  sweating = sweating,
+  pain.radiation = pain.radiation,
+  pleuritic = pleuritic,
+  palpation = palpation,
+  ecg.st.depression = ecg.st.depression,
+  ecg.twi = ecg.twi,
+  presentation_hstni = presentation_hstni,
+  second_hstni = second_hstni,
+  classify = FALSE
 )
 }
 \arguments{

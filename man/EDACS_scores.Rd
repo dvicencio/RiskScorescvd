@@ -5,7 +5,25 @@
 \title{EDACS score function
 EDACS = Emergency Department Assessment of Chest Pain Score}
 \usage{
-EDACS_scores(data, classify)
+EDACS_scores(
+  data,
+  Age = Age,
+  Gender = Gender,
+  diabetes = diabetes,
+  smoker = smoker,
+  hypertension = hypertension,
+  hyperlipidaemia = hyperlipidaemia,
+  family.history = family.history,
+  sweating = sweating,
+  pain.radiation = pain.radiation,
+  pleuritic = pleuritic,
+  palpation = palpation,
+  ecg.st.depression = ecg.st.depression,
+  ecg.twi = ecg.twi,
+  presentation_hstni = presentation_hstni,
+  second_hstni = second_hstni,
+  classify
+)
 }
 \arguments{
 \item{data}{A data frame with all the variables needed for calculation:

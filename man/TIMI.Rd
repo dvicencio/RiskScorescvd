@@ -6,23 +6,39 @@
 \title{Thrombolysis In Myocardial Infarction (TIMI) Risk Score for UA/NSTEMI}
 \usage{
 TIMI(
-  Age,
-  hypertension,
-  hyperlipidaemia,
-  family.history,
-  diabetes,
-  smoker,
-  previous.pci,
-  previous.cabg,
-  aspirin,
-  number.of.episodes.24h,
-  ecg.st.depression,
-  presentation_hstni,
-  Gender,
+  Age = Age,
+  hypertension = hypertension,
+  hyperlipidaemia = hyperlipidaemia,
+  family.history = family.history,
+  diabetes = diabetes,
+  smoker = smoker,
+  previous.pci = previous.pci,
+  previous.cabg = previous.pci,
+  aspirin = aspirin,
+  number.of.episodes.24h = number.of.episodes.24h,
+  ecg.st.depression = ecg.st.depression,
+  presentation_hstni = presentation_hstni,
+  Gender = Gender,
   classify
 )
 
-TIMI_scores(data, classify)
+TIMI_scores(
+  data,
+  Age = Age,
+  hypertension = hypertension,
+  hyperlipidaemia = hyperlipidaemia,
+  family.history = family.history,
+  diabetes = diabetes,
+  smoker = smoker,
+  previous.pci = previous.pci,
+  previous.cabg = previous.pci,
+  aspirin = aspirin,
+  number.of.episodes.24h = number.of.episodes.24h,
+  ecg.st.depression = ecg.st.depression,
+  presentation_hstni = presentation_hstni,
+  Gender = Gender,
+  classify
+)
 }
 \arguments{
 \item{Age}{a numeric vector of age values, in years}

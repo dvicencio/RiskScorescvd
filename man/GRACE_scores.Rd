@@ -4,7 +4,19 @@
 \alias{GRACE_scores}
 \title{GRACE Global Registry of Acute Coronary Events version 2.0, 6 months outcome}
 \usage{
-GRACE_scores(data, classify)
+GRACE_scores(
+  data,
+  killip.class = killip.class,
+  systolic.bp = systolic.bp,
+  heart.rate = heart.rate,
+  Age = Age,
+  creat = creat,
+  ecg.st.depression = ecg.st.depression,
+  presentation_hstni = presentation_hstni,
+  cardiac.arrest = cardiac.arrest,
+  Gender = Gender,
+  classify
+)
 }
 \arguments{
 \item{data}{A data frame with all the variables needed for calculation:

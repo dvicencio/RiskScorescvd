@@ -5,16 +5,16 @@
 \title{GRACE Global Registry of Acute Coronary Events version 2.0, 6 months outcome}
 \usage{
 GRACE(
-  killip.class,
-  systolic.bp,
-  heart.rate,
-  Age,
-  creat,
-  ecg.st.depression,
-  presentation_hstni,
-  cardiac.arrest,
-  Gender,
-  classify
+  killip.class = killip.class,
+  systolic.bp = systolic.bp,
+  heart.rate = heart.rate,
+  Age = Age,
+  creat = creat,
+  ecg.st.depression = ecg.st.depression,
+  presentation_hstni = presentation_hstni,
+  cardiac.arrest = cardiac.arrest,
+  Gender = Gender,
+  classify = FALSE
 )
 }
 \arguments{
@@ -86,7 +86,7 @@ https://www.outcomes-umassmed.org/grace/acs_risk2/index.html
 •	High 			     119-263
 }
 \examples{
-  results <- cohort_xx \%>\% rowwise() \%>\% mutate(GRACE_score = GRACE(killip.class, systolic.bp, heart.rate, Age, creat, ecg.st.depression, presentation_hstni, cardiac.arrest, Gender, classify = FALSE)) print(result$EDACS_score)
+  results <- cohort_xx \%>\% rowwise() \%>\% mutate(GRACE_score = GRACE(killip.class, systolic.bp, heart.rate, Age, creat, ecg.st.depression, presentation_hstni, cardiac.arrest, Gender, classify = FALSE))
 
 }
 \keyword{Age,}

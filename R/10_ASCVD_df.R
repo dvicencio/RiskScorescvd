@@ -72,22 +72,30 @@
 #' summary(result$ASCVD_score)
 #' summary(result$ASCVD_strat)
 #'
-
+#' @import dplyr
+#' @import PooledCohort
 #' @export
 
 
-ASCVD_scores <- function(data, classify, Age_df = "Age",  diabetes_df = "diabetes", smoker_df =  "smoker",  hypertension_df = "hypertension",  family.history_df = "family.history",
-                          Gender_df = "Gender", systolic.bp = systolic.bp_df,
-                         total.chol = total.chol_df, total.hdl = total.hdl_df, Ethnicity = Ethnicity_df) {
+ASCVD_scores <- function(data, Gender = Gender, Ethnicity = Ethnicity, Age = Age, total.chol = total.chol, total.hdl = total.hdl,
+                         systolic.bp = systolic.bp, hypertension = hypertension, smoker = smoker, diabetes = diabetes, classify) {
 
 
+  data <- data %>% rename(Gender = Gender, Ethnicity = Ethnicity, Age = Age, total.chol = total.chol, total.hdl = total.hdl,
+                          systolic.bp = systolic.bp, hypertension = hypertension, smoker = smoker, diabetes = diabetes)
 
-  data <- data %>% rename(Age= Age_df, diabetes = diabetes_df, smoker = smoker_df, hypertension = hypertension_df, family.history = family.history_df,
-                          Gender = Gender_df, systolic.bp = systolic.bp_df,
-                          total.chol = total.chol_df, total.hdl = total.hdl_df, Ethnicity = Ethnicity_df)
   if (classify == TRUE) {
     results <- data  %>% rowwise() %>% mutate(
-      ASCVD_score = ASCVD(data,
+      ASCVD_score = ASCVD(
+        Gender,
+        Ethnicity,
+        Age,
+        total.chol,
+        total.hdl,
+        systolic.bp,
+        hypertension,
+        smoker,
+        diabetes,
         classify = FALSE
       ),
       ASCVD_strat = ASCVD(

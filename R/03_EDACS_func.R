@@ -71,11 +71,10 @@
 #' @examples  results <- cohort_xx %>% rowwise() %>% mutate(EDACS_score = EDACS(Age, Gender, diabetes, smoker, hypertension, hyperlipidaemia, family.history, sweating, pain.radiation, pleuritic, palpation, ecg.st.depression, ecg.twi,  presentation_hstni, second_hstni, classify = FALSE))
 #'
 #' @name EDACS
-#' @import dplyr
 #' @export
-EDACS <- function(Age, Gender, diabetes, smoker, hypertension, hyperlipidaemia,
-                   family.history, sweating, pain.radiation, pleuritic, palpation,
-                   ecg.st.depression, ecg.twi,  presentation_hstni, second_hstni, classify){
+EDACS <- function(Age =Age, Gender = Gender, diabetes= diabetes, smoker = smoker, hypertension = hypertension, hyperlipidaemia = hyperlipidaemia,
+                   family.history = family.history, sweating = sweating, pain.radiation = pain.radiation, pleuritic = pleuritic, palpation = palpation,
+                   ecg.st.depression = ecg.st.depression, ecg.twi = ecg.twi,  presentation_hstni = presentation_hstni, second_hstni = second_hstni, classify = FALSE){
 
   if (missing(sweating) || missing(pain.radiation) || missing(pleuritic) ||
       missing(ecg.st.depression) || missing(palpation) || missing(ecg.twi) ||

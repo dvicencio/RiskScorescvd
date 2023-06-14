@@ -40,7 +40,7 @@
 #' @import tidyverse
 #' @export
 
-SCORE2 <- function(Age, Gender, smoker, systolic.bp, diabetes, total.chol, total.hdl, classify){
+SCORE2 <- function(Age = Age, Gender = Gender, smoker = smoker, systolic.bp = systolic.bp, diabetes = diabetes, total.chol = total.chol, total.hdl = total.hdl, classify){
 
 
   if (Gender == "male" & Age < 70) {

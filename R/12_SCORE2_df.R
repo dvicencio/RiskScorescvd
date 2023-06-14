@@ -76,8 +76,9 @@
 
 
 
-SCORE2_scores <- function(data, classify) {
+SCORE2_scores <- function(data, Age = Age, Gender = Gender, smoker = smoker, systolic.bp = systolic.bp, diabetes = diabetes, total.chol = total.chol, total.hdl = total.hdl, classify) {
 
+data <- data %>% rename(Age = Age, Gender = Gender, smoker = smoker, systolic.bp = systolic.bp, diabetes = diabetes, total.chol = total.chol, total.hdl = total.hdl)
 
   if (classify == TRUE) {
     results <- data  %>% rowwise() %>% mutate(

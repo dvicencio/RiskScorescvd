@@ -62,11 +62,14 @@
 #' summary(result$GRACE_strat)
 #' summary(result$GRACE_score)
 #'
-#' @import dplyr
 #' @export
 
 
-GRACE_scores <- function(data, classify) {
+GRACE_scores <- function(data, killip.class = killip.class, systolic.bp = systolic.bp, heart.rate = heart.rate, Age = Age, creat = creat, ecg.st.depression = ecg.st.depression,
+                         presentation_hstni = presentation_hstni, cardiac.arrest = cardiac.arrest, Gender = Gender, classify) {
+
+  data <- data %>% rename(killip.class = killip.class, systolic.bp = systolic.bp, heart.rate = heart.rate, Age = Age, creat = creat, ecg.st.depression = ecg.st.depression,
+                          presentation_hstni = presentation_hstni, cardiac.arrest = cardiac.arrest, Gender = Gender)
 
   if (classify == TRUE) {
     results <- data  %>% rowwise() %>% mutate(

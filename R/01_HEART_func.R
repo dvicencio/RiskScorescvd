@@ -84,30 +84,21 @@
 #' results <- cohort_xx %>% rowwise() %>% mutate(HEART_score = HEART(typical_symptoms.num, ecg.normal, abn.repolarisation, ecg.st.depression, Age, diabetes, smoker, hypertension, hyperlipidaemia, family.history, atherosclerotic.disease, presentation_hstni, Gender, classify = FALSE))
 #'
 #'  @name HEART
-#'  @import dplyr
 #'  @export
 
-  HEART <- function(typical_symptoms.num,
-
-                    ecg.normal,
-                    # all 0 = +0
-
-                    abn.repolarisation,
-                    # = paced 1 = +1
-                    ecg.st.depression,
-                    #ecg.st.depression = 1 = +2
-
-                    Age,
-                    diabetes,
-                    smoker,
-                    hypertension,
-                    hyperlipidaemia,
-                    family.history,
-
-                    atherosclerotic.disease,
-
-                    presentation_hstni,
-                    Gender ,
+  HEART <- function(typical_symptoms.num = typical_symptoms.num,
+                    ecg.normal = ecg.normal,
+                    abn.repolarisation = abn.repolarisation,
+                    ecg.st.depression = ecg.st.depression,
+                    Age = Age,
+                    diabetes = diabetes,
+                    smoker = smoker,
+                    hypertension = hypertension,
+                    hyperlipidaemia = hyperlipidaemia,
+                    family.history = family.history,
+                    atherosclerotic.disease = atherosclerotic.disease,
+                    presentation_hstni = presentation_hstni,
+                    Gender = Gender,
                     classify = classify) {
 
 
