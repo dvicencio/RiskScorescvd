@@ -35,6 +35,7 @@
 #' @param previous.cabg a binary numeric vector, 1 = yes and 0 = no; renames alternative column name
 #' @param total.chol a numeric vector of total cholesterol values, in mmol/L; renames alternative column name
 #' @param total.hdl a numeric vector of total high density lipoprotein HDL values, in mmol/L; renames alternative column name
+#' @param creat a continuous numeric vector of the creatine levels
 #'
 #' @keywords
 #' Cardiovascular risk scores, typical_symptoms.num, ecg.normal, abn.repolarisation, ecg.st.depression,
@@ -52,8 +53,11 @@
 #'
 #' @name RiskScoresCalc
 #'
-#' @import tidyverse
-#' @import PooledCohort
+#' @importFrom dplyr mutate
+#' @importFrom dplyr rename
+#' @importFrom dplyr %>%
+#' @importFrom dplyr rowwise
+#'
 #' @export
 
 calc_scores <- function(data, typical_symptoms.num = typical_symptoms.num, ecg.normal = ecg.normal,

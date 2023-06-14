@@ -83,6 +83,8 @@
 #' @examples
 #' results <- cohort_xx %>% rowwise() %>% mutate(HEART_score = HEART(typical_symptoms.num, ecg.normal, abn.repolarisation, ecg.st.depression, Age, diabetes, smoker, hypertension, hyperlipidaemia, family.history, atherosclerotic.disease, presentation_hstni, Gender, classify = FALSE))
 #'
+#' @importFrom dplyr case_when
+#'
 #'  @name HEART
 #'  @export
 

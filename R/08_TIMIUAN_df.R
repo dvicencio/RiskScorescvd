@@ -12,6 +12,21 @@
 #' typical_symptoms.num, ecg.normal, abn.repolarisation, ecg.st.depression,Age,
 #' diabetes, smoker, hypertension, hyperlipidaemia, family.history,
 #' atherosclerotic.disease, presentation_hstni, Gender
+#' @param ecg.st.depression a binary numeric vector, 1 = yes and 0 = no
+#' @param Age a numeric vector of age values, in years
+#' @param diabetes a binary numeric vector, 1 = yes and 0 = no
+#' @param smoker a binary numeric vector, 1 = yes and 0 = no
+#' @param hypertension a binary numeric vector, 1 = yes and 0 = no
+#' @param hyperlipidaemia a binary numeric vector, 1 = yes and 0 = no
+#' @param family.history a binary numeric vector, 1 = yes and 0 = no
+#' @param presentation_hstni a continuous numeric vector of the troponin levels
+#' @param Gender a binary character vector of sex values. Categories should include
+#' only 'male' or 'female'.
+#' @param aspirin a binary numeric vector, 1 = yes and 0 = no
+#' @param number.of.episodes.24h a numeric vector of number of angina episodes in 24 hours
+#' @param previous.pci a binary numeric vector, 1 = yes and 0 = no
+#' @param previous.cabg a binary numeric vector, 1 = yes and 0 = no
+#' @param classify set TRUE if wish to add a column with the scores' categories
 #'
 #' @keywords
 #' HEART, typical_symptoms.num, ecg.normal, abn.repolarisation, ecg.st.depression,
@@ -53,6 +68,12 @@
 #' # Print the results
 #' summary(result$HEART_score)
 #' summary(result$HEART_strat)
+#'
+#'
+#' @importFrom dplyr mutate
+#' @importFrom dplyr rename
+#' @importFrom dplyr %>%
+#' @importFrom dplyr rowwise
 #'
 #' @name TIMI
 #'

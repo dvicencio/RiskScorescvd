@@ -10,8 +10,17 @@
 #' A data frame with all the variables needed for calculation:
 #' Gender, Ethnicity, Age, total.chol, total.hd,
 #' systolic.bp,hypertension, smoker, diabetes
-#'
-#' @param classify set TRUE if wish to add a column with the scores' categories
+#' @param Age a numeric vector of age values, in years
+#' @param Gender a binary character vector of sex values. Categories should include
+#' only 'male' or 'female'.
+#' @param smoker a binary numeric vector, 1 = yes and 0 = no
+#' @param systolic.bp a numeric vector of systolic blood pressure continuous values
+#' @param Ethnicity a character vector, 'white', 'black', 'asian', or other
+#' @param total.chol a numeric vector of total cholesterol values, in mmol/L
+#' @param total.hdl a numeric vector of total high density lipoprotein HDL values, in mmol/L
+#' @param diabetes a binary numeric vector, 1 = yes and 0 = no
+#' @param hypertension a binary numeric vector, 1 = yes and 0 = no
+#' @param classify a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"
 #'
 #' @keywords
 #' HEART, Gender, Ethnicity, Age, total.chol, total.hd,
@@ -72,8 +81,11 @@
 #' summary(result$ASCVD_score)
 #' summary(result$ASCVD_strat)
 #'
-#' @import dplyr
-#' @import PooledCohort
+#' @importFrom dplyr mutate
+#' @importFrom dplyr rename
+#' @importFrom dplyr %>%
+#' @importFrom dplyr rowwise
+#'
 #' @export
 
 

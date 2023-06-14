@@ -23,6 +23,25 @@ GRACE_scores(
 killip.class, systolic.bp, heart.rate, Age, creat, ecg.st.depression,
 presentation_hstni, cardiac.arrest, Gender, classify}
 
+\item{killip.class}{a numeric vector of killip class values, 1 to 4}
+
+\item{systolic.bp}{a numeric vector of systolic blood pressure continuous values}
+
+\item{heart.rate}{a numeric vector of heart rate continuous values}
+
+\item{Age}{a numeric vector of age values, in years}
+
+\item{creat}{a continuous numeric vector of the creatine levels}
+
+\item{ecg.st.depression}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{presentation_hstni}{a continuous numeric vector of the troponin levels}
+
+\item{cardiac.arrest}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{Gender}{a binary character vector of sex values. Categories should include
+only 'male' or 'female'.}
+
 \item{classify}{a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"}
 }
 \value{
@@ -68,9 +87,9 @@ cohort_xx <- data.frame(
 )
 # Call the function with the cohort_xx
 result <- GRACE_scores(data = cohort_xx, classify = TRUE)
-Print the results
 summary(result$GRACE_strat)
 summary(result$GRACE_score)
+
 
 }
 \keyword{Age,}

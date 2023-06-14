@@ -70,6 +70,9 @@
 #'
 #' @examples  results <- cohort_xx %>% rowwise() %>% mutate(EDACS_score = EDACS(Age, Gender, diabetes, smoker, hypertension, hyperlipidaemia, family.history, sweating, pain.radiation, pleuritic, palpation, ecg.st.depression, ecg.twi,  presentation_hstni, second_hstni, classify = FALSE))
 #'
+#'
+#'@importFrom dplyr casewhen
+#'
 #' @name EDACS
 #' @export
 EDACS <- function(Age =Age, Gender = Gender, diabetes= diabetes, smoker = smoker, hypertension = hypertension, hyperlipidaemia = hyperlipidaemia,

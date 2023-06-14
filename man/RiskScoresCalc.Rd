@@ -95,6 +95,8 @@ only 'male' or 'female'; renames alternative column name}
 \item{total.chol}{a numeric vector of total cholesterol values, in mmol/L; renames alternative column name}
 
 \item{total.hdl}{a numeric vector of total high density lipoprotein HDL values, in mmol/L; renames alternative column name}
+
+\item{creat}{a continuous numeric vector of the creatine levels}
 }
 \value{
 a data frame with two extra columns including all the cardiovascular risk score calculations

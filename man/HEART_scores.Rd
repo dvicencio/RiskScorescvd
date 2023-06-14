@@ -29,6 +29,33 @@ typical_symptoms.num, ecg.normal, abn.repolarisation, ecg.st.depression,Age,
 diabetes, smoker, hypertension, hyperlipidaemia, family.history,
 atherosclerotic.disease, presentation_hstni, Gender}
 
+\item{typical_symptoms.num}{a numeric vector of the number of typical symptoms}
+
+\item{ecg.normal}{a binary numeric vector,  1 = yes and 0 = no}
+
+\item{abn.repolarisation}{a binary numeric vector,  1 = yes and 0 = no}
+
+\item{ecg.st.depression}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{Age}{a numeric vector of age values, in years}
+
+\item{diabetes}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{smoker}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{hypertension}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{hyperlipidaemia}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{family.history}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{atherosclerotic.disease}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{presentation_hstni}{a continuous numeric vector of the troponin levels}
+
+\item{Gender}{a binary character vector of sex values. Categories should include
+only 'male' or 'female'.}
+
 \item{classify}{a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"}
 }
 \value{

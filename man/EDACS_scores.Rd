@@ -31,6 +31,37 @@ Age, Gender, diabetes, smoker, hypertension, hyperlipidaemia,
 family.history, sweating, pain.radiation, pleuritic, palpation,
 ecg.st.depression, ecg.twi,  presentation_hstni, second_hstni, classify}
 
+\item{Age}{a numeric vector of age values, in years}
+
+\item{Gender}{a binary character vector of sex values. Categories should include
+only 'male' or 'female'.}
+
+\item{diabetes}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{smoker}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{hypertension}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{hyperlipidaemia}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{family.history}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{sweating}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{pain.radiation}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{pleuritic}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{palpation}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{ecg.st.depression}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{ecg.twi}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{presentation_hstni}{a continuous numeric vector of the troponin levels}
+
+\item{second_hstni}{a binary numeric vector, 1 = yes and 0 = no}
+
 \item{classify}{a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"}
 }
 \value{

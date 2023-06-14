@@ -54,8 +54,8 @@
 #' @examples
 #' results <- cohort_xx %>% rowwise() %>% mutate(ASCVD_score = ASCVD(Gender, Ethnicity, Age, total.chol, total.hdl, systolic.bp,hypertension, smoker, diabetes, classify = FALSE))
 #'
-#' @import dplyr
-#' @import PooledCohort
+#' @importFrom PooledCohort predict_10yr_ascvd_risk
+#'
 #' @export
 # Function ----------------------------------------------------------------
 

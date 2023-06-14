@@ -12,6 +12,20 @@
 #' diabetes, smoker, hypertension, hyperlipidaemia, family.history,
 #' atherosclerotic.disease, presentation_hstni, Gender
 #' @param classify a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"
+#' @param  typical_symptoms.num a numeric vector of the number of typical symptoms
+#' @param ecg.normal a binary numeric vector,  1 = yes and 0 = no
+#' @param abn.repolarisation a binary numeric vector,  1 = yes and 0 = no
+#' @param ecg.st.depression a binary numeric vector, 1 = yes and 0 = no
+#' @param Age a numeric vector of age values, in years
+#' @param diabetes a binary numeric vector, 1 = yes and 0 = no
+#' @param smoker a binary numeric vector, 1 = yes and 0 = no
+#' @param hypertension a binary numeric vector, 1 = yes and 0 = no
+#' @param hyperlipidaemia a binary numeric vector, 1 = yes and 0 = no
+#' @param family.history a binary numeric vector, 1 = yes and 0 = no
+#' @param atherosclerotic.disease a binary numeric vector, 1 = yes and 0 = no
+#' @param presentation_hstni a continuous numeric vector of the troponin levels
+#' @param Gender a binary character vector of sex values. Categories should include
+#' only 'male' or 'female'.
 #'
 #' @keywords
 #' HEART, typical_symptoms.num, ecg.normal, abn.repolarisation, ecg.st.depression,
@@ -53,6 +67,11 @@
 #' # Print the results
 #' summary(result$HEART_score)
 #' summary(result$HEART_strat)
+#'
+#' @importFrom dplyr mutate
+#' @importFrom dplyr rename
+#' @importFrom dplyr %>%
+#' @importFrom dplyr rowwise
 #'
 #' @export
 

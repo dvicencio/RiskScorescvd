@@ -22,6 +22,21 @@ SCORE2_scores(
  Age, Gender, smoker, systolic.bp, diabetes, total.chol,
 total.hdl}
 
+\item{Age}{a numeric vector of age values, in years}
+
+\item{Gender}{a binary character vector of Gender values. Categories should include
+only 'male' or 'female'.}
+
+\item{smoker}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{systolic.bp}{a numeric vector of systolic blood pressure continuous values}
+
+\item{diabetes}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{total.chol}{a numeric vector of total cholesterol values, in mmol/L}
+
+\item{total.hdl}{a numeric vector of total high density lipoprotein total.hdl values, in mmol/L}
+
 \item{classify}{set TRUE if wish to add a column with the scores' categories}
 }
 \value{
@@ -78,6 +93,7 @@ result <- SCORE2_scores(data = cohort_xx, classify = TRUE)
 summary(result$SCORE2_score)
 summary(result$SCORE2_strat)
 
+ @importFrom dplyr mutate
 }
 \keyword{Age,}
 \keyword{Gender,}

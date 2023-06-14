@@ -37,7 +37,7 @@
 #'
 #' @name SCORE2/OP
 #'
-#' @import tidyverse
+#'
 #' @export
 
 SCORE2 <- function(Age = Age, Gender = Gender, smoker = smoker, systolic.bp = systolic.bp, diabetes = diabetes, total.chol = total.chol, total.hdl = total.hdl, classify){

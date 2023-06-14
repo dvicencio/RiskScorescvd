@@ -61,6 +61,9 @@
 #'
 #'   results <- cohort_xx %>% rowwise() %>% mutate(TIMI_score = TIMI(Age, hypertension, hyperlipidaemia, family.history, diabetes, smoker, previous.pci, previous.cabg, aspirin, number.of.episodes.24h, ecg.st.depression, presentation_hstni, Gender, classify = FALSE))
 #'
+#'
+#'@importFrom dplyr casewhen
+#'
 #' @name TIMI
 #' @export
 

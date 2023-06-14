@@ -50,9 +50,9 @@
 #' @param killip.class a numeric vector of killip class values, 1 to 4
 #' @param heart.rate a numeric vector of heart rate continuous values
 #' @param systolic.bp a numeric vector of systolic blood pressure continuous values
-#' @param classify a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"
 #' @param cardiac.arrest  a binary numeric vector, 1 = yes and 0 = no
 #' @param creat a continuous numeric vector of the creatine levels
+#' @param classify a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"
 #'
 #' @keywords
 #' GRACE, killip.class, systolic.bp, heart.rate, Age, creat, ecg.st.depression,
@@ -64,7 +64,8 @@
 #' @examples
 #'   results <- cohort_xx %>% rowwise() %>% mutate(GRACE_score = GRACE(killip.class, systolic.bp, heart.rate, Age, creat, ecg.st.depression, presentation_hstni, cardiac.arrest, Gender, classify = FALSE))
 #'
-#' @import dplyr
+#'@importFrom dplyr caswhen
+#'
 #' @export
 
 

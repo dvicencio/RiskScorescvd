@@ -10,8 +10,15 @@
 #' A data frame with all the variables needed for calculation:
 #'  Age, Gender, smoker, systolic.bp, diabetes, total.chol,
 #' total.hdl
-#'
+#' @param Age a numeric vector of age values, in years
+#' @param Gender a binary character vector of Gender values. Categories should include
+#' only 'male' or 'female'.
+#' @param smoker a binary numeric vector, 1 = yes and 0 = no
+#' @param systolic.bp a numeric vector of systolic blood pressure continuous values
+#' @param total.chol a numeric vector of total cholesterol values, in mmol/L
+#' @param total.hdl a numeric vector of total high density lipoprotein total.hdl values, in mmol/L
 #' @param classify set TRUE if wish to add a column with the scores' categories
+#' @param diabetes a binary numeric vector, 1 = yes and 0 = no
 #'
 #' @keywords
 #' SCORE2/OP,  Age, Gender, smoker, systolic.bp, diabetes, total.chol,
@@ -71,7 +78,11 @@
 #' summary(result$SCORE2_score)
 #' summary(result$SCORE2_strat)
 #'
-#' @import tidyverse
+#'  @importFrom dplyr mutate
+#' @importFrom dplyr rename
+#' @importFrom dplyr %>%
+#' @importFrom dplyr rowwise
+#'
 #' @export
 
 

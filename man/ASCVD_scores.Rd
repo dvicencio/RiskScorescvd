@@ -24,7 +24,26 @@ ASCVD_scores(
 Gender, Ethnicity, Age, total.chol, total.hd,
 systolic.bp,hypertension, smoker, diabetes}
 
-\item{classify}{set TRUE if wish to add a column with the scores' categories}
+\item{Gender}{a binary character vector of sex values. Categories should include
+only 'male' or 'female'.}
+
+\item{Ethnicity}{a character vector, 'white', 'black', 'asian', or other}
+
+\item{Age}{a numeric vector of age values, in years}
+
+\item{total.chol}{a numeric vector of total cholesterol values, in mmol/L}
+
+\item{total.hdl}{a numeric vector of total high density lipoprotein HDL values, in mmol/L}
+
+\item{systolic.bp}{a numeric vector of systolic blood pressure continuous values}
+
+\item{hypertension}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{smoker}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{diabetes}{a binary numeric vector, 1 = yes and 0 = no}
+
+\item{classify}{a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"}
 }
 \value{
 data frame with two extra columns including the ASCVD score calculations

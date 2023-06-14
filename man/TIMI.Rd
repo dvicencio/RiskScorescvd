@@ -127,6 +127,7 @@ TIMI = Thrombolysis In Myocardial Infarction
   results <- cohort_xx \%>\% rowwise() \%>\% mutate(TIMI_score = TIMI(Age, hypertension, hyperlipidaemia, family.history, diabetes, smoker, previous.pci, previous.cabg, aspirin, number.of.episodes.24h, ecg.st.depression, presentation_hstni, Gender, classify = FALSE))
 
 
+
 # Create a data frame or list with the necessary variables
 # Set the number of rows
 num_rows <- 100
@@ -151,6 +152,7 @@ result <- HEART_scores(data = cohort_xx, classify = TRUE)
 # Print the results
 summary(result$HEART_score)
 summary(result$HEART_strat)
+
 
 }
 \keyword{Age,}
