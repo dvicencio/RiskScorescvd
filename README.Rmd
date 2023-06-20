@@ -42,7 +42,7 @@ devtools::install_github("dvicencio/RiskScorescvd")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example of how the dataset should look to calculate all risk scores available in the package:
 
 ```{r example}
 library(RiskScorescvd)

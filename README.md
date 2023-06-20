@@ -33,7 +33,8 @@ devtools::install_github("dvicencio/RiskScorescvd")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example of how the dataset should look to calculate all
+risk scores available in the package:
 
 ``` r
 library(RiskScorescvd)
@@ -93,73 +94,73 @@ library(RiskScorescvd)
  
  summary(new_data_frame)
 #>  typical_symptoms.num   ecg.normal   abn.repolarisation ecg.st.depression
-#>  Min.   :0.00         Min.   :0.00   Min.   :0.00       Min.   :0.0      
-#>  1st Qu.:1.00         1st Qu.:0.00   1st Qu.:0.00       1st Qu.:0.0      
-#>  Median :3.00         Median :0.00   Median :1.00       Median :0.5      
-#>  Mean   :3.06         Mean   :0.43   Mean   :0.53       Mean   :0.5      
-#>  3rd Qu.:5.00         3rd Qu.:1.00   3rd Qu.:1.00       3rd Qu.:1.0      
-#>  Max.   :6.00         Max.   :1.00   Max.   :1.00       Max.   :1.0      
+#>  Min.   :0.00         Min.   :0.00   Min.   :0.00       Min.   :0.00     
+#>  1st Qu.:1.00         1st Qu.:0.00   1st Qu.:0.00       1st Qu.:0.00     
+#>  Median :4.00         Median :1.00   Median :1.00       Median :0.00     
+#>  Mean   :3.26         Mean   :0.51   Mean   :0.55       Mean   :0.48     
+#>  3rd Qu.:5.00         3rd Qu.:1.00   3rd Qu.:1.00       3rd Qu.:1.00     
+#>  Max.   :6.00         Max.   :1.00   Max.   :1.00       Max.   :1.00     
 #>       Age           diabetes        smoker      hypertension  hyperlipidaemia
 #>  Min.   :30.00   Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00   
 #>  1st Qu.:40.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   
-#>  Median :54.50   Median :1.00   Median :0.00   Median :1.00   Median :1.00   
-#>  Mean   :53.67   Mean   :0.58   Mean   :0.47   Mean   :0.56   Mean   :0.55   
-#>  3rd Qu.:65.25   3rd Qu.:1.00   3rd Qu.:1.00   3rd Qu.:1.00   3rd Qu.:1.00   
-#>  Max.   :78.00   Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00   
+#>  Median :56.00   Median :0.00   Median :0.00   Median :0.00   Median :1.00   
+#>  Mean   :54.96   Mean   :0.44   Mean   :0.46   Mean   :0.48   Mean   :0.53   
+#>  3rd Qu.:68.25   3rd Qu.:1.00   3rd Qu.:1.00   3rd Qu.:1.00   3rd Qu.:1.00   
+#>  Max.   :80.00   Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00   
 #>  family.history atherosclerotic.disease presentation_hstni    Gender         
-#>  Min.   :0.00   Min.   :0.00            Min.   :12.00      Length:100        
-#>  1st Qu.:0.00   1st Qu.:0.00            1st Qu.:33.00      Class :character  
-#>  Median :0.00   Median :1.00            Median :57.00      Mode  :character  
-#>  Mean   :0.47   Mean   :0.53            Mean   :53.82                        
-#>  3rd Qu.:1.00   3rd Qu.:1.00            3rd Qu.:71.25                        
-#>  Max.   :1.00   Max.   :1.00            Max.   :98.00                        
+#>  Min.   :0.0    Min.   :0.00            Min.   : 10.00     Length:100        
+#>  1st Qu.:0.0    1st Qu.:0.00            1st Qu.: 32.75     Class :character  
+#>  Median :0.5    Median :0.00            Median : 55.00     Mode  :character  
+#>  Mean   :0.5    Mean   :0.44            Mean   : 56.59                       
+#>  3rd Qu.:1.0    3rd Qu.:1.00            3rd Qu.: 87.00                       
+#>  Max.   :1.0    Max.   :1.00            Max.   :100.00                       
 #>     sweating    pain.radiation   pleuritic      palpation       ecg.twi    
 #>  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00  
 #>  1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00  
-#>  Median :0.00   Median :0.00   Median :1.00   Median :0.00   Median :0.00  
-#>  Mean   :0.41   Mean   :0.47   Mean   :0.54   Mean   :0.48   Mean   :0.47  
+#>  Median :1.00   Median :1.00   Median :0.00   Median :1.00   Median :0.00  
+#>  Mean   :0.52   Mean   :0.51   Mean   :0.48   Mean   :0.51   Mean   :0.36  
 #>  3rd Qu.:1.00   3rd Qu.:1.00   3rd Qu.:1.00   3rd Qu.:1.00   3rd Qu.:1.00  
 #>  Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00  
-#>   second_hstni    killip.class   systolic.bp      heart.rate        creat     
-#>  Min.   :  3.0   Min.   :1.00   Min.   :  1.0   Min.   :  5.0   Min.   :0.00  
-#>  1st Qu.: 42.0   1st Qu.:1.00   1st Qu.: 67.5   1st Qu.: 77.5   1st Qu.:1.00  
-#>  Median : 91.0   Median :2.00   Median :161.5   Median :153.5   Median :2.00  
-#>  Mean   : 94.4   Mean   :2.37   Mean   :155.4   Mean   :148.2   Mean   :2.01  
-#>  3rd Qu.:137.5   3rd Qu.:3.00   3rd Qu.:237.2   3rd Qu.:213.0   3rd Qu.:3.00  
-#>  Max.   :200.0   Max.   :4.00   Max.   :298.0   Max.   :300.0   Max.   :4.00  
-#>  cardiac.arrest  previous.pci  previous.cabg     aspirin    
-#>  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00  
-#>  1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00  
-#>  Median :1.00   Median :0.00   Median :0.00   Median :0.00  
-#>  Mean   :0.57   Mean   :0.49   Mean   :0.48   Mean   :0.46  
-#>  3rd Qu.:1.00   3rd Qu.:1.00   3rd Qu.:1.00   3rd Qu.:1.00  
-#>  Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00  
+#>   second_hstni     killip.class   systolic.bp       heart.rate   
+#>  Min.   :  1.00   Min.   :1.00   Min.   :  1.00   Min.   :  2.0  
+#>  1st Qu.: 66.25   1st Qu.:1.00   1st Qu.: 87.75   1st Qu.: 68.0  
+#>  Median :116.00   Median :3.00   Median :161.00   Median :160.0  
+#>  Mean   :106.41   Mean   :2.51   Mean   :156.14   Mean   :157.1  
+#>  3rd Qu.:153.00   3rd Qu.:4.00   3rd Qu.:232.25   3rd Qu.:245.0  
+#>  Max.   :200.00   Max.   :4.00   Max.   :293.00   Max.   :294.0  
+#>      creat      cardiac.arrest  previous.pci  previous.cabg     aspirin    
+#>  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00  
+#>  1st Qu.:0.75   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00  
+#>  Median :1.50   Median :1.00   Median :1.00   Median :0.00   Median :0.00  
+#>  Mean   :1.77   Mean   :0.53   Mean   :0.53   Mean   :0.47   Mean   :0.47  
+#>  3rd Qu.:3.00   3rd Qu.:1.00   3rd Qu.:1.00   3rd Qu.:1.00   3rd Qu.:1.00  
+#>  Max.   :4.00   Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00  
 #>  number.of.episodes.24h   total.chol       total.hdl     Ethnicity        
 #>  Min.   : 0.00          Min.   :  6.00   Min.   :2.00   Length:100        
-#>  1st Qu.: 4.00          1st Qu.: 34.00   1st Qu.:2.75   Class :character  
-#>  Median : 9.50          Median : 57.00   Median :4.00   Mode  :character  
-#>  Mean   : 9.62          Mean   : 56.16   Mean   :3.58                     
-#>  3rd Qu.:15.00          3rd Qu.: 79.00   3rd Qu.:5.00                     
+#>  1st Qu.: 5.75          1st Qu.: 32.75   1st Qu.:2.00   Class :character  
+#>  Median :10.00          Median : 54.50   Median :3.50   Mode  :character  
+#>  Mean   : 9.76          Mean   : 52.49   Mean   :3.46                     
+#>  3rd Qu.:14.00          3rd Qu.: 73.00   3rd Qu.:4.00                     
 #>  Max.   :20.00          Max.   :100.00   Max.   :5.00                     
-#>   HEART_score    EDACS_score     GRACE_score      TIMI_score    ASCVD_score    
-#>  Min.   : 3.0   Min.   :-8.00   Min.   : 13.0   Min.   :2.00   Min.   :0.0000  
-#>  1st Qu.: 5.0   1st Qu.: 4.00   1st Qu.: 85.0   1st Qu.:3.00   1st Qu.:0.1175  
-#>  Median : 6.0   Median : 9.00   Median :111.0   Median :4.00   Median :0.4000  
-#>  Mean   : 6.4   Mean   : 9.26   Mean   :110.7   Mean   :4.23   Mean   :0.4423  
-#>  3rd Qu.: 7.0   3rd Qu.:14.00   3rd Qu.:139.0   3rd Qu.:5.00   3rd Qu.:0.7825  
-#>  Max.   :10.0   Max.   :24.00   Max.   :203.0   Max.   :6.00   Max.   :1.0000  
-#>   SCORE2_score           HEART_strat       EDACS_strat         GRACE_strat
-#>  Min.   :  0.00   Low risk     : 1   Low risk    :  0   Low risk     :27  
-#>  1st Qu.: 35.00   Moderate risk:53   Not low risk:100   Moderate risk:28  
-#>  Median : 99.00   High risk    :46                      High risk    :45  
-#>  Mean   : 71.21                                                           
-#>  3rd Qu.:100.00                                                           
-#>  Max.   :100.00                                                           
-#>          TIMI_strat        ASCVD_strat        SCORE2_strat
-#>  Very low risk: 0   Very low risk:17   Very low risk: 0   
-#>  Low risk     : 8   Low risk     : 3   Low risk     : 7   
-#>  Moderate risk:49   Moderate risk:14   Moderate risk: 8   
-#>  High risk    :43   High risk    :66   High risk    :85   
-#>                                                           
+#>   HEART_score     EDACS_score     GRACE_score      TIMI_score  
+#>  Min.   : 3.00   Min.   :-4.00   Min.   : 30.0   Min.   :1.00  
+#>  1st Qu.: 5.00   1st Qu.: 6.00   1st Qu.: 86.0   1st Qu.:3.00  
+#>  Median : 6.00   Median :10.00   Median :120.0   Median :4.00  
+#>  Mean   : 6.17   Mean   :10.03   Mean   :115.5   Mean   :4.21  
+#>  3rd Qu.: 7.00   3rd Qu.:13.00   3rd Qu.:143.2   3rd Qu.:5.00  
+#>  Max.   :10.00   Max.   :25.00   Max.   :191.0   Max.   :6.00  
+#>   ASCVD_score      SCORE2_score           HEART_strat       EDACS_strat 
+#>  Min.   :0.0000   Min.   :  0.00   Low risk     : 5   Low risk    :  0  
+#>  1st Qu.:0.0700   1st Qu.: 28.00   Moderate risk:51   Not low risk:100  
+#>  Median :0.4450   Median : 92.00   High risk    :44                     
+#>  Mean   :0.4423   Mean   : 66.63                                        
+#>  3rd Qu.:0.7325   3rd Qu.:100.00                                        
+#>  Max.   :1.0000   Max.   :100.00                                        
+#>         GRACE_strat         TIMI_strat        ASCVD_strat        SCORE2_strat
+#>  Low risk     :27   Very low risk: 0   Very low risk:17   Very low risk: 0   
+#>  Moderate risk:21   Low risk     : 6   Low risk     : 9   Low risk     : 7   
+#>  High risk    :52   Moderate risk:51   Moderate risk: 7   Moderate risk: 5   
+#>                     High risk    :43   High risk    :67   High risk    :88   
+#>                                                                              
 #> 
 ```
