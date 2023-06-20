@@ -42,7 +42,7 @@ devtools::install_github("dvicencio/RiskScorescvd")
 
 ## Example
 
-This is a basic example of how the dataset should look to calculate all risk scores available in the package:
+This is a basic example of how the data set should look to calculate all risk scores available in the package:
 
 ```{r example}
 library(RiskScorescvd)
@@ -85,10 +85,20 @@ library(RiskScorescvd)
    Ethnicity = sample(c("white", "black", "asian", "other"), num_rows, replace = TRUE)
  )
 
+  head(cohort_xx)
+  
+```
 
- # Call the function with the cohort_xx
+```{r example2}
+# Call the function with the cohort_xx
 
  new_data_frame <- calc_scores(data = cohort_xx)
  
- summary(new_data_frame)
+All_scores <- new_data_frame %>% select(HEART_score, HEART_strat, EDACS_score, EDACS_strat, GRACE_score, GRACE_strat, TIMI_score, TIMI_strat, SCORE2_score, SCORE2_strat, ASCVD_score, ASCVD_strat)
+
+head(All_scores)
+
+summary(All_scores)
+ 
 ```
+
