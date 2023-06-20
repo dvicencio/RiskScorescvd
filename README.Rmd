@@ -90,9 +90,9 @@ library(RiskScorescvd)
 ```
 
 ```{r example2}
-# Call the function with the cohort_xx
+# Call the function with the cohort_xx to calculate all risk scores available in the package
 
- new_data_frame <- calc_scores(data = cohort_xx)
+new_data_frame <- calc_scores(data = cohort_xx)
  
 All_scores <- new_data_frame %>% select(HEART_score, HEART_strat, EDACS_score, EDACS_strat, GRACE_score, GRACE_strat, TIMI_score, TIMI_strat, SCORE2_score, SCORE2_strat, ASCVD_score, ASCVD_strat)
 
