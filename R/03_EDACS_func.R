@@ -18,26 +18,27 @@
 #' Female = 0\cr
 #' Male = 6\cr
 #'
-#' Known coronary artery disease or ≥3 risk factors*  The risk factors only apply to patients 18-50-\cr
+#' Known coronary artery disease or ≥3 risk factors*\cr
+#' The risk factors only apply to patients 18-50-\cr
 #' no = 0\cr
 #' yes = 4\cr
 #'
 #' Symptoms and signs\cr
-#' Diaphoresis                                        no = 0   yes = 3\cr
-#' Pain radiates to arm, shoulder, neck, or jaw       no = 0   yes = 5\cr
-#' Pain occurred or worsened with inspiration         no = 0   yes = -4\cr
-#' Pain is reproduced by palpation                    no = 0   yes = -6\cr
+#' Diaphoresis            \tab                        no = 0   yes = 3\cr
+#' Pain radiates to arm, shoulder, neck, or jaw  \tab no = 0   yes = 5\cr
+#' Pain occurred or worsened with inspiration    \tab no = 0   yes = -4\cr
+#' Pain is reproduced by palpation               \tab no = 0   yes = -6\cr
 #'
 #'
-#' Two possible outcomes
+#' Two possible outcomes\cr
 #'
-#' Low risk cohort:
-#' EDACS <16 and
-#' EKG shows no new ischemia and
-#' 0-hr and 2-hr troponin both negative.
-#' Not low risk cohort:
-#' EDACS ≥16 or
-#' EKG shows new ischemia or
+#' Low risk cohort:\cr
+#' EDACS <16 and\cr
+#' EKG shows no new ischemia and\cr
+#' 0-hr and 2-hr troponin both negative.\cr
+#' Not low risk cohort:\cr
+#' EDACS ≥16 or\cr
+#' EKG shows new ischemia or\cr
 #' 0-hr or 2-hr troponin positive.
 #' @param ecg.st.depression a binary numeric vector, 1 = yes and 0 = no
 #' @param Age a numeric vector of age values, in years
