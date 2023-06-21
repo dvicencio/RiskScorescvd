@@ -3,30 +3,30 @@
 #' @description This function implements the EDACS score calculation as a vector
 #'
 #' Age -
-#' 18-45 = 2\n
-#' 46-50 = 4\n
-#' 51-55 = 6\n
-#' 56-60 = 8\n
-#' 61-65 = 10\n
-#' 66-70 = 12\n
-#' 71-75 = 14\n
-#' 76-80 = 16\n
-#' 81-85 = 18\n
-#' ≥86 = 20\n
+#' 18-45 = 2\cr
+#' 46-50 = 4\cr
+#' 51-55 = 6\cr
+#' 56-60 = 8\cr
+#' 61-65 = 10\cr
+#' 66-70 = 12\cr
+#' 71-75 = 14\cr
+#' 76-80 = 16\cr
+#' 81-85 = 18\cr
+#' ≥86 = 20\cr
 #'
-#' Sex -\n
-#' Female = 0\n
-#' Male = 6\n
+#' Sex -\cr
+#' Female = 0\cr
+#' Male = 6\cr
 #'
-#' Known coronary artery disease or ≥3 risk factors*  The risk factors only apply to patients 18-50-\n
-#' no = 0\n
-#' yes = 4\n
+#' Known coronary artery disease or ≥3 risk factors*  The risk factors only apply to patients 18-50-\cr
+#' no = 0\cr
+#' yes = 4\cr
 #'
-#' Symptoms and signs\n
-#' Diaphoresis                                        no = 0   yes = 3\n
-#' Pain radiates to arm, shoulder, neck, or jaw       no = 0   yes = 5\n
-#' Pain occurred or worsened with inspiration         no = 0   yes = -4\n
-#' Pain is reproduced by palpation                    no = 0   yes = -6\n
+#' Symptoms and signs\cr
+#' Diaphoresis                                        no = 0   yes = 3\cr
+#' Pain radiates to arm, shoulder, neck, or jaw       no = 0   yes = 5\cr
+#' Pain occurred or worsened with inspiration         no = 0   yes = -4\cr
+#' Pain is reproduced by palpation                    no = 0   yes = -6\cr
 #'
 #'
 #' Two possible outcomes
