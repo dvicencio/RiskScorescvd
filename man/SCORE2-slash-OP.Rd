@@ -38,7 +38,7 @@ A vector with SCORE2/OP score calculations
 and/or a vector of their classifications if indicated
 }
 \description{
-This function implements the ASCVD score calculation as a vector
+This function implements the SCORE2 and SCORE2 older population (OP) score calculation as a vector
 
 formula in SCORE2 Updated Supplementary Material page  9. paper:
 "SCORE2 risk prediction algorithms: new models to estimate 10-year risk of cardiovascular disease in Europe"
