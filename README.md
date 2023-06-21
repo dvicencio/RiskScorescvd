@@ -9,7 +9,7 @@
 <!-- badges: end -->
 
 The goal of RiskScorescvd r package is to calculate the most commonly
-used cardiovascular risk scores
+used cardiovascular risk scores.
 
 We have developed five of the most commonly used risk scores with a
 dependency (ASCVD \[PooledCohort\]) making the following available:
@@ -87,92 +87,87 @@ library(RiskScorescvd)
    Ethnicity = sample(c("white", "black", "asian", "other"), num_rows, replace = TRUE)
  )
 
-  head(cohort_xx)
-#>   typical_symptoms.num ecg.normal abn.repolarisation ecg.st.depression Age
-#> 1                    2          0                  0                 0  58
-#> 2                    3          0                  1                 0  41
-#> 3                    4          1                  1                 0  73
-#> 4                    4          1                  0                 0  63
-#> 5                    2          0                  0                 1  53
-#> 6                    6          1                  0                 0  54
-#>   diabetes smoker hypertension hyperlipidaemia family.history
-#> 1        0      0            1               1              0
-#> 2        0      1            0               0              1
-#> 3        0      0            0               1              1
-#> 4        0      1            0               0              1
-#> 5        0      0            1               1              0
-#> 6        1      1            1               0              1
-#>   atherosclerotic.disease presentation_hstni Gender sweating pain.radiation
-#> 1                       0                 74 female        1              0
-#> 2                       0                 71 female        1              1
-#> 3                       0                 76   male        1              1
-#> 4                       0                 10   male        1              1
-#> 5                       0                 64 female        1              1
-#> 6                       0                 94 female        0              1
-#>   pleuritic palpation ecg.twi second_hstni killip.class systolic.bp heart.rate
-#> 1         1         0       0           24            2         192        126
-#> 2         0         1       1          198            3          31        163
-#> 3         0         0       0          146            3          24         93
-#> 4         1         0       1           52            4         160        122
-#> 5         0         1       1           25            1          43         11
-#> 6         1         1       0          158            2          66        132
-#>   creat cardiac.arrest previous.pci previous.cabg aspirin
-#> 1     2              0            0             0       1
-#> 2     3              1            0             0       0
-#> 3     0              1            1             1       1
-#> 4     2              1            0             1       0
-#> 5     2              0            0             1       0
-#> 6     0              1            0             1       1
-#>   number.of.episodes.24h total.chol total.hdl Ethnicity
-#> 1                     11         70         3     asian
-#> 2                      1         75         2     white
-#> 3                     10        100         5     black
-#> 4                     16         65         2     asian
-#> 5                     15         54         4     other
-#> 6                      6          8         3     other
+  str(cohort_xx)
+#> 'data.frame':    100 obs. of  31 variables:
+#>  $ typical_symptoms.num   : num  3 2 1 1 4 3 3 0 2 3 ...
+#>  $ ecg.normal             : num  0 0 0 1 0 1 1 1 0 1 ...
+#>  $ abn.repolarisation     : num  1 1 0 1 1 1 0 0 1 0 ...
+#>  $ ecg.st.depression      : num  0 0 1 1 1 1 1 1 0 1 ...
+#>  $ Age                    : num  76 50 53 39 54 72 69 44 74 55 ...
+#>  $ diabetes               : num  0 1 0 0 1 1 1 0 1 1 ...
+#>  $ smoker                 : num  1 1 1 1 0 1 0 1 1 1 ...
+#>  $ hypertension           : num  1 0 0 1 0 1 0 0 1 0 ...
+#>  $ hyperlipidaemia        : num  1 0 0 1 1 1 1 0 1 0 ...
+#>  $ family.history         : num  0 0 0 1 1 0 1 1 0 0 ...
+#>  $ atherosclerotic.disease: num  0 1 0 0 0 1 1 1 0 0 ...
+#>  $ presentation_hstni     : num  74 35 88 16 29 46 74 16 60 17 ...
+#>  $ Gender                 : chr  "male" "female" "female" "female" ...
+#>  $ sweating               : num  1 1 0 0 1 1 0 0 0 1 ...
+#>  $ pain.radiation         : num  1 0 0 1 0 1 0 0 0 1 ...
+#>  $ pleuritic              : num  1 1 1 1 0 1 0 1 0 1 ...
+#>  $ palpation              : num  0 0 1 0 1 1 0 0 1 1 ...
+#>  $ ecg.twi                : num  0 0 0 0 1 0 0 1 1 0 ...
+#>  $ second_hstni           : num  54 9 20 77 164 20 189 52 112 59 ...
+#>  $ killip.class           : num  2 3 4 4 3 2 2 1 4 4 ...
+#>  $ systolic.bp            : num  12 32 62 1 65 141 100 230 223 111 ...
+#>  $ heart.rate             : num  186 95 258 38 202 88 213 266 128 30 ...
+#>  $ creat                  : num  4 2 1 2 4 2 3 1 3 1 ...
+#>  $ cardiac.arrest         : num  1 0 1 1 1 1 1 1 1 0 ...
+#>  $ previous.pci           : num  1 1 1 0 1 0 1 1 1 0 ...
+#>  $ previous.cabg          : num  0 0 1 1 0 1 0 1 0 0 ...
+#>  $ aspirin                : num  1 1 1 0 0 0 1 1 0 1 ...
+#>  $ number.of.episodes.24h : num  18 12 15 1 10 5 3 6 11 11 ...
+#>  $ total.chol             : num  44 98 71 95 86 38 85 41 51 42 ...
+#>  $ total.hdl              : num  2 2 3 2 2 3 3 2 5 4 ...
+#>  $ Ethnicity              : chr  "white" "other" "white" "white" ...
 ```
 
 ``` r
 # Call the function with the cohort_xx to calculate all risk scores available in the package
-
 new_data_frame <- calc_scores(data = cohort_xx)
  
+# Select columns created after calculation
 All_scores <- new_data_frame %>% select(HEART_score, HEART_strat, EDACS_score, EDACS_strat, GRACE_score, GRACE_strat, TIMI_score, TIMI_strat, SCORE2_score, SCORE2_strat, ASCVD_score, ASCVD_strat)
 
+# Observe the results
 head(All_scores)
 #> # A tibble: 6 × 12
 #> # Rowwise: 
 #>   HEART_score HEART_strat   EDACS_score EDACS_strat  GRACE_score GRACE_strat  
 #>         <dbl> <ord>               <dbl> <ord>              <dbl> <ord>        
-#> 1           6 Moderate risk           7 Not low risk          88 Low risk     
-#> 2           5 Moderate risk           4 Not low risk         119 High risk    
-#> 3           6 Moderate risk          28 Not low risk         157 High risk    
-#> 4           3 Low risk               20 Not low risk         122 High risk    
-#> 5           7 High risk               8 Not low risk         103 Moderate risk
-#> 6           7 High risk               1 Not low risk         119 High risk    
+#> 1           7 High risk              26 Not low risk         176 High risk    
+#> 2           6 Moderate risk           3 Not low risk         116 Moderate risk
+#> 3           6 Moderate risk          -4 Not low risk         180 High risk    
+#> 4           5 Moderate risk           7 Not low risk         121 High risk    
+#> 5           7 High risk               3 Not low risk         167 High risk    
+#> 6           8 High risk              12 Not low risk         137 High risk    
 #> # ℹ 6 more variables: TIMI_score <dbl>, TIMI_strat <ord>, SCORE2_score <dbl>,
 #> #   SCORE2_strat <ord>, ASCVD_score <dbl>, ASCVD_strat <ord>
 
+# Create a summary of them to obtain an initial idea of distribution
 summary(All_scores)
-#>   HEART_score         HEART_strat  EDACS_score          EDACS_strat
-#>  Min.   :3.0   Low risk     : 5   Min.   :-8.00   Low risk    : 2  
-#>  1st Qu.:5.0   Moderate risk:61   1st Qu.: 5.00   Not low risk:98  
-#>  Median :6.0   High risk    :34   Median : 8.00                    
-#>  Mean   :5.9                      Mean   : 9.75                    
-#>  3rd Qu.:7.0                      3rd Qu.:15.00                    
-#>  Max.   :9.0                      Max.   :30.00                    
-#>   GRACE_score           GRACE_strat   TIMI_score           TIMI_strat
-#>  Min.   : 13.0   Low risk     :31   Min.   :1.00   Very low risk: 0  
-#>  1st Qu.: 85.0   Moderate risk:24   1st Qu.:3.00   Low risk     : 9  
-#>  Median :113.0   High risk    :45   Median :4.00   Moderate risk:56  
-#>  Mean   :113.3                      Mean   :4.11   High risk    :35  
-#>  3rd Qu.:146.2                      3rd Qu.:5.00                     
-#>  Max.   :204.0                      Max.   :7.00                     
-#>   SCORE2_score           SCORE2_strat  ASCVD_score            ASCVD_strat
-#>  Min.   :  0.00   Very low risk: 0    Min.   :0.0000   Very low risk:21  
-#>  1st Qu.: 24.00   Low risk     : 9    1st Qu.:0.0700   Low risk     : 5  
-#>  Median :100.00   Moderate risk: 6    Median :0.3300   Moderate risk:14  
-#>  Mean   : 69.74   High risk    :85    Mean   :0.4161   High risk    :60  
-#>  3rd Qu.:100.00                       3rd Qu.:0.7800                     
-#>  Max.   :100.00                       Max.   :1.0000
+#>   HEART_score          HEART_strat  EDACS_score          EDACS_strat
+#>  Min.   :4.00   Low risk     : 0   Min.   :-4.00   Low risk    : 1  
+#>  1st Qu.:5.75   Moderate risk:49   1st Qu.: 4.00   Not low risk:99  
+#>  Median :7.00   High risk    :51   Median : 9.00                    
+#>  Mean   :6.52                      Mean   : 9.85                    
+#>  3rd Qu.:7.25                      3rd Qu.:15.00                    
+#>  Max.   :9.00                      Max.   :30.00                    
+#>                                                                     
+#>   GRACE_score            GRACE_strat   TIMI_score           TIMI_strat
+#>  Min.   : 20.00   Low risk     :20   Min.   :2.00   Very low risk: 0  
+#>  1st Qu.: 93.75   Moderate risk:27   1st Qu.:4.00   Low risk     : 5  
+#>  Median :120.50   High risk    :53   Median :5.00   Moderate risk:44  
+#>  Mean   :122.40                      Mean   :4.43   High risk    :51  
+#>  3rd Qu.:151.25                      3rd Qu.:5.00                     
+#>  Max.   :201.00                      Max.   :7.00                     
+#>                                                                       
+#>   SCORE2_score          SCORE2_strat  ASCVD_score            ASCVD_strat
+#>  Min.   :  0.0   Very low risk: 0    Min.   :0.0000   Very low risk:25  
+#>  1st Qu.: 23.0   Low risk     : 8    1st Qu.:0.0450   Low risk     : 3  
+#>  Median : 88.5   Moderate risk: 4    Median :0.2900   Moderate risk:15  
+#>  Mean   : 66.6   High risk    :88    Mean   :0.3812   High risk    :56  
+#>  3rd Qu.:100.0                       3rd Qu.:0.7000   NA's         : 1  
+#>  Max.   :100.0                       Max.   :1.0000                     
+#>                                      NA's   :1
 ```

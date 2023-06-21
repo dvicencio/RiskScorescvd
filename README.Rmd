@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/dvicencio/RiskScorescvd/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dvicencio/RiskScorescvd/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of RiskScorescvd r package is to calculate the most commonly used cardiovascular risk scores
+The goal of RiskScorescvd r package is to calculate the most commonly used cardiovascular risk scores.
 
 We have developed five of the most commonly used risk scores with a dependency (ASCVD [PooledCohort]) making the following available:
 
@@ -85,19 +85,21 @@ library(RiskScorescvd)
    Ethnicity = sample(c("white", "black", "asian", "other"), num_rows, replace = TRUE)
  )
 
-  head(cohort_xx)
+  str(cohort_xx)
   
 ```
 
 ```{r example2}
 # Call the function with the cohort_xx to calculate all risk scores available in the package
-
 new_data_frame <- calc_scores(data = cohort_xx)
  
+# Select columns created after calculation
 All_scores <- new_data_frame %>% select(HEART_score, HEART_strat, EDACS_score, EDACS_strat, GRACE_score, GRACE_strat, TIMI_score, TIMI_strat, SCORE2_score, SCORE2_strat, ASCVD_score, ASCVD_strat)
 
+# Observe the results
 head(All_scores)
 
+# Create a summary of them to obtain an initial idea of distribution
 summary(All_scores)
  
 ```
