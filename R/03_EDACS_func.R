@@ -12,13 +12,13 @@
 #' 71-75 = 14\cr
 #' 76-80 = 16\cr
 #' 81-85 = 18\cr
-#' ≥86 = 20\cr
+#' >=86 = 20\cr
 #'
 #' Sex -\cr
 #' Female = 0\cr
 #' Male = 6\cr
 #'
-#' Known coronary artery disease or ≥3 risk factors*\cr
+#' Known coronary artery disease or >=3 risk factors*\cr
 #' The risk factors only apply to patients 18-50-\cr
 #' no = 0\cr
 #' yes = 4\cr
@@ -37,7 +37,7 @@
 #' EKG shows no new ischemia and\cr
 #' 0-hr and 2-hr troponin both negative.\cr
 #' Not low risk cohort:\cr
-#' EDACS ≥16 or\cr
+#' EDACS >=16 or\cr
 #' EKG shows new ischemia or\cr
 #' 0-hr or 2-hr troponin positive.
 #' @param ecg.st.depression a binary numeric vector, 1 = yes and 0 = no
@@ -157,7 +157,7 @@ EDACS <- function(Age =Age, Gender = Gender, diabetes= diabetes, smoker = smoker
     TRUE ~ NA_real_
   )
 
-  # 3. Known coronary artery disease or ≥3 risk factors;
+  # 3. Known coronary artery disease or >=3 risk factors;
   Risk <- case_when(
     is.na(Age) ~ NA_real_,
     (18 <= Age & Age <= 50) & sum(diabetes, smoker, hypertension, hyperlipidaemia, family.history, na.rm=TRUE) >= 3 ~ 4,

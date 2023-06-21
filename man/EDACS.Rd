@@ -73,13 +73,13 @@ Age -
 71-75 = 14\cr
 76-80 = 16\cr
 81-85 = 18\cr
-≥86 = 20\cr
+>=86 = 20\cr
 
 Sex -\cr
 Female = 0\cr
 Male = 6\cr
 
-Known coronary artery disease or ≥3 risk factors*\cr
+Known coronary artery disease or >=3 risk factors*\cr
 The risk factors only apply to patients 18-50-\cr
 no = 0\cr
 yes = 4\cr
@@ -98,7 +98,7 @@ EDACS <16 and\cr
 EKG shows no new ischemia and\cr
 0-hr and 2-hr troponin both negative.\cr
 Not low risk cohort:\cr
-EDACS ≥16 or\cr
+EDACS >=16 or\cr
 EKG shows new ischemia or\cr
 0-hr or 2-hr troponin positive.
 }

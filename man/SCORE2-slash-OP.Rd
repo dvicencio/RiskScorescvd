@@ -47,9 +47,9 @@ Age	10-year risk of fatal and non-fatal cardiovascular disease
 
                 | Low risk      |  Moderate risk  | High risk  |\cr
 | ------------- | ------------- | :-------------: | ----------:|\cr
-| < 50 years    |   <2.5%	     |  2.5 to <7.5%   |    ≥7.5%   |\cr
-| 50 - 69 years |    <5%        |   5 to <10%	   |     ≥10%   |\cr
-| ≥ 70 years    |   <7.5%	     |  7.5 to <15% 	 |     ≥15%   |\cr
+| < 50 years    |   <2.5%	     |  2.5 to <7.5%   |    =>7.5%   |\cr
+| 50 - 69 years |    <5%        |   5 to <10%	   |     =>10%   |\cr
+| => 70 years    |   <7.5%	     |  7.5 to <15% 	 |     =>15%   |\cr
 
 
 above classifications referred from https://www.inanutshell.ch/en/digital-doctors-bag/score2-and-score2-op/#:~:text=SCORE2%20(%C2%ABSystematic%20COronary%20Risk%20Evaluation,Society%20of%20Cardiology%20(ESC).
