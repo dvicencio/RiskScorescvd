@@ -3,7 +3,7 @@ Type: Package
 Title: Cardiovascular Risk Scores Calculator
 Version: 0.1.0
 Author: Daniel Perez Vicencio
-Maintainer: dvicencio947@gmail.com
+Maintainer: <dvicencio947@gmail.com>
 Description: A package to calculate Cardiovascular Risk Scores in large data frames
 License: MIT
 Encoding: UTF-8
