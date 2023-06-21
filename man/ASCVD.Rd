@@ -47,32 +47,35 @@ This function implements the ASCVD score calculation as a vector
 
 Scored using 3 steps
 
-Step 1: High-Risk Criteria: History of ASCVD
+Step 1: High-Risk Criteria: History of ASCVD \cr
 History of ASCVD - History of acute coronary syndrome (ACS),
 myocardial infarction (MI), stable angina,
 coronary/other arterial revascularization,
 stroke, transient ischemic attack,
 or Peripheral Arterial Disease (PAD) from atherosclerosis
 
-Step 2: High-Risk Criteria: Extreme LDL
+Step 2: High-Risk Criteria:\cr
+Extreme LDL\cr
 LDL Cholesterol ≥190mg/dL (4.92 mmol/L)
 
-Step 3: ASCVD Risk Criteria; Only Apply When LDL 70-189mg/dL (1.81-4.90 mmol/L)
-Age
-Diabetes
-Total cholesterol
-HDL cholesterol
-Systolic BP
-Treatment for Hypertension
-Smoker
-Race
-Balck british as Black; everything else as White
+Step 3: ASCVD Risk Criteria:\cr
+Only Apply When LDL 70-189mg/dL (1.81-4.90 mmol/L)\cr
+
+Age\cr
+Diabetes\cr
+Total cholesterol\cr
+HDL cholesterol\cr
+Systolic BP\cr
+Treatment for Hypertension\cr
+Smoker\cr
+Race\cr
+Black British as Black; everything else as White
 
 Three possible outcome
 
-High-Intensity Statin Therapy
-Moderate-Intensity Statin Therapy
-Low-Intensity Statin Therapy
+High risk - Intensity Statin Therapy\cr
+Moderate risk- Intensity Statin Therapy\cr
+Low risk - Intensity Statin Therapy
 }
 \examples{
 
