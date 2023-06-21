@@ -42,8 +42,7 @@ This function implements the ASCVD score calculation as a vector
 
 formula in SCORE2 Updated Supplementary Material page  9. paper:
 "SCORE2 risk prediction algorithms: new models to estimate 10-year risk of cardiovascular disease in Europe"
-}
-\details{
+
 Age	10-year risk of fatal and non-fatal cardiovascular disease
 
 \if{html}{\out{<div class="sourceCode">}}\preformatted{            | Low risk      |  Moderate risk  | High risk  |
