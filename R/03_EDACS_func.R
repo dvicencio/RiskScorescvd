@@ -24,10 +24,10 @@
 #' yes = 4\cr
 #'
 #' Symptoms and signs\cr
-#' Diaphoresis            \tab                        no = 0   yes = 3\cr
-#' Pain radiates to arm, shoulder, neck, or jaw  \tab no = 0   yes = 5\cr
-#' Pain occurred or worsened with inspiration    \tab no = 0   yes = -4\cr
-#' Pain is reproduced by palpation               \tab no = 0   yes = -6\cr
+#' Diaphoresis            \quad                        no = 0   yes = 3\cr
+#' Pain radiates to arm, shoulder, neck, or jaw  \quad no = 0   yes = 5\cr
+#' Pain occurred or worsened with inspiration    \quad no = 0   yes = -4\cr
+#' Pain is reproduced by palpation               \quad no = 0   yes = -6\cr
 #'
 #'
 #' Two possible outcomes\cr
