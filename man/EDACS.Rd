@@ -85,10 +85,10 @@ no = 0\cr
 yes = 4\cr
 
 Symptoms and signs\cr
-Diaphoresis            \quad                        no = 0   yes = 3\cr
-Pain radiates to arm, shoulder, neck, or jaw  \quad no = 0   yes = 5\cr
-Pain occurred or worsened with inspiration    \quad no = 0   yes = -4\cr
-Pain is reproduced by palpation               \quad no = 0   yes = -6\cr
+Diaphoresis                                         no = 0   yes = 3\cr
+Pain radiates to arm, shoulder, neck, or jaw        no = 0   yes = 5\cr
+Pain occurred or worsened with inspiration          no = 0   yes = -4\cr
+Pain is reproduced by palpation                     no = 0   yes = -6\cr
 
 
 Two possible outcomes\cr
