@@ -20,5 +20,7 @@ Depends:
   PooledCohort (>= 0.0.1)
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
+Config/testthat/edition: 3
