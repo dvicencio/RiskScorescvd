@@ -1,18 +1,12 @@
-## version 0.1.0
-
----
-
-
-### Package creation
-
-- Created package and submitted to github
-- R-cmd-check passing
-- Making sure it passes all tests
-
-
 ## version 0.0.1
 
 ---
+
+
+### Pakage Passed all Tests with Notes Only
+
+- Manatainer name
+- Global environment
 
 
 ## version 0.0.0.9000
