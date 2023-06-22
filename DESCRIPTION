@@ -2,10 +2,15 @@ Package: RiskScorescvd
 Type: Package
 Title: Cardiovascular Risk Scores Calculator
 Version: 0.1.0
-Author: Daniel Perez Vicencio
+Authors@R: 
+    c(person(given = "Daniel",
+             family = "Perez-Vicencio",
+             role = c("aut", "cre"),
+             email = "dvicencio947@gmail.com",
+             comment = c(ORCID = "0000-0003-2903-1129")))
 Maintainer: <dvicencio947@gmail.com>
 Description: A package to calculate Cardiovascular Risk Scores in large data frames
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.3

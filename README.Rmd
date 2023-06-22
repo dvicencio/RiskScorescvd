@@ -41,7 +41,7 @@ devtools::install_github("dvicencio/RiskScorescvd")
 ```
 ## Required variables for each risk score
 
-```{r Plot, echo=FALSE, message=FALSE, fig.width=8}
+```{r Plot, echo=FALSE, message=FALSE, fig.width=6, fig.height=8}
 library(tidyverse)
 index <- c(
   "Age",
