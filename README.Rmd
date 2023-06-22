@@ -19,6 +19,8 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/dvicencio/RiskScorescvd/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dvicencio/RiskScorescvd/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
+**Chest pain? Calculate your cardiovascular risk score.**
+
 The goal of RiskScorescvd r package is to calculate the most commonly used cardiovascular risk scores.
 
 We have developed five of the most commonly used risk scores with a dependency (ASCVD [PooledCohort]) making the following available:
