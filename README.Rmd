@@ -227,6 +227,10 @@ library(RiskScorescvd)
   
 ```
 
+## Calculation and Results
+
+This is a basic example of how to calculate all risk scores available in the package and create a new data set with 12 new variables of the calculated and classified risk scores:
+
 ```{r example2}
 # Call the function with the cohort_xx to calculate all risk scores available in the package
 new_data_frame <- calc_scores(data = cohort_xx)
