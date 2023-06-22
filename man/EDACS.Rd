@@ -54,7 +54,7 @@ EDACS(
 
 \item{second_hstni}{a binary numeric vector, 1 = yes and 0 = no}
 
-\item{classify}{a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"}
+\item{classify}{a logical parameter to indicate classification of scores "TRUE" or none "FALSE"}
 }
 \value{
 A vector with EDACS score calculations
@@ -133,10 +133,10 @@ cohort_xx <- data.frame(
 
 # Call the function with the cohort_xx
 
-results <- cohort_xx \%>\% rowwise() \%>\%
-mutate(EDACS_score = EDACS(Age, Gender, diabetes, smoker, hypertension,
-hyperlipidaemia, family.history, sweating, pain.radiation, pleuritic,
- palpation, ecg.st.depression, ecg.twi,  presentation_hstni, second_hstni, classify = FALSE))
+results <- cohort_xx \%>\% rowwise() \%>\% mutate(EDACS_score = EDACS(Age,
+Gender, diabetes, smoker, hypertension, hyperlipidaemia, family.history,
+sweating, pain.radiation, pleuritic, palpation, ecg.st.depression, ecg.twi,
+presentation_hstni, second_hstni, classify = FALSE))
 
 
 }

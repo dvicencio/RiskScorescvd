@@ -3,7 +3,7 @@
 ---
 
 
-### Pakcage creation
+### Package creation
 
 - Created package and submitted to github
 - R-cmd-check passing

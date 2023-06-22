@@ -10,7 +10,7 @@
 #' Risk factors >3*
 #' yes = 1,  no = 0
 #'
-#' Known CAD (stenosis ≥50%)
+#' Known CAD (stenosis >= 50%)
 #' yes = 1,  no = 0
 #'
 #' Aspirin Use

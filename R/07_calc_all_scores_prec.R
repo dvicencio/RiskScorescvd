@@ -7,7 +7,7 @@
 #'
 #' @param data
 #' A data frame with all the variables needed for calculation:
-#' @param  typical_symptoms.num a numeric vector of the number of typical symptoms; renames alternative column name
+#' @param typical_symptoms.num a numeric vector of the number of typical symptoms; renames alternative column name
 #' @param ecg.normal a binary numeric vector,  1 = yes and 0 = no; renames alternative column name
 #' @param abn.repolarisation a binary numeric vector,  1 = yes and 0 = no; renames alternative column name
 #' @param ecg.st.depression a binary numeric vector, 1 = yes and 0 = no; renames alternative column name

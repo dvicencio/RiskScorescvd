@@ -13,7 +13,7 @@
                      #'
 #' Step 2: High-Risk Criteria:\cr
 #' Extreme LDL\cr
-#' LDL Cholesterol ≥190mg/dL (4.92 mmol/L)
+#' LDL Cholesterol >= 190mg/dL (4.92 mmol/L)
 #'
 #' Step 3: ASCVD Risk Criteria:\cr
 #' Only Apply When LDL 70-189mg/dL (1.81-4.90 mmol/L)\cr
