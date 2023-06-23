@@ -104,7 +104,7 @@
 #' presentation_hstni, second_hstni, classify = FALSE))
 #'
 #'
-#' @importFrom dplyr casewhen
+#' @importFrom dplyr case_when
 #'
 #' @name EDACS
 #' @export

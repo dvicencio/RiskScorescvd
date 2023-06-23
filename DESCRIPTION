@@ -8,8 +8,6 @@ Authors@R:
              role = c("aut", "cre"),
              email = "dvicencio947@gmail.com",
              comment = c(ORCID = "0000-0003-2903-1129")))
-Author: Daniel Perez-Vicencio
-Maintainer: <dvicencio947@gmail.com>
 Description: A package to calculate Cardiovascular Risk Scores in large data frames.
 License: MIT + file LICENSE
 Encoding: UTF-8

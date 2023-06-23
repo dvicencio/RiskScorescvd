@@ -112,8 +112,8 @@
 #'
 #' @importFrom dplyr case_when
 #'
-#'  @name HEART
-#'  @export
+#' @name HEART
+#' @export
 
   HEART <- function(typical_symptoms.num = typical_symptoms.num,
                     ecg.normal = ecg.normal,

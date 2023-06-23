@@ -99,7 +99,7 @@
 #'   mutate(GRACE_score = GRACE(killip.class, systolic.bp, heart.rate,
 #'   Age, creat, ecg.st.depression, presentation_hstni, cardiac.arrest, Gender, classify = FALSE))
 #'
-#'@importFrom dplyr caswhen
+#'@importFrom dplyr case_when
 #'
 #' @export
 

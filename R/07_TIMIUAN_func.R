@@ -106,7 +106,7 @@
 #'   ecg.st.depression, presentation_hstni, Gender, classify = FALSE))
 #'
 #'
-#' @importFrom dplyr casewhen
+#' @importFrom dplyr case_when
 #'
 #' @name TIMI
 #' @export
