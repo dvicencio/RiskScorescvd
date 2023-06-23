@@ -39,11 +39,11 @@
 #' @param Ethnicity a character vector, 'white', 'black', 'asian', or other
 #'
 #' @keywords
-#' Cardiovascular risk scores, typical_symptoms.num, ecg.normal, abn.repolarisation, ecg.st.depression,
-#' Age, diabetes, smoker, hypertension, hyperlipidaemia, family.history,
-#' atherosclerotic.disease, presentation_hstni, Gender, sweating, pain.radiation, pleuritic, palpation, ecg.twi,
-#' second_hstni, killip.class, heart.rate, systolic.bp, aspirin, number.of.episodes.24h, previous.pci,
-#' previous.cabg, total.chol, total.hdl
+#' Cardiovascular risk scores typical_symptoms.num ecg.normal abn.repolarisation ecg.st.depression
+#' Age diabetes smoker hypertension hyperlipidaemia family.history
+#' atherosclerotic.disease presentation_hstni Gender sweating pain.radiation pleuritic palpation ecg.twi
+#' second_hstni killip.class heart.rate systolic.bp aspirin number.of.episodes.24h previous.pci
+#' previous.cabg total.chol total.hdl
 #'
 #' @return
 #' a data frame with two extra columns including all the cardiovascular risk score calculations

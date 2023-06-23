@@ -140,18 +140,18 @@ cohort_xx <- data.frame(
  presentation_hstni, Gender, classify = FALSE))
 
 }
-\keyword{Age,}
-\keyword{Gender,}
-\keyword{HEART,}
-\keyword{abn.repolarisation,}
-\keyword{atherosclerotic.disease,}
+\keyword{Age}
+\keyword{Gender}
+\keyword{HEART}
+\keyword{abn.repolarisation}
+\keyword{atherosclerotic.disease}
 \keyword{classify}
-\keyword{diabetes,}
-\keyword{ecg.normal,}
-\keyword{ecg.st.depression,}
-\keyword{family.history,}
-\keyword{hyperlipidaemia,}
-\keyword{hypertension,}
-\keyword{presentation_hstni,}
-\keyword{smoker,}
-\keyword{typical_symptoms.num,}
+\keyword{diabetes}
+\keyword{ecg.normal}
+\keyword{ecg.st.depression}
+\keyword{family.history}
+\keyword{hyperlipidaemia}
+\keyword{hypertension}
+\keyword{presentation_hstni}
+\keyword{smoker}
+\keyword{typical_symptoms.num}

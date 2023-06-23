@@ -47,10 +47,10 @@
 #' @param previous.cabg a binary numeric vector, 1 = yes and 0 = no
 #' @param classify set TRUE if wish to add a column with the scores' categories
 #' @keywords
-#'  TIMI, Age, hypertension, hyperlipidaemia, family.history, diabetes,
-#'  smoker, previous.pci, previous.cabg, aspirin,
-#'  number.of.episodes.24h, ecg.st.depression,
-#'  presentation_hstni, Gender, classify
+#'  TIMI Age hypertension hyperlipidaemia family.history diabetes
+#'  smoker previous.pci previous.cabg aspirin
+#'  number.of.episodes.24h ecg.st.depression
+#'  presentation_hstni Gender classify
 #'
 #' @return
 #' A vector with TIMI score calculations

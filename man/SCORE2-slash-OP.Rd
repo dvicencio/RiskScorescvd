@@ -102,12 +102,12 @@ cohort_xx <- data.frame(
   total.chol, total.hdl, classify = FALSE))
 
 }
-\keyword{Age,}
-\keyword{Gender,}
-\keyword{SCORE2/OP,}
+\keyword{Age}
+\keyword{Gender}
+\keyword{SCORE2/OP}
 \keyword{classify}
-\keyword{diabetes,}
-\keyword{smoker,}
-\keyword{systolic.bp,}
-\keyword{total.chol,}
-\keyword{total.hdl,}
+\keyword{diabetes}
+\keyword{smoker}
+\keyword{systolic.bp}
+\keyword{total.chol}
+\keyword{total.hdl}

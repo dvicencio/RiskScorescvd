@@ -59,9 +59,9 @@
 #' @param classify a logical parameter to indicate classification of scores "TRUE" or none "FALSE"
 #'
 #' @keywords
-#' EDACS, Age, Gender, diabetes, smoker, hypertension, hyperlipidaemia,
-#' family.history, sweating, pain.radiation, pleuritic, palpation,
-#' ecg.st.depression, ecg.twi, presentation_hstni, second_hstni, classify
+#' EDACS Age Gender diabetes smoker hypertension hyperlipidaemia
+#' family.history sweating pain.radiation pleuritic palpation
+#' ecg.st.depression ecg.twi presentation_hstni second_hstni classify
 #'
 #' @return
 #' A vector with EDACS score calculations

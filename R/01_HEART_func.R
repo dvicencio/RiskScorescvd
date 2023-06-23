@@ -71,9 +71,9 @@
 #' @param classify a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"
 #'
 #' @keywords
-#' HEART, typical_symptoms.num, ecg.normal, abn.repolarisation, ecg.st.depression,
-#' Age, diabetes, smoker, hypertension, hyperlipidaemia, family.history,
-#' atherosclerotic.disease, presentation_hstni, Gender, classify
+#' HEART typical_symptoms.num ecg.normal abn.repolarisation ecg.st.depression
+#' Age diabetes smoker hypertension hyperlipidaemia family.history
+#' atherosclerotic.disease presentation_hstni Gender classify
 #'
 #' @return
 #' A vector with HEART score calculations

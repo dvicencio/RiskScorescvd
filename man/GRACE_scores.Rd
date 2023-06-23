@@ -92,14 +92,14 @@ summary(result$GRACE_score)
 
 
 }
-\keyword{Age,}
-\keyword{GRACE,}
-\keyword{Gender,}
-\keyword{cardiac.arrest,}
+\keyword{Age}
+\keyword{GRACE}
+\keyword{Gender}
+\keyword{cardiac.arrest}
 \keyword{classify}
-\keyword{creat,}
-\keyword{ecg.st.depression,}
-\keyword{heart.rate,}
-\keyword{killip.class,}
-\keyword{presentation_hstni,}
-\keyword{systolic.bp,}
+\keyword{creat}
+\keyword{ecg.st.depression}
+\keyword{heart.rate}
+\keyword{killip.class}
+\keyword{presentation_hstni}
+\keyword{systolic.bp}

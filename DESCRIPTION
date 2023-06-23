@@ -8,7 +8,7 @@ Authors@R:
              role = c("aut", "cre"),
              email = "dvicencio947@gmail.com",
              comment = c(ORCID = "0000-0003-2903-1129")))
-Description: A package to calculate Cardiovascular Risk Scores in large data frames.
+Description: A tool to calculate Cardiovascular Risk Scores in large data frames. Cardiovascular risk scores are statistical tools used to assess an individual's likelihood of developing a cardiovascular disease based on various risk factors, such as age, gender, blood pressure, cholesterol levels, and smoking. Here we bring together the six most commonly used in the emergency department. Using RiskScorescvd, you can calculate all the risk scores in an extended dataset in seconds.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

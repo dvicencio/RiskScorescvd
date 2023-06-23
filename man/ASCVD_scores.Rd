@@ -102,13 +102,13 @@ summary(result$ASCVD_score)
 summary(result$ASCVD_strat)
 
 }
-\keyword{Age,}
-\keyword{Ethnicity,}
-\keyword{Gender,}
-\keyword{HEART,}
+\keyword{Age}
+\keyword{Ethnicity}
+\keyword{Gender}
+\keyword{HEART}
 \keyword{classify}
 \keyword{diabetes}
-\keyword{smoker,}
-\keyword{systolic.bp,hypertension,}
-\keyword{total.chol,}
-\keyword{total.hd,}
+\keyword{smoker}
+\keyword{systolic.bphypertension}
+\keyword{total.chol}
+\keyword{total.hd}

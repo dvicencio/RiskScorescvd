@@ -96,12 +96,12 @@ summary(result$SCORE2_score)
 summary(result$SCORE2_strat)
 
 }
-\keyword{Age,}
-\keyword{Gender,}
-\keyword{SCORE2/OP,}
+\keyword{Age}
+\keyword{Gender}
+\keyword{SCORE2/OP}
 \keyword{classify}
-\keyword{diabetes,}
-\keyword{smoker,}
-\keyword{systolic.bp,}
-\keyword{total.chol,}
-\keyword{total.hdl,}
+\keyword{diabetes}
+\keyword{smoker}
+\keyword{systolic.bp}
+\keyword{total.chol}
+\keyword{total.hdl}

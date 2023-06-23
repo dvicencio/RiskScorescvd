@@ -20,8 +20,8 @@
 #' @param diabetes a binary numeric vector, 1 = yes and 0 = no
 #'
 #' @keywords
-#' SCORE2/OP,  Age, Gender, smoker, systolic.bp, diabetes, total.chol,
-#' total.hdl, classify
+#' SCORE2/OP  Age Gender smoker systolic.bp diabetes total.chol
+#' total.hdl classify
 #'
 #' @return
 #' data frame with two extra columns including the SCORE2/OP score calculations

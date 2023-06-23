@@ -22,8 +22,8 @@
 #' @param classify a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"
 #'
 #' @keywords
-#' HEART, Gender, Ethnicity, Age, total.chol, total.hd,
-#' systolic.bp,hypertension, smoker, diabetes classify
+#' HEART Gender Ethnicity Age total.chol total.hd
+#' systolic.bphypertension smoker diabetes classify
 #'
 #' @return
 #' data frame with two extra columns including the ASCVD score calculations

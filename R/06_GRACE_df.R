@@ -21,8 +21,8 @@
 #' @param creat a continuous numeric vector of the creatine levels
 #'
 #' @keywords
-#' GRACE, killip.class, systolic.bp, heart.rate, Age, creat, ecg.st.depression,
-#' presentation_hstni, cardiac.arrest, Gender, classify classify
+#' GRACE killip.class systolic.bp heart.rate Age creat ecg.st.depression
+#' presentation_hstni cardiac.arrest Gender classify classify
 #'
 #' @return
 #' data frame with two extra columns including the 'GRACE_score' calculations

@@ -126,13 +126,13 @@ results <- cohort_xx \%>\% rowwise() \%>\%
  systolic.bp,hypertension, smoker, diabetes, classify = FALSE))
 
 }
-\keyword{ASCVD,}
-\keyword{Age,}
-\keyword{Ethnicity,}
-\keyword{Gender,}
+\keyword{ASCVD}
+\keyword{Age}
+\keyword{Ethnicity}
+\keyword{Gender}
 \keyword{classify}
-\keyword{diabetes,}
-\keyword{smoker,}
-\keyword{systolic.bp,hypertension,}
-\keyword{total.chol,}
-\keyword{total.hdl,}
+\keyword{diabetes}
+\keyword{smoker}
+\keyword{systolic.bphypertension}
+\keyword{total.chol}
+\keyword{total.hdl}

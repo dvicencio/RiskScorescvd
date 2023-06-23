@@ -46,8 +46,8 @@
 #' @param classify a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"
 #'
 #' @keywords
-#' ASCVD, Gender, Ethnicity, Age, total.chol, total.hdl,
-#' systolic.bp,hypertension, smoker, diabetes, classify
+#' ASCVD Gender Ethnicity Age total.chol total.hdl
+#' systolic.bphypertension smoker diabetes classify
 #'
 #' @return
 #' A vector with ASCVD score calculations

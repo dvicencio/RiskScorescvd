@@ -29,9 +29,9 @@
 #' @param second_hstni a binary numeric vector, 1 = yes and 0 = no
 #'
 #' @keywords
-#' EDACS, Age, Gender, diabetes, smoker, hypertension, hyperlipidaemia,
-#' family.history, sweating, pain.radiation, pleuritic, palpation,
-#' ecg.st.depression, ecg.twi,  presentation_hstni, second_hstni, classify
+#' EDACS Age Gender diabetes smoker hypertension hyperlipidaemia
+#' family.history sweating pain.radiation pleuritic palpation
+#' ecg.st.depression ecg.twi  presentation_hstni second_hstni classify
 #'
 #' @return
 #' data frame with two extra columns including the 'EDACS_score' calculations

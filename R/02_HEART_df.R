@@ -27,9 +27,9 @@
 #' @param Gender a binary character vector of sex values. Categories should include only 'male' or 'female'
 #'
 #' @keywords
-#' HEART, typical_symptoms.num, ecg.normal, abn.repolarisation, ecg.st.depression,
-#' Age, diabetes, smoker, hypertension, hyperlipidaemia, family.history,
-#' atherosclerotic.disease, presentation_hstni, Gender, classify
+#' HEART typical_symptoms.num ecg.normal abn.repolarisation ecg.st.depression
+#' Age diabetes smoker hypertension hyperlipidaemia family.history
+#' atherosclerotic.disease presentation_hstni Gender classify
 #'
 #' @return
 #' a data frame with two extra columns including the HEART score calculations

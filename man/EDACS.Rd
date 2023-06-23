@@ -140,20 +140,20 @@ presentation_hstni, second_hstni, classify = FALSE))
 
 
 }
-\keyword{Age,}
-\keyword{EDACS,}
-\keyword{Gender,}
+\keyword{Age}
+\keyword{EDACS}
+\keyword{Gender}
 \keyword{classify}
-\keyword{diabetes,}
-\keyword{ecg.st.depression,}
-\keyword{ecg.twi,}
-\keyword{family.history,}
-\keyword{hyperlipidaemia,}
-\keyword{hypertension,}
-\keyword{pain.radiation,}
-\keyword{palpation,}
-\keyword{pleuritic,}
-\keyword{presentation_hstni,}
-\keyword{second_hstni,}
-\keyword{smoker,}
-\keyword{sweating,}
+\keyword{diabetes}
+\keyword{ecg.st.depression}
+\keyword{ecg.twi}
+\keyword{family.history}
+\keyword{hyperlipidaemia}
+\keyword{hypertension}
+\keyword{pain.radiation}
+\keyword{palpation}
+\keyword{pleuritic}
+\keyword{presentation_hstni}
+\keyword{second_hstni}
+\keyword{smoker}
+\keyword{sweating}
