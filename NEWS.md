@@ -2,6 +2,12 @@
 
 ---
 
+### DOI added to description file
+
+- Methods an references added
+
+---
+
 ### Package passed all tests 
 
 - Added information suggested by Victoria Wimmer
