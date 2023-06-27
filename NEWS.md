@@ -2,6 +2,12 @@
 
 ---
 
+### Package passed all tests 
+
+- Added information suggested by Victoria Wimmer
+- All fixed
+
+---
 
 ### Pakage Passed all Tests with Notes Only
 
