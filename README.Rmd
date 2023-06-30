@@ -39,6 +39,9 @@ We have developed five of the most commonly used risk scores with a dependency (
 You can install the development version of RiskScorescvd from [GitHub](https://github.com/) with:
 
 ``` r
+# Install from CRAN
+install.packages("RiskScorescvd")
+
 # install.packages("devtools")
 devtools::install_github("dvicencio/RiskScorescvd")
 ```
