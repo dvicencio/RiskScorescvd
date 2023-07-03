@@ -91,7 +91,6 @@
 #' @importFrom dplyr %>%
 #' @importFrom dplyr rowwise
 #'
-#' @name TIMI
 #'
 #'
 #' @export
