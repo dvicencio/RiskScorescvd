@@ -7,7 +7,13 @@ Authors@R:
              family = "Perez-Vicencio",
              role = c("aut", "cre"),
              email = "dvicencio947@gmail.com",
-             comment = c(ORCID = "0000-0003-2903-1129")))
+             comment = c(ORCID = "0000-0003-2903-1129")),
+      person(given = "Dimitrios",
+             family = "Doudesis",
+             role = "aut"),
+      person(given = "Alexander JF",
+             family = "Thurston",
+             role = "aut"))
 Description: A tool to calculate Cardiovascular Risk Scores in large data frames. Cardiovascular risk scores are statistical tools used to assess an individual's likelihood of developing a cardiovascular disease based on various risk factors, such as age, gender, blood pressure, cholesterol levels, and smoking. Here we bring together the six most commonly used in the emergency department. Using 'RiskScorescvd', you can calculate all the risk scores in an extended dataset in seconds. ASCVD described in Goff, et al (2013) <doi:10.1161/01.cir.0000437741.48606.98>. EDACS described in Mark DG, et al (2016) <doi:10.1016/j.jacc.2017.11.064>. GRACE described in Fox KA, et al (2006) <doi:10.1136/bmj.38985.646481.55>. HEART is described in Mahler SA, et al (2017) <doi:10.1016/j.clinbiochem.2017.01.003>. SCORE2/OP described in SCORE2 working group and ESC Cardiovascular risk collaboration (2021) <doi:10.1093/eurheartj/ehab309>. TIMI described in Antman EM, et al (2000) <doi:10.1001/jama.284.7.835>.
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -23,3 +29,5 @@ Suggests:
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Config/testthat/edition: 3
+URL: https://github.com/dvicencio/RiskScorescvd
+BugReports: https://github.com/dvicencio/RiskScorescvd/issues
