@@ -1,4 +1,4 @@
-#' Thrombolysis In Myocardial Infarction (TIMI) Risk Score for UA/NSTEMI
+#' Thrombolysis In Myocardial Infarction (TIMI) Risk Score for UA/NSTEMI function
 #'
 #' @description This function implements the TIMI score calculation as a vector
 #'
@@ -46,6 +46,7 @@
 #' @param previous.pci a binary numeric vector, 1 = yes and 0 = no
 #' @param previous.cabg a binary numeric vector, 1 = yes and 0 = no
 #' @param classify set TRUE if wish to add a column with the scores' categories
+#'
 #' @keywords
 #'  TIMI Age hypertension hyperlipidaemia family.history diabetes
 #'  smoker previous.pci previous.cabg aspirin

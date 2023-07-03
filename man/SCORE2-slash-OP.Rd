@@ -3,7 +3,7 @@
 \name{SCORE2/OP}
 \alias{SCORE2/OP}
 \alias{SCORE2}
-\title{Systematic COronary Risk Evaluation (SCORE) model}
+\title{Systematic COronary Risk Evaluation (SCORE) model function}
 \usage{
 SCORE2(
   Age = Age,

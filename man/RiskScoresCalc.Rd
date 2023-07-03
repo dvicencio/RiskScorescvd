@@ -3,7 +3,7 @@
 \name{RiskScoresCalc}
 \alias{RiskScoresCalc}
 \alias{calc_scores}
-\title{Commonly used cardiovascular risk scores for the prediction of major cardiac events (MACE)}
+\title{Six commonly used cardiovascular risk scores for the prediction of major cardiac events (MACE)}
 \usage{
 calc_scores(
   data,

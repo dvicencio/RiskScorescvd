@@ -1,4 +1,4 @@
-#' Commonly used cardiovascular risk scores for the prediction of major cardiac events (MACE)
+#' Six commonly used cardiovascular risk scores for the prediction of major cardiac events (MACE)
 #'
 #'
 #' @description This function implements seven cardiovascular risk scores row wise

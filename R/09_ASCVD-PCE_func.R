@@ -1,4 +1,4 @@
-#' ASCVD (Atherosclerotic Cardiovascular Disease) Risk Algorithm including Known ASCVD from AHA/ACC
+#' ASCVD (Atherosclerotic Cardiovascular Disease) Risk Algorithm including Known ASCVD from AHA/ACC function
 #'
 #' @description This function implements the ASCVD score calculation as a vector
 #'

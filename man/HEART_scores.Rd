@@ -2,7 +2,7 @@
 % Please edit documentation in R/02_HEART_df.R
 \name{HEART_scores}
 \alias{HEART_scores}
-\title{HEART risk score function
+\title{HEART risk score function for data frame;
 HEART = History, ECG, Age, Risk factors, Troponin}
 \usage{
 HEART_scores(

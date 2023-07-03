@@ -1,4 +1,4 @@
-#' GRACE Global Registry of Acute Coronary Events version 2.0, 6 months outcome
+#' GRACE Global Registry of Acute Coronary Events version 2.0 (6 months outcome) function;
 #'
 #' @description This function implements the GRACE 2.0 for 6 months outcome score calculation as a vector
 #'

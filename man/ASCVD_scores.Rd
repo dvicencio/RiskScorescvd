@@ -2,7 +2,7 @@
 % Please edit documentation in R/10_ASCVD_df.R
 \name{ASCVD_scores}
 \alias{ASCVD_scores}
-\title{ASCVD risk score function
+\title{ASCVD risk score function for data frame;
 ASCVD = Atherosclerotic Cardiovascular Disease}
 \usage{
 ASCVD_scores(

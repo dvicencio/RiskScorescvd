@@ -1,4 +1,4 @@
-#' SCORE2/OP risk score function
+#' SCORE2/OP risk score function for data frame;
 #' SCORE2/OP = Systematic COronary Risk Evaluation /and Older Population
 #'
 #' @description

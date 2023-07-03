@@ -2,7 +2,7 @@
 % Please edit documentation in R/03_EDACS_func.R
 \name{EDACS}
 \alias{EDACS}
-\title{Emergency Department Assessment of Chest Pain Score (EDACS)}
+\title{Emergency Department Assessment of Chest Pain Score (EDACS) function}
 \usage{
 EDACS(
   Age = Age,

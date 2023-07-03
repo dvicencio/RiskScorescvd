@@ -2,7 +2,8 @@
 % Please edit documentation in R/06_GRACE_df.R
 \name{GRACE_scores}
 \alias{GRACE_scores}
-\title{GRACE Global Registry of Acute Coronary Events version 2.0, 6 months outcome}
+\title{GRACE 2.0 score function for data frame;
+GRACE 2.0 = Global Registry of Acute Coronary Events version 2.0}
 \usage{
 GRACE_scores(
   data,

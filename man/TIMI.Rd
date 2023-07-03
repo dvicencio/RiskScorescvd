@@ -3,7 +3,7 @@
 \name{TIMI}
 \alias{TIMI}
 \alias{TIMI_scores}
-\title{Thrombolysis In Myocardial Infarction (TIMI) Risk Score for UA/NSTEMI}
+\title{Thrombolysis In Myocardial Infarction (TIMI) Risk Score for UA/NSTEMI function}
 \usage{
 TIMI(
   Age = Age,
@@ -114,12 +114,9 @@ Four possible outcomes
 3-4 = Moderate risk
 =>5 = High risk
 
-This function allows you to calculate the HEART score row wise
+This function allows you to calculate the TIMI score row wise
 in a data frame with the required variables. It would then retrieve a data
 frame with two extra columns including the calculations and their classifications
-}
-\details{
-TIMI = Thrombolysis In Myocardial Infarction
 }
 \examples{
 

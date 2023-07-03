@@ -2,7 +2,7 @@
 % Please edit documentation in R/09_ASCVD-PCE_func.R
 \name{ASCVD}
 \alias{ASCVD}
-\title{ASCVD (Atherosclerotic Cardiovascular Disease) Risk Algorithm including Known ASCVD from AHA/ACC}
+\title{ASCVD (Atherosclerotic Cardiovascular Disease) Risk Algorithm including Known ASCVD from AHA/ACC function}
 \usage{
 ASCVD(
   Gender = Gender,

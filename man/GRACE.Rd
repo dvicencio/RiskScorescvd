@@ -2,7 +2,7 @@
 % Please edit documentation in R/05_GRACE_func.R
 \name{GRACE}
 \alias{GRACE}
-\title{GRACE Global Registry of Acute Coronary Events version 2.0, 6 months outcome}
+\title{GRACE Global Registry of Acute Coronary Events version 2.0 (6 months outcome) function;}
 \usage{
 GRACE(
   killip.class = killip.class,

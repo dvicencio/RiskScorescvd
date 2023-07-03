@@ -1,4 +1,5 @@
-#' GRACE Global Registry of Acute Coronary Events version 2.0, 6 months outcome
+#' GRACE 2.0 score function for data frame;
+#' GRACE 2.0 = Global Registry of Acute Coronary Events version 2.0
 #'
 #' @description
 #' This function allows you to calculate the GRACE 2.0 score row wise

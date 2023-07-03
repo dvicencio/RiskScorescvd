@@ -1,4 +1,4 @@
-#' Emergency Department Assessment of Chest Pain Score (EDACS)
+#' Emergency Department Assessment of Chest Pain Score (EDACS) function
 #'
 #' @description This function implements the EDACS score calculation as a vector
 #'

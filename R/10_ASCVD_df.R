@@ -1,4 +1,4 @@
-#' ASCVD risk score function
+#' ASCVD risk score function for data frame;
 #' ASCVD = Atherosclerotic Cardiovascular Disease
 #'
 #' @description

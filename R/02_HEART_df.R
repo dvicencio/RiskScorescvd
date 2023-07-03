@@ -1,4 +1,4 @@
-#' HEART risk score function
+#' HEART risk score function for data frame;
 #' HEART = History, ECG, Age, Risk factors, Troponin
 #'
 #' @description

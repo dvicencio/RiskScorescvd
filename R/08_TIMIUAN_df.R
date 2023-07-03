@@ -1,9 +1,8 @@
-#' TIMI Risk Score for UA/NSTEMI function
-#'
+#' TIMI UA/NSTEMI Risk Score function for data frame;
 #' TIMI = Thrombolysis In Myocardial Infarction
 #'
 #' @description
-#' This function allows you to calculate the HEART score row wise
+#' This function allows you to calculate the TIMI score row wise
 #' in a data frame with the required variables. It would then retrieve a data
 #' frame with two extra columns including the calculations and their classifications
 #'

@@ -2,7 +2,7 @@
 % Please edit documentation in R/01_HEART_func.R
 \name{HEART}
 \alias{HEART}
-\title{History, ECG, Age, Risk factors and Troponin (HEART) risk score}
+\title{History, ECG, Age, Risk factors and Troponin (HEART) risk score function}
 \usage{
 HEART(
   typical_symptoms.num = typical_symptoms.num,

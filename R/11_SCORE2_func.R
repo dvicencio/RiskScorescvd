@@ -1,4 +1,4 @@
-#'  Systematic COronary Risk Evaluation (SCORE) model
+#'  Systematic COronary Risk Evaluation (SCORE) model function
 #'
 #'
 #' @description This function implements the SCORE2 and SCORE2 older population (OP) score calculation as a vector

@@ -1,4 +1,4 @@
-#' EDACS score function
+#' EDACS score function for data frame;
 #' EDACS = Emergency Department Assessment of Chest Pain Score
 #'
 #' @description

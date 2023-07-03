@@ -2,7 +2,7 @@
 % Please edit documentation in R/04_EDACS_df.R
 \name{EDACS_scores}
 \alias{EDACS_scores}
-\title{EDACS score function
+\title{EDACS score function for data frame;
 EDACS = Emergency Department Assessment of Chest Pain Score}
 \usage{
 EDACS_scores(

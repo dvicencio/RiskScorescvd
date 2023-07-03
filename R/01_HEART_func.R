@@ -1,4 +1,4 @@
-#' History, ECG, Age, Risk factors and Troponin (HEART) risk score
+#' History, ECG, Age, Risk factors and Troponin (HEART) risk score function
 #'
 #'
 #' @description This function implements the HEART score calculation as a vector

@@ -2,7 +2,7 @@
 % Please edit documentation in R/12_SCORE2_df.R
 \name{SCORE2_scores}
 \alias{SCORE2_scores}
-\title{SCORE2/OP risk score function
+\title{SCORE2/OP risk score function for data frame;
 SCORE2/OP = Systematic COronary Risk Evaluation /and Older Population}
 \usage{
 SCORE2_scores(
