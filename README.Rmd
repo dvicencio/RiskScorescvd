@@ -33,15 +33,20 @@ We have developed five of the most commonly used risk scores with a dependency (
 * SCORE2/OP
 * ASCVD
 
+NOTE: Troponin I values should be used. Additional functions for Troponin T are under development
 
 ## Installation
 
-You can install the development version of RiskScorescvd from [GitHub](https://github.com/) with:
+You can install from CRAN with:
 
 ``` r
 # Install from CRAN
 install.packages("RiskScorescvd")
+```
 
+You can install the development version of RiskScorescvd from [GitHub](https://github.com/) with:
+
+``` r
 # install.packages("devtools")
 devtools::install_github("dvicencio/RiskScorescvd")
 ```
