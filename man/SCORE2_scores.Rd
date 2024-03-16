@@ -7,6 +7,7 @@ SCORE2/OP = Systematic COronary Risk Evaluation /and Older Population}
 \usage{
 SCORE2_scores(
   data,
+  Risk.region,
   Age = Age,
   Gender = Gender,
   smoker = smoker,
@@ -21,6 +22,8 @@ SCORE2_scores(
 \item{data}{A data frame with all the variables needed for calculation:
  Age, Gender, smoker, systolic.bp, diabetes, total.chol,
 total.hdl}
+
+\item{Risk.region}{a character value to set the desired risk region calculations. Categories should include}
 
 \item{Age}{a numeric vector of age values, in years}
 
@@ -89,7 +92,7 @@ cohort_xx <- data.frame(
 )
 
 # Call the function with the cohort_xx
-result <- SCORE2_scores(data = cohort_xx, classify = TRUE)
+result <- SCORE2_scores(data = cohort_xx, Risk.region = "Low", classify = TRUE)
 
 # Print the results
 summary(result$SCORE2_score)

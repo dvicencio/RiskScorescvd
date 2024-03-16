@@ -182,7 +182,7 @@ data <- data %>% rename(typical_symptoms.num = typical_symptoms.num, ecg.normal 
                                                       systolic.bp,hypertension, smoker, diabetes, classify = FALSE),
 
                                                       SCORE2_score =
-                                                        SCORE2(Age, Gender, smoker, systolic.bp, diabetes, total.chol, total.hdl, classify = FALSE)
+                                                        SCORE2(Risk.region = "Low", Age, Gender, smoker, systolic.bp, diabetes, total.chol, total.hdl, classify = FALSE)
 
 
   )
@@ -252,7 +252,7 @@ data <- data %>% rename(typical_symptoms.num = typical_symptoms.num, ecg.normal 
                                                       as.factor() %>% ordered(levels = c("Very low risk", "Low risk", "Moderate risk", "High risk")),
 
                                                                 SCORE2_strat =
-                                                                  SCORE2(Age, Gender, smoker, systolic.bp, diabetes, total.chol, total.hdl, classify = TRUE) %>%
+                                                                  SCORE2(Risk.region = "Low", Age, Gender, smoker, systolic.bp, diabetes, total.chol, total.hdl, classify = TRUE) %>%
                                                       as.factor() %>% ordered(
                                                                     levels = c("Very low risk", "Low risk", "Moderate risk", "High risk"))
 

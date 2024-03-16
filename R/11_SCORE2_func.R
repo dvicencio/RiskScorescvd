@@ -17,8 +17,9 @@
 #'
 #' above classifications referred from https://www.inanutshell.ch/en/digital-doctors-bag/score2-and-score2-op/#:~:text=SCORE2%20(%C2%ABSystematic%20COronary%20Risk%20Evaluation,Society%20of%20Cardiology%20(ESC).
 #'
+#' @param Risk.region a character value to set the desired risk region calculations. Categories should include "Low", "Moderate", "High", or "Very high"
 #' @param Age a numeric vector of age values, in years
-#' @param Gender a binary character vector of Gender values. Categories should include only 'male' or 'female'.
+#' @param Gender a binary character vector of Gender values. Categories should include only 'male' or 'female'
 #' @param smoker a binary numeric vector, 1 = yes and 0 = no
 #' @param systolic.bp a numeric vector of systolic blood pressure continuous values
 #' @param total.chol a numeric vector of total cholesterol values, in mmol/L
@@ -78,7 +79,7 @@
 #' # Call the function with the cohort_xx
 #'
 #'   results <- cohort_xx %>% rowwise() %>%
-#'   mutate(SCORE2OP_score = SCORE2(Age, Gender, smoker, systolic.bp, diabetes,
+#'   mutate(SCORE2OP_score = SCORE2(Risk.region = "Low", Age, Gender, smoker, systolic.bp, diabetes,
 #'   total.chol, total.hdl, classify = FALSE))
 #'
 #' @name SCORE2/OP
@@ -86,8 +87,80 @@
 #'
 #' @export
 
-SCORE2 <- function(Age = Age, Gender = Gender, smoker = smoker, systolic.bp = systolic.bp, diabetes = diabetes, total.chol = total.chol, total.hdl = total.hdl, classify){
+SCORE2 <- function(Risk.region, Age = Age, Gender = Gender, smoker = smoker, systolic.bp = systolic.bp, diabetes = diabetes, total.chol = total.chol, total.hdl = total.hdl, classify){
 
+if (Risk.region == "Low" & Age < 70 & Gender == "male"){
+  scale1 <- -0.5699
+  scale2 <- 0.7476
+}
+else if (Risk.region == "Low" & Age < 70 & Gender == "female"){
+  scale1 <- -0.7380
+  scale2 <- 0.7019
+}
+
+  else if (Risk.region == "Moderate" & Age < 70 & Gender == "male"){
+    scale1 <-  -0.1565
+    scale2 <- 	0.8009
+  }
+  else if (Risk.region == "Moderate" & Age < 70 & Gender == "female"){
+    scale1 <- -0.3143
+    scale2 <- 0.7701
+  }
+
+  else if (Risk.region == "High" & Age < 70 & Gender == "male"){
+    scale1 <-   0.3207
+    scale2 <- 	0.9360
+  }
+  else if (Risk.region == "High" & Age < 70 & Gender == "female"){
+    scale1 <- 0.5710
+    scale2 <- 0.9369
+  }
+
+  else if (Risk.region == "Very high" & Age < 70 & Gender == "male"){
+    scale1 <-   0.5836
+    scale2 <- 	0.8294
+  }
+  else if (Risk.region == "Very high" & Age < 70 & Gender == "female"){
+    scale1 <- 0.9412
+    scale2 <- 0.8329
+  }
+
+
+  else if (Risk.region == "Low" & Age >= 70 & Gender == "male"){
+    scale1 <- -0.34
+    scale2 <- 1.19
+  }
+  else if (Risk.region == "Low" & Age >= 70 & Gender == "female"){
+    scale1 <- -0.52
+    scale2 <- 1.01
+  }
+
+  else if (Risk.region == "Moderate" & Age >= 70 & Gender == "male"){
+    scale1 <-  0.01
+    scale2 <- 	1.25
+  }
+  else if (Risk.region == "Moderate" & Age >= 70 & Gender == "female"){
+    scale1 <- -0.1
+    scale2 <- 1.1
+  }
+
+  else if (Risk.region == "High" & Age >= 70 & Gender == "male"){
+    scale1 <-   0.08
+    scale2 <- 	1.15
+  }
+  else if (Risk.region == "High" & Age >= 70 & Gender == "female"){
+    scale1 <- 0.38
+    scale2 <- 1.09
+  }
+
+  else if (Risk.region == "Very high" & Age >= 70 & Gender == "male"){
+    scale1 <-   0.05
+    scale2 <- 	0.7
+  }
+  else if (Risk.region == "Very high" & Age >= 70 & Gender == "female"){
+    scale1 <- 0.38
+    scale2 <- 0.69
+  }else{message("Risk region specification required!")}
 
   if (Gender == "male" & Age < 70) {
     xx_male <- c(0.3742*(Age - 60)/5 +
@@ -105,7 +178,7 @@ SCORE2 <- function(Age = Age, Gender = Gender, smoker = smoker, systolic.bp = sy
 
     xx_male2 <- 1 - 0.9605^exp(xx_male)
 
-    xx_male3 <- 1-exp(-exp(-0.5699+0.7476 * log(-log(1-xx_male2))))
+    xx_male3 <- 1-exp(-exp(scale1+scale2 * log(-log(1-xx_male2))))
 
     x <- round(xx_male3*100, 1)
 
@@ -127,7 +200,7 @@ SCORE2 <- function(Age = Age, Gender = Gender, smoker = smoker, systolic.bp = sy
 
     xx_female2 <- 1 - 0.9776^exp(xx_female)
 
-    xx_female3 <- 1-exp(-exp(-0.7380+0.7019 * log(-log(1-xx_female2))))
+    xx_female3 <- 1-exp(-exp(scale1+scale2 * log(-log(1-xx_female2))))
 
     x <- round(xx_female3*100, 1)
   }
@@ -148,7 +221,7 @@ SCORE2 <- function(Age = Age, Gender = Gender, smoker = smoker, systolic.bp = sy
 
     xx_male2_op <- 1 - 0.7576^exp(xx_male_op - 0.0929)
 
-    xx_male3_op <- 1-exp(-exp(-0.61+0.89 * log(-log(1-xx_male2_op))))
+    xx_male3_op <- 1-exp(-exp(scale1+scale2 * log(-log(1-xx_male2_op))))
 
     x <- round(xx_male3_op*100, 1)
   }
@@ -169,7 +242,7 @@ SCORE2 <- function(Age = Age, Gender = Gender, smoker = smoker, systolic.bp = sy
 
     xx_female2_op <- 1 - 0.8082^exp(xx_female_op-0.229)
 
-    xx_female3_op <- 1-exp(-exp(-0.85+0.82 * log(-log(1-xx_female2_op))))
+    xx_female3_op <- 1-exp(-exp(scale1+scale2 * log(-log(1-xx_female2_op))))
 
     x <- round(xx_female3_op*100, 1)
   }

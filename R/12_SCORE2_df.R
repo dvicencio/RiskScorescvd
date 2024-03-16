@@ -10,6 +10,7 @@
 #' A data frame with all the variables needed for calculation:
 #'  Age, Gender, smoker, systolic.bp, diabetes, total.chol,
 #' total.hdl
+#' @param Risk.region a character value to set the desired risk region calculations. Categories should include
 #' @param Age a numeric vector of age values, in years
 #' @param Gender a binary character vector of Gender values. Categories should include only 'male' or 'female'.
 #' @param smoker a binary numeric vector, 1 = yes and 0 = no
@@ -70,7 +71,7 @@
 #' )
 #'
 #' # Call the function with the cohort_xx
-#' result <- SCORE2_scores(data = cohort_xx, classify = TRUE)
+#' result <- SCORE2_scores(data = cohort_xx, Risk.region = "Low", classify = TRUE)
 #'
 #' # Print the results
 #' summary(result$SCORE2_score)
@@ -85,13 +86,14 @@
 
 
 
-SCORE2_scores <- function(data, Age = Age, Gender = Gender, smoker = smoker, systolic.bp = systolic.bp, diabetes = diabetes, total.chol = total.chol, total.hdl = total.hdl, classify) {
+SCORE2_scores <- function(data, Risk.region, Age = Age, Gender = Gender, smoker = smoker, systolic.bp = systolic.bp, diabetes = diabetes, total.chol = total.chol, total.hdl = total.hdl, classify) {
 
 data <- data %>% rename(Age = Age, Gender = Gender, smoker = smoker, systolic.bp = systolic.bp, diabetes = diabetes, total.chol = total.chol, total.hdl = total.hdl)
 
   if (classify == TRUE) {
     results <- data  %>% rowwise() %>% mutate(
       SCORE2_score = SCORE2(
+        Risk.region = Risk.region,
         Age,
         Gender,
         smoker,
@@ -102,6 +104,7 @@ data <- data %>% rename(Age = Age, Gender = Gender, smoker = smoker, systolic.bp
         classify = FALSE
       ),
       SCORE2_strat = SCORE2(
+        Risk.region = Risk.region,
         Age,
         Gender,
         smoker,
@@ -121,6 +124,7 @@ data <- data %>% rename(Age = Age, Gender = Gender, smoker = smoker, systolic.bp
   else{
     results <- data  %>% rowwise() %>% mutate(
       SCORE2_score = SCORE2(
+        Risk.region = Risk.region,
         Age,
         Gender,
         smoker,

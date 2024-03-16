@@ -6,6 +6,7 @@
 \title{Systematic COronary Risk Evaluation (SCORE) model function}
 \usage{
 SCORE2(
+  Risk.region,
   Age = Age,
   Gender = Gender,
   smoker = smoker,
@@ -17,9 +18,11 @@ SCORE2(
 )
 }
 \arguments{
+\item{Risk.region}{a character value to set the desired risk region calculations. Categories should include "Low", "Moderate", "High", or "Very high"}
+
 \item{Age}{a numeric vector of age values, in years}
 
-\item{Gender}{a binary character vector of Gender values. Categories should include only 'male' or 'female'.}
+\item{Gender}{a binary character vector of Gender values. Categories should include only 'male' or 'female'}
 
 \item{smoker}{a binary numeric vector, 1 = yes and 0 = no}
 
@@ -98,7 +101,7 @@ cohort_xx <- data.frame(
 # Call the function with the cohort_xx
 
   results <- cohort_xx \%>\% rowwise() \%>\%
-  mutate(SCORE2OP_score = SCORE2(Age, Gender, smoker, systolic.bp, diabetes,
+  mutate(SCORE2OP_score = SCORE2(Risk.region = "Low", Age, Gender, smoker, systolic.bp, diabetes,
   total.chol, total.hdl, classify = FALSE))
 
 }
