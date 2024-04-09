@@ -43,6 +43,8 @@ and/or a vector of their classifications if indicated
 \description{
 This function implements the SCORE2 and SCORE2 older population (OP) score calculation as a vector
 
+*Diabetes mellitus was included in the modelling since this was necessary for the recalibration approach, which relies data from the whole population, including those with diabetes. However, SCORE2 is not intended for use in individuals with diabetes and has not been validated in this population. For risk prediction in the target population of individuals without diabetes this risk factor will always be 0, meaning the coefficient can effectively be ignored.
+
 formula in SCORE2 Updated Supplementary Material page  9. paper:
 "SCORE2 risk prediction algorithms: new models to estimate 10-year risk of cardiovascular disease in Europe"
 
