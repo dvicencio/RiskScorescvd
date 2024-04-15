@@ -71,7 +71,7 @@ cohort_xx <- data.frame(
   ecg.normal = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
   abn.repolarisation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
   ecg.st.depression = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
-  Age = as.numeric(sample(30:80, num_rows, replace = TRUE)),
+  Age = as.numeric(sample(40:85, num_rows, replace = TRUE)),
   diabetes = sample(c(1, 0), num_rows, replace = TRUE),
   smoker = sample(c(1, 0), num_rows, replace = TRUE),
   hypertension = sample(c(1, 0), num_rows, replace = TRUE),
@@ -87,7 +87,7 @@ cohort_xx <- data.frame(
   ecg.twi = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
   second_hstni = as.numeric(sample(1:200, num_rows, replace = TRUE)),
   killip.class = as.numeric(sample(1:4, num_rows, replace = TRUE)),
-  systolic.bp = as.numeric(sample(0:300, num_rows, replace = TRUE)),
+  systolic.bp = as.numeric(sample(90:180, num_rows, replace = TRUE)),
   heart.rate = as.numeric(sample(0:300, num_rows, replace = TRUE)),
   creat = as.numeric(sample(0:4, num_rows, replace = TRUE)),
   cardiac.arrest = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
@@ -95,8 +95,8 @@ cohort_xx <- data.frame(
   previous.cabg = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
   aspirin = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
   number.of.episodes.24h = as.numeric(sample(0:20, num_rows, replace = TRUE)),
-  total.chol = as.numeric(sample(2:6, num_rows, replace = TRUE)),
-  total.hdl = as.numeric(sample(2:5, num_rows, replace = TRUE)),
+  total.chol = as.numeric(round(runif(num_rows, 3.9, 7.2), 1)),
+  total.hdl = as.numeric(round(runif(num_rows, .8, 2.1), 1)),
   Ethnicity = sample(c("white", "black", "asian", "other"), num_rows, replace = TRUE)
 )
 

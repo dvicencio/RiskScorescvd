@@ -40,7 +40,7 @@ test_that("SCORE2 function works on example data from journal", {
     "Very high", 50, "female", 1, 140, 0, 6.3, 1.4
   ) |>
     dplyr::mutate(
-      score2_percentage = purrr::pmap_int(
+      score2_percentage = purrr::pmap_vec(
         .l = list(
           Risk.region = .data[["risk_region"]],
           Age = .data[["age"]],
@@ -72,10 +72,10 @@ test_that("SCORE2 function works on example data from journal", {
 
   testthat::expect_equal(
     supp_method_table_4_medical_data[["score2_percentage"]],
-    c(6L, 4L,
-      8L, 5L,
-      9L, 7L,
-      15L, 14L)
+    c(6.3, 4.3,
+      8.1, 5.2,
+      8.8, 7.1,
+      15.1, 14.1)
   )
 
   testthat::expect_equal(
@@ -110,7 +110,7 @@ test_that("SCORE2 function works on people less than 50 years", {
     "High", 48, "male", 1, 160, 0, 8, 2,
   ) |>
     dplyr::mutate(
-      score2_percentage = purrr::pmap_int(
+      score2_percentage = purrr::pmap_vec(
         .l = list(
           Risk.region = .data[["risk_region"]],
           Age = .data[["age"]],
@@ -142,7 +142,7 @@ test_that("SCORE2 function works on people less than 50 years", {
 
   testthat::expect_equal(
     medical_data[["score2_percentage"]],
-    c(1L, 6L, 10L)
+    c(1.1, 6.0, 10.0)
   )
 
   testthat::expect_equal(
@@ -172,7 +172,7 @@ test_that("SCORE2-OP function on example data from journal", {
     "Low", 75, "female", 1, 140, 0, 5.5, 1.3
   ) |>
     dplyr::mutate(
-      score2_op_percentage = purrr::pmap_int(
+      score2_op_percentage = purrr::pmap_vec(
         .l = list(
           Risk.region = .data[["risk_region"]],
           Age = .data[["age"]],
@@ -204,7 +204,7 @@ test_that("SCORE2-OP function on example data from journal", {
 
   testthat::expect_equal(
     supp_method_table_3_medical_data[["score2_op_percentage"]],
-    c(19L, 15L)
+    c(18.6, 15.2)
   )
 
   testthat::expect_equal(
@@ -256,7 +256,7 @@ test_that("SCORE2-OP function works on patient from different risk region", {
     "Very high", 75, "female", 1, 140, 0, 6, 1.3,
   ) |>
     dplyr::mutate(
-      score2_op_percentage = purrr::pmap_int(
+      score2_op_percentage = purrr::pmap_vec(
         .l = list(
           Risk.region = .data[["risk_region"]],
           Age = .data[["age"]],
@@ -288,10 +288,10 @@ test_that("SCORE2-OP function works on patient from different risk region", {
 
   testthat::expect_equal(
     medical_data[["score2_op_percentage"]],
-    c(13L, 6L,
-      24L, 20L,
-      29L, 19L,
-      41L, 46L)
+    c(13.3, 6.1,
+      23.9, 20.0,
+      29.2, 19.0,
+      40.8, 46.2)
   )
 
   testthat::expect_equal(
