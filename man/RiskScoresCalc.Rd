@@ -36,7 +36,10 @@ calc_scores(
   previous.cabg = previous.cabg,
   total.chol = total.chol,
   total.hdl = total.hdl,
-  Ethnicity = Ethnicity
+  Ethnicity = Ethnicity,
+  eGFR = eGFR,
+  ACR = NA,
+  trace = NA
 )
 }
 \arguments{
@@ -101,6 +104,12 @@ calc_scores(
 \item{total.hdl}{a numeric vector of total high density lipoprotein HDL values, in mmol/L; renames alternative column name}
 
 \item{Ethnicity}{a character vector, 'white', 'black', 'asian', or other}
+
+\item{eGFR}{a numeric vector of total estimated glomerular rate (eGFR) values, in mL/min/1.73m2}
+
+\item{ACR}{a numeric vector of total urine albumin to creatine ratio (ACR) values, in mg/g. Default set to NA}
+
+\item{trace}{a character vector of urine protein dipstick categories. Categories should include 'negative', 'trace', '1+', '2+', '3+', '4+. Default set to NA}
 }
 \value{
 a data frame with two extra columns including all the cardiovascular risk score calculations
@@ -149,8 +158,12 @@ cohort_xx <- data.frame(
   number.of.episodes.24h = as.numeric(sample(0:20, num_rows, replace = TRUE)),
   total.chol = as.numeric(sample(2:6, num_rows, replace = TRUE)),
   total.hdl = as.numeric(sample(2:5, num_rows, replace = TRUE)),
-  Ethnicity = sample(c("white", "black", "asian", "other"), num_rows, replace = TRUE)
+  Ethnicity = sample(c("white", "black", "asian", "other"), num_rows, replace = TRUE),
+  eGFR = as.numeric(sample(15:120, num_rows, replace = TRUE)),
+  ACR = as.numeric(sample(5:1500, num_rows, replace = TRUE)),
+  trace = sample(c("trace", "1+", "2+", "3+", "4+"), num_rows, replace = TRUE)
 )
+
 
 
 # Call the function with the cohort_xx

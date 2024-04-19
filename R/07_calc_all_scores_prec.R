@@ -37,6 +37,10 @@
 #' @param total.hdl a numeric vector of total high density lipoprotein HDL values, in mmol/L; renames alternative column name
 #' @param creat a continuous numeric vector of the creatine levels
 #' @param Ethnicity a character vector, 'white', 'black', 'asian', or other
+#' @param eGFR a numeric vector of total estimated glomerular rate (eGFR) values, in mL/min/1.73m2
+#' @param ACR a numeric vector of total urine albumin to creatine ratio (ACR) values, in mg/g. Default set to NA
+#' @param trace a character vector of urine protein dipstick categories. Categories should include 'negative', 'trace', '1+', '2+', '3+', '4+. Default set to NA
+#'
 #'
 #' @keywords
 #' Cardiovascular risk scores typical_symptoms.num ecg.normal abn.repolarisation ecg.st.depression
@@ -87,8 +91,12 @@
 #'   number.of.episodes.24h = as.numeric(sample(0:20, num_rows, replace = TRUE)),
 #'   total.chol = as.numeric(sample(2:6, num_rows, replace = TRUE)),
 #'   total.hdl = as.numeric(sample(2:5, num_rows, replace = TRUE)),
-#'   Ethnicity = sample(c("white", "black", "asian", "other"), num_rows, replace = TRUE)
+#'   Ethnicity = sample(c("white", "black", "asian", "other"), num_rows, replace = TRUE),
+#'   eGFR = as.numeric(sample(15:120, num_rows, replace = TRUE)),
+#'   ACR = as.numeric(sample(5:1500, num_rows, replace = TRUE)),
+#'   trace = sample(c("trace", "1+", "2+", "3+", "4+"), num_rows, replace = TRUE)
 #' )
+#'
 #'
 #'
 #' # Call the function with the cohort_xx
@@ -113,7 +121,8 @@ calc_scores <- function(data, typical_symptoms.num = typical_symptoms.num, ecg.n
                        pleuritic = pleuritic, palpation = palpation, ecg.twi = ecg.twi,
                        second_hstni = second_hstni, killip.class = killip.class, heart.rate = heart.rate,
                        systolic.bp = systolic.bp, aspirin = aspirin, number.of.episodes.24h = number.of.episodes.24h,
-                       previous.pci = previous.pci, creat = creat, previous.cabg = previous.cabg, total.chol = total.chol, total.hdl = total.hdl, Ethnicity = Ethnicity
+                       previous.pci = previous.pci, creat = creat, previous.cabg = previous.cabg, total.chol = total.chol,
+                       total.hdl = total.hdl, Ethnicity = Ethnicity,eGFR = eGFR, ACR = NA, trace = NA
                        ) {
 
 data <- data %>% rename(typical_symptoms.num = typical_symptoms.num, ecg.normal = ecg.normal,
@@ -125,7 +134,8 @@ data <- data %>% rename(typical_symptoms.num = typical_symptoms.num, ecg.normal 
                         pleuritic = pleuritic, palpation = palpation, ecg.twi = ecg.twi,
                         second_hstni = second_hstni, killip.class = killip.class, heart.rate = heart.rate,
                         systolic.bp = systolic.bp, aspirin = aspirin, number.of.episodes.24h = number.of.episodes.24h,
-                        previous.pci = previous.pci, creat = creat, previous.cabg = previous.cabg, total.chol = total.chol, total.hdl = total.hdl, Ethnicity = Ethnicity)
+                        previous.pci = previous.pci, creat = creat, previous.cabg = previous.cabg, total.chol = total.chol,
+                        total.hdl = total.hdl, Ethnicity = Ethnicity, eGFR = eGFR, ACR = ACR, trace = trace)
 
   all_scores <- data %>% rowwise() %>% mutate(HEART_score =
                                                         HEART(typical_symptoms.num = typical_symptoms.num,
@@ -182,7 +192,11 @@ data <- data %>% rename(typical_symptoms.num = typical_symptoms.num, ecg.normal 
                                                       systolic.bp,hypertension, smoker, diabetes, classify = FALSE),
 
                                                       SCORE2_score =
-                                                        SCORE2(Risk.region = "Low", Age, Gender, smoker, systolic.bp, diabetes, total.chol, total.hdl, classify = FALSE)
+                                                        SCORE2(Risk.region = "Low", Age, Gender, smoker, systolic.bp, diabetes, total.chol, total.hdl, classify = FALSE),
+
+                                              SCORE2OP_CKD_score = SCORE2_CKD(Risk.region = "Low", Age, Gender,
+                                                            smoker, systolic.bp, diabetes, total.chol, total.hdl, eGFR, ACR, trace,
+                                                            classify = FALSE)
 
 
   )
@@ -254,7 +268,13 @@ data <- data %>% rename(typical_symptoms.num = typical_symptoms.num, ecg.normal 
                                                                 SCORE2_strat =
                                                                   SCORE2(Risk.region = "Low", Age, Gender, smoker, systolic.bp, diabetes, total.chol, total.hdl, classify = TRUE) %>%
                                                       as.factor() %>% ordered(
-                                                                    levels = c("Very low risk", "Low risk", "Moderate risk", "High risk"))
+                                                                    levels = c("Very low risk", "Low risk", "Moderate risk", "High risk")),
+
+                                                    SCORE2OP_CKD_strat = SCORE2_CKD(Risk.region = "Low", Age, Gender,
+                                                               smoker, systolic.bp, diabetes, total.chol, total.hdl, eGFR, ACR, trace,
+                                                               classify = TRUE)
+
+
 
 
   )
