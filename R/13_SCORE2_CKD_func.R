@@ -392,6 +392,7 @@ SCORE2_CKD <- function(Risk.region, Age = Age, Gender = Gender, smoker = smoker,
 
   }
 
+  ckd <- round(ckd*100, 1)
 
   if(is.na(ckd)){
     class <- NA
@@ -432,7 +433,7 @@ SCORE2_CKD <- function(Risk.region, Age = Age, Gender = Gender, smoker = smoker,
 
   if(classify == TRUE){return(class)}
 
-  else{return(round(ckd*100, 1))}
+  else{return(ckd)}
 
 }
 
