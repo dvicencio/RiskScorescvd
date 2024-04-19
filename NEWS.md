@@ -1,3 +1,13 @@
+## version 0.2.0
+
+---
+
+### Two new risk scores added
+
+-SCORE2 updated and CKD add-ons implemented
+
+---
+
 ## version 0.0.1
 
 ---
