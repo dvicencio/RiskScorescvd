@@ -61,6 +61,9 @@
     <loc>/reference/SCORE2_CKD_scores.html</loc>
   </url>
   <url>
+    <loc>/reference/SCORE2_Diabetes.html</loc>
+  </url>
+  <url>
     <loc>/reference/SCORE2_scores.html</loc>
   </url>
   <url>
@@ -71,5 +74,8 @@
   </url>
   <url>
     <loc>/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/round_to_nearest_digit.html</loc>
   </url>
 </urlset>
