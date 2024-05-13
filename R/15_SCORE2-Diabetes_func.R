@@ -5,7 +5,7 @@
 #' severe target organ damage (TOD) using the
 #' \href{https://doi.org/10.1093/eurheartj/ehad260}{SCORE2-Diabetes} algorithm.
 #' Risk score is expressed as percentage in one decimal place.
-#' It can also categorise these patients into different risk groups.
+#' It also categorises these patients into different risk groups.
 #' @param Risk.region Input character to indicate an European risk region
 #' group the patient belongs to. The allowed categories are
 #' \itemize{
@@ -22,10 +22,10 @@
 #'   \item female
 #' }
 #' @param smoker Input integer 0 or 1 to indicate if the patient
-#' has a smoking history (current or past smoker).
+#' is a current smoker.
 #' \itemize{
-#'   \item 0 stands for not having a smoking history (non-smoker).
-#'   \item 1 stands for having a smoking history (current or past smoker).
+#'   \item 0 stands for patient is either a former/past smoker or a non-smoker.
+#'   \item 1 stands for patient is a current smoker.
 #' }
 #' @param systolic.bp Input positive numeric value to indicate the
 #' patient's systolic blood pressure in \eqn{mm HG}.
@@ -40,7 +40,8 @@
 #'   \item 1 stands for having diabetes.
 #' }
 #' @param diabetes.age Input positive integer to indicate the age
-#' when the patient is diagnosed with diabetes.
+#' when the patient is diagnosed with diabetes. It can be set
+#' to \code{NA} if patient is not diabetic.
 #' @param HbA1c Input positive numeric value to indicate the
 #' patient's hemoglobin A1C (HbA1c) in \eqn{mmol/mol}.
 #' @param eGFR Input positive numeric value to indicate the
@@ -69,7 +70,7 @@
 #' when \code{classify} is \code{FALSE}. A patient's risk group when \code{classify} is \code{TRUE}.
 #' @details \href{https://doi.org/10.1093/eurheartj/ehad260}{SCORE2-Diabetes} was developed
 #' by extending the \href{https://doi.org/10.1093/eurheartj/ehab309}{SCORE2} algorithms
-#' using 229 460 participants (43 706 CVD events) with type 2 diabetes and without previous CVD
+#' using 229460 participants (43706 CVD events) with type 2 diabetes and without previous CVD
 #' from four population data sources [Scottish Care Information—Diabetes (SCID),
 #' Clinical Practice Research Datalink (CPRD), UK Biobank (UKB),
 #' Emerging Risk Factors Collaboration (ERFC)] across seven countries
