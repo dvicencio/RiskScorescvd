@@ -161,9 +161,7 @@ SCORE2_Diabetes(
   \item SCORE2-Diabetes Working Group and the ESC Cardiovascular Risk Collaboration,
         SCORE2-Diabetes: 10-year cardiovascular risk estimation in type 2 diabetes
         in Europe, \emph{Eur Heart J}, \strong{44}:2544–2556,
-        \href{https://doi.org/10.1093/eurheartj/ehad260}{
-          https://doi.org/10.1093/eurheartj/ehad260
-        }
+       \doi{10.1093/eurheartj/ehad260}
 }
 }
 
@@ -182,9 +180,7 @@ SCORE2_Diabetes(
         on the management of cardiovascular disease in patients with
         diabetes of the European Society of Cardiology (ESC),
         \emph{Eur Heart J}, \strong{44}:4043–4140,
-        \href{https://doi.org/10.1093/eurheartj/ehad192}{
-          https://doi.org/10.1093/eurheartj/ehad192
-        }
+        \doi{10.1093/eurheartj/ehad260}
 }
 }
 }
