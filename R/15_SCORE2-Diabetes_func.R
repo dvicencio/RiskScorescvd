@@ -3,7 +3,7 @@
 #' risk estimation for patients aged 40 to 69 years with type 2 diabetes
 #' without atherosclerotic cardiovascular disease (ASCVD) or
 #' severe target organ damage (TOD) using the
-#' \doi{10.1093/eurheartj/ehad260}{SCORE2-Diabetes} algorithm.
+#' \doi{10.1093/eurheartj/ehad260} SCORE2-Diabetes algorithm.
 #' Risk score is expressed as percentage in one decimal place.
 #' It also categorises these patients into different risk groups.
 #' @param Risk.region Input character to indicate an European risk region
@@ -53,8 +53,8 @@
 #' Default: \code{FALSE}.
 #'
 #' Risk groups are classified based on Figure 3 from the
-#'  \doi{10.1093/eurheartj/ehad192}{\emph{2023 ESC Guidelines for the management
-#' of cardiovascular disease in patients with diabetes}}:
+#'  \doi{10.1093/eurheartj/ehad192} \emph{2023 ESC Guidelines for the management
+#' of cardiovascular disease in patients with diabetes}:
 #'
 #' \tabular{ll}{
 #'   \strong{SCORE2-Diabetes Score} \tab
@@ -65,11 +65,11 @@
 #'   \eqn{\ge20\%} \tab Very high risk \cr
 #' }
 #'
-#' @return \doi{10.1093/eurheartj/ehad260}{SCORE2-Diabetes} risk
+#' @return SCORE2-Diabetes risk \doi{10.1093/eurheartj/ehad260}
 #' score expressed as a positive percentage rounded to one decimal place
 #' when \code{classify} is \code{FALSE}. A patient's risk group when \code{classify} is \code{TRUE}.
 #' @details \doi{10.1093/eurheartj/ehad260} was developed
-#' by extending the \doi{10.1093/eurheartj/ehad260}{SCORE2} algorithms
+#' by extending the SCORE2 \doi{10.1093/eurheartj/ehad260} algorithms
 #' using 229460 participants (43706 CVD events) with type 2 diabetes and without previous CVD
 #' from four population data sources [Scottish Care Information—Diabetes (SCID),
 #' Clinical Practice Research Datalink (CPRD), UK Biobank (UKB),
