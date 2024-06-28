@@ -47,7 +47,7 @@ devtools::install_github("dvicencio/RiskScorescvd")
 
 ## Required variables for each risk score
 
-<img src="man/figures/README-Plot-1.png" width="50%" />
+<img src="man/figures/README-Plot-1.png" width="80%" />
 
 ## Example
 
