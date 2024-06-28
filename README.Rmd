@@ -32,7 +32,9 @@ We have developed five of the most commonly used risk scores with a dependency (
 * GRACE 2.0
 * TIMI
 * SCORE2/OP
-* ASCVD
+* SCORE2-Diabetes
+* SCORE2-CKD
+* PCE (ASCVD)
 
 NOTE: Troponin I values should be used. Additional functions for Troponin T are under development
 
