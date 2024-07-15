@@ -1,81 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>/articles/Calculate_scores.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ASCVD.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ASCVD_scores.html</loc>
-  </url>
-  <url>
-    <loc>/reference/EDACS.html</loc>
-  </url>
-  <url>
-    <loc>/reference/EDACS_scores.html</loc>
-  </url>
-  <url>
-    <loc>/reference/GRACE.html</loc>
-  </url>
-  <url>
-    <loc>/reference/GRACE_scores.html</loc>
-  </url>
-  <url>
-    <loc>/reference/HEART.html</loc>
-  </url>
-  <url>
-    <loc>/reference/HEART_scores.html</loc>
-  </url>
-  <url>
-    <loc>/reference/RiskScoresCalc.html</loc>
-  </url>
-  <url>
-    <loc>/reference/SCORE2-slash-OP-CKD.html</loc>
-  </url>
-  <url>
-    <loc>/reference/SCORE2-slash-OP.html</loc>
-  </url>
-  <url>
-    <loc>/reference/SCORE2_CKD_scores.html</loc>
-  </url>
-  <url>
-    <loc>/reference/SCORE2_Diabetes.html</loc>
-  </url>
-  <url>
-    <loc>/reference/SCORE2_scores.html</loc>
-  </url>
-  <url>
-    <loc>/reference/TIMI.html</loc>
-  </url>
-  <url>
-    <loc>/reference/TIMI_scores.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/round_to_nearest_digit.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/LICENSE-text.html</loc></url>
+<url><loc>/LICENSE.html</loc></url>
+<url><loc>/articles/Calculate_scores.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/news/index.html</loc></url>
+<url><loc>/reference/ASCVD.html</loc></url>
+<url><loc>/reference/ASCVD_scores.html</loc></url>
+<url><loc>/reference/EDACS.html</loc></url>
+<url><loc>/reference/EDACS_scores.html</loc></url>
+<url><loc>/reference/GRACE.html</loc></url>
+<url><loc>/reference/GRACE_scores.html</loc></url>
+<url><loc>/reference/HEART.html</loc></url>
+<url><loc>/reference/HEART_scores.html</loc></url>
+<url><loc>/reference/RiskScoresCalc.html</loc></url>
+<url><loc>/reference/SCORE2-slash-OP-CKD.html</loc></url>
+<url><loc>/reference/SCORE2-slash-OP.html</loc></url>
+<url><loc>/reference/SCORE2_CKD_scores.html</loc></url>
+<url><loc>/reference/SCORE2_Diabetes.html</loc></url>
+<url><loc>/reference/SCORE2_scores.html</loc></url>
+<url><loc>/reference/TIMI.html</loc></url>
+<url><loc>/reference/TIMI_scores.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/round_to_nearest_digit.html</loc></url>
 </urlset>
+
