@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/dvicencio/RiskScorescvd/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dvicencio/RiskScorescvd/actions/workflows/R-CMD-check.yaml)
-[![](http://cranlogs.r-pkg.org/badges/grand-total/RiskScorescvd?color=green)](https://cran.r-project.org/package=RiskScorescvd)
+[![downloads](http://cranlogs.r-pkg.org/badges/grand-total/RiskScorescvd?color=green)](https://cran.r-project.org/package=RiskScorescvd)
 [![Connect](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/daniel-perez-vicencio-700549a0/)
 <!-- badges: end -->
 
@@ -56,6 +56,10 @@ devtools::install_github("dvicencio/RiskScorescvd")
 ## Required variables for each risk score
 
 ```{r Plot, echo=FALSE, message=FALSE, fig.width=6, fig.height=5.5}
+#| fig.alt: >
+#|   Heatmap showing which clinical variables are required for the different risk scores.
+#|   Required variables are indicated in blue, variables not required are indicated in red.
+
 library(tidyverse)
 index <- c(
   "Age",
@@ -224,17 +228,20 @@ library(RiskScorescvd)
    ecg.twi = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
    second_hstni = as.numeric(sample(1:200, num_rows, replace = TRUE)),
    killip.class = as.numeric(sample(1:4, num_rows, replace = TRUE)),
-   systolic.bp = as.numeric(sample(40:300, num_rows, replace = TRUE)),
    heart.rate = as.numeric(sample(0:300, num_rows, replace = TRUE)),
-   creat = as.numeric(sample(0:4, num_rows, replace = TRUE)),
-   cardiac.arrest = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
-   previous.pci = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
-   previous.cabg = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+   systolic.bp = as.numeric(sample(40:300, num_rows, replace = TRUE)),
    aspirin = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+   creat = as.numeric(sample(0:4, num_rows, replace = TRUE)),
    number.of.episodes.24h = as.numeric(sample(0:20, num_rows, replace = TRUE)),
+   previous.pci = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+   cardiac.arrest = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+   previous.cabg = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
    total.chol = as.numeric(sample(5:100, num_rows, replace = TRUE)),
    total.hdl = as.numeric(sample(2:5, num_rows, replace = TRUE)),
-   Ethnicity = sample(c("white", "black", "asian", "other"), num_rows, replace = TRUE)
+   Ethnicity = sample(c("white", "black", "asian", "other"), num_rows, replace = TRUE),
+   eGFR = as.numeric(sample(15:120, num_rows, replace = TRUE)),
+   ACR = as.numeric(sample(5:1500, num_rows, replace = TRUE)),
+   trace = sample(c("trace", "1+", "2+", "3+", "4+"), num_rows, replace = TRUE)
  )
 
   str(cohort_xx)
