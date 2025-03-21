@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 
 # RiskScorescvd
 
-<a href="https://dvicencio.github.io/RiskScorescvd/"><img src="logo.png" align="right" height="240" alt="gander website" /></a>
+<a href="https://dvicencio.github.io/RiskScorescvd/"><img src="logo.png" align="right" height="240" alt="risk scores website" /></a>
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/dvicencio/RiskScorescvd/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dvicencio/RiskScorescvd/actions/workflows/R-CMD-check.yaml)

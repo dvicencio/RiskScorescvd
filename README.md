@@ -3,7 +3,7 @@
 
 # RiskScorescvd
 
-<a href="https://dvicencio.github.io/RiskScorescvd/"><img src="logo.png" align="right" height="240" alt="gander website" /></a>
+<a href="https://dvicencio.github.io/RiskScorescvd/"><img src="logo.png" align="right" height="240" /></a>
 
 <!-- badges: start -->
 
