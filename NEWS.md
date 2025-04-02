@@ -1,3 +1,13 @@
+## version 0.2.0.9000
+
+---
+
+### New risk scores added
+
+-SCORE2-Asia-Pacific added
+
+---
+
 ## version 0.2.0
 
 ---
