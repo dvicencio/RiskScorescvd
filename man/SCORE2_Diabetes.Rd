@@ -31,8 +31,8 @@ group the patient belongs to. The allowed categories are
 
 \item{Age}{Input positive integer to indicate the age of the patient.}
 
-\item{Gender}{Input character to indicate an European risk region
-group the patient belongs to. The allowed categories are
+\item{Gender}{Input character to indicate the gender of the patient.
+The allowed categories are
 \itemize{
   \item male
   \item female
@@ -91,7 +91,7 @@ of cardiovascular disease in patients with diabetes}:
 }}
 }
 \value{
-SCORE2-Diabetes risk \doi{10.1093/eurheartj/ehad260}
+SCORE2-Diabetes \doi{10.1093/eurheartj/ehad260} risk
 score expressed as a positive percentage rounded to one decimal place
 when \code{classify} is \code{FALSE}. A patient's risk group when \code{classify} is \code{TRUE}.
 }
@@ -105,8 +105,8 @@ Risk score is expressed as percentage in one decimal place.
 It also categorises these patients into different risk groups.
 }
 \details{
-\doi{10.1093/eurheartj/ehad260} was developed
-by extending the SCORE2 \doi{10.1093/eurheartj/ehad260} algorithms
+SCORE2-Diabetes \doi{10.1093/eurheartj/ehad260} was developed
+by extending the SCORE2 \doi{10.1093/eurheartj/ehab309} algorithms
 using 229460 participants (43706 CVD events) with type 2 diabetes and without previous CVD
 from four population data sources [Scottish Care Information—Diabetes (SCID),
 Clinical Practice Research Datalink (CPRD), UK Biobank (UKB),
@@ -180,7 +180,7 @@ SCORE2_Diabetes(
         on the management of cardiovascular disease in patients with
         diabetes of the European Society of Cardiology (ESC),
         \emph{Eur Heart J}, \strong{44}:4043–4140,
-        \doi{10.1093/eurheartj/ehad260}
+        \doi{10.1093/eurheartj/ehad192}
 }
 }
 }
