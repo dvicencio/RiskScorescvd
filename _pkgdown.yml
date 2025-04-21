@@ -7,3 +7,52 @@ template:
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
       <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
       <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+reference:
+  - title: ASCVD
+    desc: >
+      Functions relating to ASCVD
+    contents:
+    - ASCVD
+    - ASCVD_scores
+  - title: EDACS
+    desc: >
+      Functions relating to EDACS
+    contents:
+    - EDACS
+    - EDACS_scores
+  - title: GRACE
+    desc: >
+      Functions relating to GRACE
+    contents:
+    - GRACE
+    - GRACE_scores
+  - title: HEART
+    desc: >
+      Functions relating to HEART
+    contents:
+    - HEART
+    - HEART_scores
+  - title: SCORE2
+    desc: >
+      Functions relating to SCORE
+    contents:
+    - SCORE2
+    - SCORE2_scores
+    - SCORE2_Asia_Pacific
+    - SCORE2_CKD
+    - SCORE2_CKD_scores
+    - SCORE2_Diabetes
+  - title: TIMI
+    desc: >
+      Functions relating to TIMI
+    contents:
+    - TIMI
+    - TIMI_scores
+  - title: Utilities
+    desc: >
+      Utilities functions
+    contents:
+    - calc_scores
+    - round_to_nearest_digit
