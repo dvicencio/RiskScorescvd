@@ -2,8 +2,8 @@ test_that("CAD_Consortium_func returns correct PTP and categories", {
 
   test_data <- tibble::tribble(
     ~age, ~sex, ~chest_pain_type, ~diabetes, ~hypertension, ~dyslipidaemia, ~smoking, ~expected_ptp, ~expected_category,
-    60,  "male",       3,             1,            1,             1,            0,         66.1,          "High (50–85%)",
-    60,  "male",       3,             0,            1,             1,            0,         56.0,          "High (50–85%)",
+    60,  "male",       3,             1,            1,             1,            0,         66.1,          "High (50-85%)",
+    60,  "male",       3,             0,            1,             1,            0,         56.0,          "High (50-85%)",
     50,  "female",     2,             0,            0,             0,            0,          2.1,          "Low (<15%)",
     70,  "male",       3,             1,            1,             1,            1,         85.1,          "Very High (>85%)",
     40,  "female",     1,             0,            0,             0,            0,          0.6,          "Low (<15%)"

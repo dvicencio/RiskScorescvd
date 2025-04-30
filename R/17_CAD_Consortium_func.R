@@ -24,7 +24,7 @@ CAD_Consortium_func <- function(Age,
                                   model_type = "clinical",
                                   classify = FALSE) {
 
-  # Convert OR to log(OR) coefficients (β)
+  # Convert OR to log(OR) coefficients
   logOR <- list(
     basic = list(
       intercept = -6.917,  # from Table in earlier figure
@@ -81,8 +81,8 @@ CAD_Consortium_func <- function(Age,
   if (classify) {
     return(dplyr::case_when(
       ptp < 15 ~ "Low (<15%)",
-      ptp <= 50 ~ "Intermediate (15–50%)",
-      ptp <= 85 ~ "High (50–85%)",
+      ptp <= 50 ~ "Intermediate (15-50%)",
+      ptp <= 85 ~ "High (50-85%)",
       ptp > 85 ~ "Very High (>85%)"
     ))
   } else {
