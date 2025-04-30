@@ -50,6 +50,11 @@ reference:
     contents:
     - TIMI
     - TIMI_scores
+  - title: CAD
+    desc: >
+      Functions relating to coronary artery disease (CAD)
+    contents:
+    - CAD_Consortium_func
   - title: Utilities
     desc: >
       Utilities functions
