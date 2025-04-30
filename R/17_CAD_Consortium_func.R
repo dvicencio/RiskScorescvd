@@ -1,18 +1,49 @@
-#' CAD Consortium Model (BMJ 2012, Table 2 - Low Prevalence)
+#' Coronary Artery Disease Consortium Score (Low Prevalence Model)
 #'
-#' Uses ORs from Table 2 to estimate pre-test probability of CAD in low prevalence populations.
+#' @description This function implements the CAD Consortium model (BMJ 2012, Table 2 - Low Prevalence)
+#' to estimate the pre-test probability of obstructive coronary artery disease (CAD)
+#' in patients based on age, sex, symptoms, and cardiovascular risk factors.
 #'
-#' @param Age Age in years
-#' @param Sex "male" or "female"
-#' @param ChestPainType 1 = non-anginal, 2 = atypical angina, 3 = typical angina
-#' @param Diabetes 1 = yes, 0 = no
-#' @param Hypertension 1 = yes, 0 = no
-#' @param Dyslipidaemia 1 = yes, 0 = no
-#' @param Smoking 1 = yes, 0 = no
-#' @param model_type "basic" or "clinical"
-#' @param classify TRUE to return risk category, FALSE for numeric probability
+#' There are two models available:
+#' - Basic model: age, sex, chest pain type
+#' - Clinical model: includes additional risk factors (diabetes, hypertension, dyslipidaemia, smoking)
 #'
-#' @return Probability (%) or risk category
+#' Chest Pain Types:
+#' - 1: Non-anginal
+#' - 2: Atypical angina
+#' - 3: Typical angina
+#'
+#' The function uses published odds ratios to compute a logistic regression-based probability
+#' of CAD, expressed as a percentage. When `classify = TRUE`, it returns a risk category:
+#' - Low (<15%)
+#' - Intermediate (15–50%)
+#' - High (50–85%)
+#' - Very High (>85%)
+#'
+#' @param Age A numeric value for age in years.
+#' @param Sex A character vector ("male" or "female").
+#' @param ChestPainType A numeric value: 1 (non-anginal), 2 (atypical angina), or 3 (typical angina).
+#' @param Diabetes A binary value: 1 = yes, 0 = no.
+#' @param Hypertension A binary value: 1 = yes, 0 = no.
+#' @param Dyslipidaemia A binary value: 1 = yes, 0 = no.
+#' @param Smoking A binary value: 1 = yes, 0 = no.
+#' @param model_type A character value, "basic" or "clinical". Defaults to "clinical".
+#' @param classify A logical value. If TRUE, returns a risk category; if FALSE, returns numeric probability.
+#'
+#' @return A numeric value representing the pre-test probability (%) of CAD, or a categorical risk label.
+#'
+#' @examples
+#' # Basic model
+#' CAD_Consortium_func(Age = 60, Sex = "male", ChestPainType = 3, model_type = "basic")
+#'
+#' # Clinical model with risk classification
+#' CAD_Consortium_func(Age = 55, Sex = "female", ChestPainType = 2, Diabetes = 1,
+#'   Hypertension = 1, Dyslipidaemia = 1, Smoking = 0, model_type = "clinical", classify = TRUE)
+#'
+#' @keywords CAD risk score pretest probability BMJ
+#' @importFrom dplyr case_when
+#' @name CAD_Consortium_func
+#' @export
 
 CAD_Consortium_func <- function(Age,
                                   Sex,

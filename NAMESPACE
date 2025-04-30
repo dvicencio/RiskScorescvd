@@ -2,6 +2,7 @@
 
 export(ASCVD)
 export(ASCVD_scores)
+export(CAD_Consortium_func)
 export(EDACS)
 export(EDACS_scores)
 export(GRACE)
