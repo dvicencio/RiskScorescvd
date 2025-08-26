@@ -23,9 +23,9 @@ knitr::opts_chunk$set(
 
 **Chest pain? Calculate your cardiovascular risk score.**
 
-The goal of RiskScorescvd r package is to calculate the most commonly used cardiovascular risk scores.
+The goal of RiskScorescvd R package is to calculate the most commonly used cardiovascular risk scores. Original research publication can be found here: https://openheart.bmj.com/content/11/2/e002755
 
-We have developed five of the most commonly used risk scores with a dependency (ASCVD [PooledCohort]) making the following available:
+We have developed nine of the most commonly used risk scores with a dependency (ASCVD [PooledCohort]) making the following available:
 
 * HEART
 * EDACS
@@ -34,6 +34,7 @@ We have developed five of the most commonly used risk scores with a dependency (
 * SCORE2/OP
 * SCORE2-Diabetes
 * SCORE2-CKD
+* SCORE2-Asia
 * PCE (ASCVD)
 
 NOTE: Troponin I values should be used. Additional functions for Troponin T are under development
