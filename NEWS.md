@@ -1,5 +1,13 @@
 # RiskScorescvd 0.2.1
 
+---
+
+### New risk score added and published article
+
+-Article accepted in BMJ Heart
+
+---
+
 ## version 0.2.0.9000
 
 ---
