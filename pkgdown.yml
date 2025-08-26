@@ -3,7 +3,7 @@ pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   Calculate_scores: Calculate_scores.html
-last_built: 2025-08-26T16:14Z
+last_built: 2025-08-26T16:18Z
 urls:
   reference: https://dvicencio.github.io/RiskScorescvd/reference
   article: https://dvicencio.github.io/RiskScorescvd/articles
