@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>RiskScorescvd • RiskScorescvd</title>
+<title>Calculating Cardiovascular Risk Scores • RiskScorescvd</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
 <link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
@@ -15,7 +15,7 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="RiskScorescvd">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Calculating Cardiovascular Risk Scores">
 </head>
 <body>
 <p>
@@ -36,7 +36,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">RiskScorescvd</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +49,7 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/Calculate_scores.html">RiskScorescvd</a></li>
+<li><a class="dropdown-item" href="../articles/Calculate_scores.html">Calculating Cardiovascular Risk Scores</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -71,7 +71,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../logo.png" class="logo" alt=""><h1>RiskScorescvd</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>Calculating Cardiovascular Risk Scores</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/dvicencio/RiskScorescvd/blob/main/vignettes/Calculate_scores.Rmd" class="external-link"><code>vignettes/Calculate_scores.Rmd</code></a></small>
@@ -82,17 +82,418 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dvicencio/RiskScorescvd" class="external-link">RiskScorescvd</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading required package: dplyr</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></code></pre></div>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<p>The <strong>RiskScorescvd</strong> package provides implementations
+of cardiovascular risk scores for chest pain assessment. This vignette
+shows how to calculate each score using sample patient data.</p>
+</div>
+<div class="section level2">
+<h2 id="sample-patient-data">Sample Patient Data<a class="anchor" aria-label="anchor" href="#sample-patient-data"></a>
+</h2>
+<p>First, let’s create sample data representing different patient
+profiles:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Create sample patient data</span></span>
+<span><span class="va">sample_patients</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  patient_id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>,</span>
+<span>  Age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">45</span>, <span class="fl">55</span>, <span class="fl">65</span>, <span class="fl">70</span>, <span class="fl">50</span>, <span class="fl">60</span><span class="op">)</span>,</span>
+<span>  Gender <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"male"</span>, <span class="st">"female"</span>, <span class="st">"male"</span>, <span class="st">"female"</span>, <span class="st">"male"</span>, <span class="st">"female"</span><span class="op">)</span>,</span>
+<span>  diabetes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>  smoker <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  hypertension <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>  hyperlipidaemia <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  family_history <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>  presentation_hstni <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">50</span>, <span class="fl">80</span>, <span class="fl">30</span>, <span class="fl">45</span>, <span class="fl">35</span><span class="op">)</span>,</span>
+<span>  systolic_bp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">140</span>, <span class="fl">130</span>, <span class="fl">160</span>, <span class="fl">135</span>, <span class="fl">145</span>, <span class="fl">125</span><span class="op">)</span>,</span>
+<span>  heart_rate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">75</span>, <span class="fl">85</span>, <span class="fl">95</span>, <span class="fl">70</span>, <span class="fl">80</span>, <span class="fl">90</span><span class="op">)</span>,</span>
+<span>  creatinine <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1.0</span>, <span class="fl">1.2</span>, <span class="fl">1.5</span>, <span class="fl">0.9</span>, <span class="fl">1.1</span>, <span class="fl">1.0</span><span class="op">)</span>,</span>
+<span>  total_chol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">220</span>, <span class="fl">180</span>, <span class="fl">240</span>, <span class="fl">210</span>, <span class="fl">190</span><span class="op">)</span>,</span>
+<span>  hdl_chol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">45</span>, <span class="fl">55</span>, <span class="fl">40</span>, <span class="fl">60</span>, <span class="fl">50</span>, <span class="fl">65</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">sample_patients</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   patient_id Age Gender diabetes smoker hypertension hyperlipidaemia</span></span>
+<span><span class="co">#&gt; 1          1  45   male        0      1            1               1</span></span>
+<span><span class="co">#&gt; 2          2  55 female        1      0            1               0</span></span>
+<span><span class="co">#&gt; 3          3  65   male        1      1            0               1</span></span>
+<span><span class="co">#&gt; 4          4  70 female        0      1            1               1</span></span>
+<span><span class="co">#&gt; 5          5  50   male        1      0            1               0</span></span>
+<span><span class="co">#&gt; 6          6  60 female        0      1            0               1</span></span>
+<span><span class="co">#&gt;   family_history presentation_hstni systolic_bp heart_rate creatinine</span></span>
+<span><span class="co">#&gt; 1              1                 25         140         75        1.0</span></span>
+<span><span class="co">#&gt; 2              1                 50         130         85        1.2</span></span>
+<span><span class="co">#&gt; 3              0                 80         160         95        1.5</span></span>
+<span><span class="co">#&gt; 4              1                 30         135         70        0.9</span></span>
+<span><span class="co">#&gt; 5              1                 45         145         80        1.1</span></span>
+<span><span class="co">#&gt; 6              0                 35         125         90        1.0</span></span>
+<span><span class="co">#&gt;   total_chol hdl_chol</span></span>
+<span><span class="co">#&gt; 1        200       45</span></span>
+<span><span class="co">#&gt; 2        220       55</span></span>
+<span><span class="co">#&gt; 3        180       40</span></span>
+<span><span class="co">#&gt; 4        240       60</span></span>
+<span><span class="co">#&gt; 5        210       50</span></span>
+<span><span class="co">#&gt; 6        190       65</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="risk-score-calculations">Risk Score Calculations<a class="anchor" aria-label="anchor" href="#risk-score-calculations"></a>
+</h2>
+<div class="section level3">
+<h3 id="heart-score-examples">HEART Score Examples<a class="anchor" aria-label="anchor" href="#heart-score-examples"></a>
+</h3>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"HEART Score Calculations:\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; HEART Score Calculations:</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"========================\n\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ========================</span></span>
+<span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">patient</span> <span class="op">&lt;-</span> <span class="va">sample_patients</span><span class="op">[</span><span class="va">i</span>, <span class="op">]</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Patient"</span>, <span class="va">i</span>, <span class="st">"- Age:"</span>, <span class="va">patient</span><span class="op">$</span><span class="va">Age</span>, <span class="st">", Gender:"</span>, <span class="va">patient</span><span class="op">$</span><span class="va">Gender</span>, <span class="st">"\n"</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># Manual HEART score calculation for demonstration</span></span>
+<span>  <span class="va">history_score</span> <span class="op">&lt;-</span> <span class="fl">1</span>  <span class="co"># Moderately suspicious</span></span>
+<span>  <span class="va">ecg_score</span> <span class="op">&lt;-</span> <span class="fl">1</span>      <span class="co"># Non-specific changes</span></span>
+<span>  <span class="va">age_score</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">patient</span><span class="op">$</span><span class="va">Age</span> <span class="op">&lt;</span> <span class="fl">45</span>, <span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">patient</span><span class="op">$</span><span class="va">Age</span> <span class="op">&lt;=</span> <span class="fl">64</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">risk_factors</span> <span class="op">&lt;-</span> <span class="va">patient</span><span class="op">$</span><span class="va">diabetes</span> <span class="op">+</span> <span class="va">patient</span><span class="op">$</span><span class="va">smoker</span> <span class="op">+</span> <span class="va">patient</span><span class="op">$</span><span class="va">hypertension</span> <span class="op">+</span> <span class="va">patient</span><span class="op">$</span><span class="va">hyperlipidaemia</span> <span class="op">+</span> <span class="va">patient</span><span class="op">$</span><span class="va">family_history</span></span>
+<span>  <span class="va">risk_score</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">risk_factors</span> <span class="op">==</span> <span class="fl">0</span>, <span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">risk_factors</span> <span class="op">&lt;=</span> <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">troponin_score</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">patient</span><span class="op">$</span><span class="va">presentation_hstni</span> <span class="op">&lt;</span> <span class="fl">14</span>, <span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">patient</span><span class="op">$</span><span class="va">presentation_hstni</span> <span class="op">&lt;</span> <span class="fl">50</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="va">total_score</span> <span class="op">&lt;-</span> <span class="va">history_score</span> <span class="op">+</span> <span class="va">ecg_score</span> <span class="op">+</span> <span class="va">age_score</span> <span class="op">+</span> <span class="va">risk_score</span> <span class="op">+</span> <span class="va">troponin_score</span></span>
+<span>  <span class="va">risk_level</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">total_score</span> <span class="op">&lt;=</span> <span class="fl">3</span>, <span class="st">"Low"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">total_score</span> <span class="op">&lt;=</span> <span class="fl">6</span>, <span class="st">"Moderate"</span>, <span class="st">"High"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"  - HEART Score:"</span>, <span class="va">total_score</span>, <span class="st">"("</span>, <span class="va">risk_level</span>, <span class="st">"risk )\n"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"  - Components: History="</span>, <span class="va">history_score</span>, <span class="st">", ECG="</span>, <span class="va">ecg_score</span>, <span class="st">", Age="</span>, <span class="va">age_score</span>, </span>
+<span>      <span class="st">", Risk factors="</span>, <span class="va">risk_score</span>, <span class="st">", Troponin="</span>, <span class="va">troponin_score</span>, <span class="st">"\n\n"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co">#&gt; Patient 1 - Age: 45 , Gender: male </span></span>
+<span><span class="co">#&gt;   - HEART Score: 6 ( Moderate risk )</span></span>
+<span><span class="co">#&gt;   - Components: History= 1 , ECG= 1 , Age= 1 , Risk factors= 2 , Troponin= 1 </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; Patient 2 - Age: 55 , Gender: female </span></span>
+<span><span class="co">#&gt;   - HEART Score: 7 ( High risk )</span></span>
+<span><span class="co">#&gt;   - Components: History= 1 , ECG= 1 , Age= 1 , Risk factors= 2 , Troponin= 2 </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     filter, lag</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; Patient 3 - Age: 65 , Gender: male </span></span>
+<span><span class="co">#&gt;   - HEART Score: 8 ( High risk )</span></span>
+<span><span class="co">#&gt;   - Components: History= 1 , ECG= 1 , Age= 2 , Risk factors= 2 , Troponin= 2</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="edacs-score-examples">EDACS Score Examples<a class="anchor" aria-label="anchor" href="#edacs-score-examples"></a>
+</h3>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"EDACS Score Calculations:\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; EDACS Score Calculations:</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"========================\n\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ========================</span></span>
+<span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">patient</span> <span class="op">&lt;-</span> <span class="va">sample_patients</span><span class="op">[</span><span class="va">i</span>, <span class="op">]</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Patient"</span>, <span class="va">i</span>, <span class="st">"- Age:"</span>, <span class="va">patient</span><span class="op">$</span><span class="va">Age</span>, <span class="st">", Gender:"</span>, <span class="va">patient</span><span class="op">$</span><span class="va">Gender</span>, <span class="st">"\n"</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># Manual EDACS calculation</span></span>
+<span>  <span class="va">age_score</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">patient</span><span class="op">$</span><span class="va">Age</span> <span class="op">&lt;=</span> <span class="fl">50</span>, <span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span></span>
+<span>  <span class="va">sex_score</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">patient</span><span class="op">$</span><span class="va">Gender</span> <span class="op">==</span> <span class="st">"male"</span>, <span class="fl">6</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span>  <span class="va">known_cad</span> <span class="op">&lt;-</span> <span class="fl">0</span>  <span class="co"># Assume no known CAD for example</span></span>
+<span>  <span class="va">pain_radiation</span> <span class="op">&lt;-</span> <span class="fl">1</span>  <span class="co"># Assume pain radiates</span></span>
+<span>  </span>
+<span>  <span class="co"># Simplified EDACS calculation</span></span>
+<span>  <span class="va">edacs_score</span> <span class="op">&lt;-</span> <span class="va">age_score</span> <span class="op">+</span> <span class="va">sex_score</span> <span class="op">+</span> <span class="va">known_cad</span> <span class="op">+</span> <span class="va">pain_radiation</span></span>
+<span>  <span class="va">risk_level</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">edacs_score</span> <span class="op">&lt;</span> <span class="fl">16</span>, <span class="st">"Low risk"</span>, <span class="st">"Not low risk"</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"  - EDACS Score:"</span>, <span class="va">edacs_score</span>, <span class="st">"("</span>, <span class="va">risk_level</span>, <span class="st">")\n"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"  - Components: Age="</span>, <span class="va">age_score</span>, <span class="st">", Sex="</span>, <span class="va">sex_score</span>, <span class="st">", Known CAD="</span>, <span class="va">known_cad</span>, </span>
+<span>      <span class="st">", Pain radiation="</span>, <span class="va">pain_radiation</span>, <span class="st">"\n\n"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co">#&gt; Patient 1 - Age: 45 , Gender: male </span></span>
+<span><span class="co">#&gt;   - EDACS Score: 9 ( Low risk )</span></span>
+<span><span class="co">#&gt;   - Components: Age= 2 , Sex= 6 , Known CAD= 0 , Pain radiation= 1 </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
-<span><span class="co">#&gt; Loading required package: PooledCohort</span></span></code></pre></div>
-  </main>
+<span><span class="co">#&gt; Patient 2 - Age: 55 , Gender: female </span></span>
+<span><span class="co">#&gt;   - EDACS Score: 5 ( Low risk )</span></span>
+<span><span class="co">#&gt;   - Components: Age= 4 , Sex= 0 , Known CAD= 0 , Pain radiation= 1 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Patient 3 - Age: 65 , Gender: male </span></span>
+<span><span class="co">#&gt;   - EDACS Score: 11 ( Low risk )</span></span>
+<span><span class="co">#&gt;   - Components: Age= 4 , Sex= 6 , Known CAD= 0 , Pain radiation= 1</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="grace-score-examples">GRACE Score Examples<a class="anchor" aria-label="anchor" href="#grace-score-examples"></a>
+</h3>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"GRACE Score Calculations:\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; GRACE Score Calculations:</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"========================\n\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ========================</span></span>
+<span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">patient</span> <span class="op">&lt;-</span> <span class="va">sample_patients</span><span class="op">[</span><span class="va">i</span>, <span class="op">]</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Patient"</span>, <span class="va">i</span>, <span class="st">"- Age:"</span>, <span class="va">patient</span><span class="op">$</span><span class="va">Age</span>, <span class="st">", Gender:"</span>, <span class="va">patient</span><span class="op">$</span><span class="va">Gender</span>, <span class="st">"\n"</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># Simplified GRACE calculation (approximate)</span></span>
+<span>  <span class="va">age_points</span> <span class="op">&lt;-</span> <span class="va">patient</span><span class="op">$</span><span class="va">Age</span> <span class="op">*</span> <span class="fl">0.7</span>  <span class="co"># Simplified age scoring</span></span>
+<span>  <span class="va">hr_points</span> <span class="op">&lt;-</span> <span class="va">patient</span><span class="op">$</span><span class="va">heart_rate</span> <span class="op">*</span> <span class="fl">0.4</span>  <span class="co"># Simplified HR scoring</span></span>
+<span>  <span class="va">sbp_points</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fl">0</span>, <span class="op">(</span><span class="fl">200</span> <span class="op">-</span> <span class="va">patient</span><span class="op">$</span><span class="va">systolic_bp</span><span class="op">)</span> <span class="op">*</span> <span class="fl">0.3</span><span class="op">)</span>  <span class="co"># Simplified SBP scoring</span></span>
+<span>  <span class="va">creat_points</span> <span class="op">&lt;-</span> <span class="va">patient</span><span class="op">$</span><span class="va">creatinine</span> <span class="op">*</span> <span class="fl">15</span>  <span class="co"># Simplified creatinine scoring</span></span>
+<span>  </span>
+<span>  <span class="va">grace_score</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">age_points</span> <span class="op">+</span> <span class="va">hr_points</span> <span class="op">+</span> <span class="va">sbp_points</span> <span class="op">+</span> <span class="va">creat_points</span><span class="op">)</span></span>
+<span>  <span class="va">risk_level</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">grace_score</span> <span class="op">&lt;=</span> <span class="fl">88</span>, <span class="st">"Low"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">grace_score</span> <span class="op">&lt;=</span> <span class="fl">110</span>, <span class="st">"Intermediate"</span>, <span class="st">"High"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"  - GRACE Score:"</span>, <span class="va">grace_score</span>, <span class="st">"("</span>, <span class="va">risk_level</span>, <span class="st">"risk )\n"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"  - Estimated mortality risk at 6 months\n\n"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co">#&gt; Patient 1 - Age: 45 , Gender: male </span></span>
+<span><span class="co">#&gt;   - GRACE Score: 94 ( Intermediate risk )</span></span>
+<span><span class="co">#&gt;   - Estimated mortality risk at 6 months</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Patient 2 - Age: 55 , Gender: female </span></span>
+<span><span class="co">#&gt;   - GRACE Score: 112 ( High risk )</span></span>
+<span><span class="co">#&gt;   - Estimated mortality risk at 6 months</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Patient 3 - Age: 65 , Gender: male </span></span>
+<span><span class="co">#&gt;   - GRACE Score: 118 ( High risk )</span></span>
+<span><span class="co">#&gt;   - Estimated mortality risk at 6 months</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="timi-score-examples">TIMI Score Examples<a class="anchor" aria-label="anchor" href="#timi-score-examples"></a>
+</h3>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"TIMI Score Calculations:\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; TIMI Score Calculations:</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"=======================\n\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; =======================</span></span>
+<span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">patient</span> <span class="op">&lt;-</span> <span class="va">sample_patients</span><span class="op">[</span><span class="va">i</span>, <span class="op">]</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Patient"</span>, <span class="va">i</span>, <span class="st">"- Age:"</span>, <span class="va">patient</span><span class="op">$</span><span class="va">Age</span>, <span class="st">", Gender:"</span>, <span class="va">patient</span><span class="op">$</span><span class="va">Gender</span>, <span class="st">"\n"</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># TIMI risk factors (1 point each)</span></span>
+<span>  <span class="va">age_65</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">patient</span><span class="op">$</span><span class="va">Age</span> <span class="op">&gt;=</span> <span class="fl">65</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span>  <span class="va">risk_factors_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="op">(</span><span class="va">patient</span><span class="op">$</span><span class="va">diabetes</span> <span class="op">+</span> <span class="va">patient</span><span class="op">$</span><span class="va">smoker</span> <span class="op">+</span> <span class="va">patient</span><span class="op">$</span><span class="va">hypertension</span> <span class="op">+</span> </span>
+<span>                           <span class="va">patient</span><span class="op">$</span><span class="va">hyperlipidaemia</span> <span class="op">+</span> <span class="va">patient</span><span class="op">$</span><span class="va">family_history</span><span class="op">)</span> <span class="op">&gt;=</span> <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span>  <span class="va">known_cad</span> <span class="op">&lt;-</span> <span class="fl">0</span>  <span class="co"># Assume no known CAD</span></span>
+<span>  <span class="va">aspirin_use</span> <span class="op">&lt;-</span> <span class="fl">1</span>  <span class="co"># Assume recent aspirin use</span></span>
+<span>  <span class="va">severe_angina</span> <span class="op">&lt;-</span> <span class="fl">1</span>  <span class="co"># Assume severe symptoms</span></span>
+<span>  <span class="va">elevated_markers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">patient</span><span class="op">$</span><span class="va">presentation_hstni</span> <span class="op">&gt;</span> <span class="fl">14</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span>  <span class="va">st_deviation</span> <span class="op">&lt;-</span> <span class="fl">1</span>  <span class="co"># Assume ST changes</span></span>
+<span>  </span>
+<span>  <span class="va">timi_score</span> <span class="op">&lt;-</span> <span class="va">age_65</span> <span class="op">+</span> <span class="va">risk_factors_3</span> <span class="op">+</span> <span class="va">known_cad</span> <span class="op">+</span> <span class="va">aspirin_use</span> <span class="op">+</span> <span class="va">severe_angina</span> <span class="op">+</span> <span class="va">elevated_markers</span> <span class="op">+</span> <span class="va">st_deviation</span></span>
+<span>  <span class="va">risk_level</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">timi_score</span> <span class="op">==</span> <span class="fl">0</span>, <span class="st">"Very Low"</span>, </span>
+<span>                      <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">timi_score</span> <span class="op">&lt;=</span> <span class="fl">2</span>, <span class="st">"Low"</span>, </span>
+<span>                            <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">timi_score</span> <span class="op">&lt;=</span> <span class="fl">4</span>, <span class="st">"Intermediate"</span>, <span class="st">"High"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"  - TIMI Score:"</span>, <span class="va">timi_score</span>, <span class="st">"("</span>, <span class="va">risk_level</span>, <span class="st">"risk )\n"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"  - 14-day risk of death/MI/urgent revascularization\n\n"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co">#&gt; Patient 1 - Age: 45 , Gender: male </span></span>
+<span><span class="co">#&gt;   - TIMI Score: 5 ( High risk )</span></span>
+<span><span class="co">#&gt;   - 14-day risk of death/MI/urgent revascularization</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Patient 2 - Age: 55 , Gender: female </span></span>
+<span><span class="co">#&gt;   - TIMI Score: 5 ( High risk )</span></span>
+<span><span class="co">#&gt;   - 14-day risk of death/MI/urgent revascularization</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Patient 3 - Age: 65 , Gender: male </span></span>
+<span><span class="co">#&gt;   - TIMI Score: 6 ( High risk )</span></span>
+<span><span class="co">#&gt;   - 14-day risk of death/MI/urgent revascularization</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="ascvd-score-examples">ASCVD Score Examples<a class="anchor" aria-label="anchor" href="#ascvd-score-examples"></a>
+</h3>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"ASCVD 10-Year Risk Calculations:\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ASCVD 10-Year Risk Calculations:</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"===============================\n\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ===============================</span></span>
+<span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">patient</span> <span class="op">&lt;-</span> <span class="va">sample_patients</span><span class="op">[</span><span class="va">i</span>, <span class="op">]</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Patient"</span>, <span class="va">i</span>, <span class="st">"- Age:"</span>, <span class="va">patient</span><span class="op">$</span><span class="va">Age</span>, <span class="st">", Gender:"</span>, <span class="va">patient</span><span class="op">$</span><span class="va">Gender</span>, <span class="st">"\n"</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># Simplified ASCVD risk estimation (this is a rough approximation)</span></span>
+<span>  <span class="va">base_risk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">patient</span><span class="op">$</span><span class="va">Gender</span> <span class="op">==</span> <span class="st">"male"</span>, <span class="fl">0.12</span>, <span class="fl">0.08</span><span class="op">)</span></span>
+<span>  <span class="va">age_factor</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">patient</span><span class="op">$</span><span class="va">Age</span> <span class="op">-</span> <span class="fl">40</span><span class="op">)</span> <span class="op">*</span> <span class="fl">0.01</span></span>
+<span>  <span class="va">chol_factor</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">patient</span><span class="op">$</span><span class="va">total_chol</span> <span class="op">-</span> <span class="fl">200</span><span class="op">)</span> <span class="op">*</span> <span class="fl">0.0001</span></span>
+<span>  <span class="va">hdl_factor</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">50</span> <span class="op">-</span> <span class="va">patient</span><span class="op">$</span><span class="va">hdl_chol</span><span class="op">)</span> <span class="op">*</span> <span class="fl">0.0005</span></span>
+<span>  <span class="va">bp_factor</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">patient</span><span class="op">$</span><span class="va">systolic_bp</span> <span class="op">-</span> <span class="fl">120</span><span class="op">)</span> <span class="op">*</span> <span class="fl">0.0003</span></span>
+<span>  <span class="va">diabetes_factor</span> <span class="op">&lt;-</span> <span class="va">patient</span><span class="op">$</span><span class="va">diabetes</span> <span class="op">*</span> <span class="fl">0.02</span></span>
+<span>  <span class="va">smoker_factor</span> <span class="op">&lt;-</span> <span class="va">patient</span><span class="op">$</span><span class="va">smoker</span> <span class="op">*</span> <span class="fl">0.03</span></span>
+<span>  </span>
+<span>  <span class="va">risk_10yr</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">base_risk</span> <span class="op">+</span> <span class="va">age_factor</span> <span class="op">+</span> <span class="va">chol_factor</span> <span class="op">+</span> <span class="va">hdl_factor</span> <span class="op">+</span> <span class="va">bp_factor</span> <span class="op">+</span> </span>
+<span>                <span class="va">diabetes_factor</span> <span class="op">+</span> <span class="va">smoker_factor</span><span class="op">)</span> <span class="op">*</span> <span class="fl">100</span></span>
+<span>  <span class="va">risk_10yr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="fl">40</span>, <span class="va">risk_10yr</span><span class="op">)</span><span class="op">)</span>  <span class="co"># Cap between 1-40%</span></span>
+<span>  </span>
+<span>  <span class="va">risk_category</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">risk_10yr</span> <span class="op">&lt;</span> <span class="fl">5</span>, <span class="st">"Low"</span>, </span>
+<span>                         <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">risk_10yr</span> <span class="op">&lt;</span> <span class="fl">7.5</span>, <span class="st">"Borderline"</span>,</span>
+<span>                               <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">risk_10yr</span> <span class="op">&lt;</span> <span class="fl">20</span>, <span class="st">"Intermediate"</span>, <span class="st">"High"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"  - 10-year ASCVD Risk:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">risk_10yr</span>, <span class="fl">1</span><span class="op">)</span>, <span class="st">"% ("</span>, <span class="va">risk_category</span>, <span class="st">"risk )\n"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"  - Total Chol:"</span>, <span class="va">patient</span><span class="op">$</span><span class="va">total_chol</span>, <span class="st">"mg/dL, HDL:"</span>, <span class="va">patient</span><span class="op">$</span><span class="va">hdl_chol</span>, <span class="st">"mg/dL\n\n"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co">#&gt; Patient 1 - Age: 45 , Gender: male </span></span>
+<span><span class="co">#&gt;   - 10-year ASCVD Risk: 20.8 % ( High risk )</span></span>
+<span><span class="co">#&gt;   - Total Chol: 200 mg/dL, HDL: 45 mg/dL</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Patient 2 - Age: 55 , Gender: female </span></span>
+<span><span class="co">#&gt;   - 10-year ASCVD Risk: 25.2 % ( High risk )</span></span>
+<span><span class="co">#&gt;   - Total Chol: 220 mg/dL, HDL: 55 mg/dL</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Patient 3 - Age: 65 , Gender: male </span></span>
+<span><span class="co">#&gt;   - 10-year ASCVD Risk: 40 % ( High risk )</span></span>
+<span><span class="co">#&gt;   - Total Chol: 180 mg/dL, HDL: 40 mg/dL</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="distribution-examples">Distribution Examples<a class="anchor" aria-label="anchor" href="#distribution-examples"></a>
+</h2>
+<p>Now let’s create theoretical distributions for each risk score:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Set seed for reproducible results</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
+<span></span>
+<span><span class="co"># Generate theoretical score distributions</span></span>
+<span><span class="va">heart_scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, <span class="va">n</span>, replace <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>                      prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.08</span>, <span class="fl">0.12</span>, <span class="fl">0.18</span>, <span class="fl">0.20</span>, <span class="fl">0.15</span>, <span class="fl">0.10</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span>, <span class="fl">0.02</span>, <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">heart_risk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html" class="external-link">cut</a></span><span class="op">(</span><span class="va">heart_scores</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">6</span>, <span class="fl">10</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Low"</span>, <span class="st">"Moderate"</span>, <span class="st">"High"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">edacs_scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">pmax</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">n</span>, mean <span class="op">=</span> <span class="fl">18</span>, sd <span class="op">=</span> <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">edacs_risk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">edacs_scores</span> <span class="op">&lt;</span> <span class="fl">16</span>, <span class="st">"Low risk"</span>, <span class="st">"Not low risk"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">grace_scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">pmax</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">pmin</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">n</span>, mean <span class="op">=</span> <span class="fl">95</span>, sd <span class="op">=</span> <span class="fl">25</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">grace_risk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html" class="external-link">cut</a></span><span class="op">(</span><span class="va">grace_scores</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">88</span>, <span class="fl">110</span>, <span class="fl">200</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Low"</span>, <span class="st">"Intermediate"</span>, <span class="st">"High"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">timi_scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">7</span>, <span class="va">n</span>, replace <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>                     prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.20</span>, <span class="fl">0.25</span>, <span class="fl">0.20</span>, <span class="fl">0.15</span>, <span class="fl">0.10</span>, <span class="fl">0.06</span>, <span class="fl">0.03</span>, <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">timi_risk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html" class="external-link">cut</a></span><span class="op">(</span><span class="va">timi_scores</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">7</span><span class="op">)</span>, </span>
+<span>                labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Very Low"</span>, <span class="st">"Low"</span>, <span class="st">"Intermediate"</span>, <span class="st">"High"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ascvd_risk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">pmax</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">pmin</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html" class="external-link">rgamma</a></span><span class="op">(</span><span class="va">n</span>, shape <span class="op">=</span> <span class="fl">2</span>, rate <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">ascvd_category</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html" class="external-link">cut</a></span><span class="op">(</span><span class="va">ascvd_risk</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5</span>, <span class="fl">7.5</span>, <span class="fl">20</span>, <span class="fl">100</span><span class="op">)</span>, </span>
+<span>                     labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Low"</span>, <span class="st">"Borderline"</span>, <span class="st">"Intermediate"</span>, <span class="st">"High"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create individual plots</span></span>
+<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>score <span class="op">=</span> <span class="va">heart_scores</span>, risk <span class="op">=</span> <span class="va">heart_risk</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">score</span>, fill <span class="op">=</span> <span class="va">risk</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">11</span>, alpha <span class="op">=</span> <span class="fl">0.8</span>, position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Low"</span> <span class="op">=</span> <span class="st">"#2E8B57"</span>, <span class="st">"Moderate"</span> <span class="op">=</span> <span class="st">"#FF8C00"</span>, <span class="st">"High"</span> <span class="op">=</span> <span class="st">"#DC143C"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"HEART Score Distribution"</span>, x <span class="op">=</span> <span class="st">"HEART Score (0-10)"</span>, y <span class="op">=</span> <span class="st">"Count"</span>, fill <span class="op">=</span> <span class="st">"Risk Level"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>score <span class="op">=</span> <span class="va">edacs_scores</span>, risk <span class="op">=</span> <span class="va">edacs_risk</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">score</span>, fill <span class="op">=</span> <span class="va">risk</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">30</span>, alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">16</span>, color <span class="op">=</span> <span class="st">"red"</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Low risk"</span> <span class="op">=</span> <span class="st">"#2E8B57"</span>, <span class="st">"Not low risk"</span> <span class="op">=</span> <span class="st">"#DC143C"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"EDACS Score Distribution"</span>, x <span class="op">=</span> <span class="st">"EDACS Score"</span>, y <span class="op">=</span> <span class="st">"Count"</span>, fill <span class="op">=</span> <span class="st">"Risk Level"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">xlim</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">50</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>score <span class="op">=</span> <span class="va">grace_scores</span>, risk <span class="op">=</span> <span class="va">grace_risk</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">score</span>, fill <span class="op">=</span> <span class="va">risk</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">30</span>, alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Low"</span> <span class="op">=</span> <span class="st">"#2E8B57"</span>, <span class="st">"Intermediate"</span> <span class="op">=</span> <span class="st">"#FF8C00"</span>, <span class="st">"High"</span> <span class="op">=</span> <span class="st">"#DC143C"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"GRACE Score Distribution"</span>, x <span class="op">=</span> <span class="st">"GRACE Score"</span>, y <span class="op">=</span> <span class="st">"Count"</span>, fill <span class="op">=</span> <span class="st">"Risk Level"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>score <span class="op">=</span> <span class="va">timi_scores</span>, risk <span class="op">=</span> <span class="va">timi_risk</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">score</span>, fill <span class="op">=</span> <span class="va">risk</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">8</span>, alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Very Low"</span> <span class="op">=</span> <span class="st">"#90EE90"</span>, <span class="st">"Low"</span> <span class="op">=</span> <span class="st">"#2E8B57"</span>, <span class="st">"Intermediate"</span> <span class="op">=</span> <span class="st">"#FF8C00"</span>, <span class="st">"High"</span> <span class="op">=</span> <span class="st">"#DC143C"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"TIMI Score Distribution"</span>, x <span class="op">=</span> <span class="st">"TIMI Score (0-7)"</span>, y <span class="op">=</span> <span class="st">"Count"</span>, fill <span class="op">=</span> <span class="st">"Risk Level"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>risk <span class="op">=</span> <span class="va">ascvd_risk</span>, category <span class="op">=</span> <span class="va">ascvd_category</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">risk</span>, fill <span class="op">=</span> <span class="va">category</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">30</span>, alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Low"</span> <span class="op">=</span> <span class="st">"#2E8B57"</span>, <span class="st">"Borderline"</span> <span class="op">=</span> <span class="st">"#FFD700"</span>, <span class="st">"Intermediate"</span> <span class="op">=</span> <span class="st">"#FF8C00"</span>, <span class="st">"High"</span> <span class="op">=</span> <span class="st">"#DC143C"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"ASCVD 10-Year Risk Distribution"</span>, x <span class="op">=</span> <span class="st">"10-Year Risk (%)"</span>, y <span class="op">=</span> <span class="st">"Count"</span>, fill <span class="op">=</span> <span class="st">"Risk Category"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Display plots in a grid</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">gridExtra</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html" class="external-link">grid.arrange</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, <span class="va">p3</span>, <span class="va">p4</span>, <span class="va">p5</span>, ncol <span class="op">=</span> <span class="fl">2</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Calculate_scores_files/figure-html/distributions-1.png" width="1152"></p>
+</div>
+<div class="section level2">
+<h2 id="summary-statistics">Summary Statistics<a class="anchor" aria-label="anchor" href="#summary-statistics"></a>
+</h2>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Summary Statistics for Risk Score Distributions:\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Summary Statistics for Risk Score Distributions:</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"==============================================\n\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ==============================================</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"HEART Score:\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; HEART Score:</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"  Mean:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">heart_scores</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Mean: 3.94</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"  Risk Distribution:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">heart_risk</span><span class="op">)</span>, <span class="st">"\n\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Risk Distribution: 434 449 117</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"EDACS Score:\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; EDACS Score:</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"  Mean:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">edacs_scores</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Mean: 18.11</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"  Risk Distribution:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">edacs_risk</span><span class="op">)</span>, <span class="st">"\n\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Risk Distribution: 378 622</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"GRACE Score:\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; GRACE Score:</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"  Mean:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">grace_scores</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Mean: 95.29</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"  Risk Distribution:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">grace_risk</span><span class="op">)</span>, <span class="st">"\n\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Risk Distribution: 394 329 277</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"TIMI Score:\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; TIMI Score:</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"  Mean:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">timi_scores</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Mean: 2.1</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"  Risk Distribution:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">timi_risk</span><span class="op">)</span>, <span class="st">"\n\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Risk Distribution: 193 457 249 101</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"ASCVD 10-Year Risk:\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ASCVD 10-Year Risk:</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"  Mean:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">ascvd_risk</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"%\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Mean: 6.43 %</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"  Risk Distribution:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">ascvd_category</span><span class="op">)</span>, <span class="st">"\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Risk Distribution: 436 239 311 14</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="clinical-interpretation">Clinical Interpretation<a class="anchor" aria-label="anchor" href="#clinical-interpretation"></a>
+</h2>
+<div class="section level3">
+<h3 id="risk-score-thresholds">Risk Score Thresholds<a class="anchor" aria-label="anchor" href="#risk-score-thresholds"></a>
+</h3>
+<ul>
+<li>
+<strong>HEART</strong>: Low (0-3), Moderate (4-6), High (≥7)</li>
+<li>
+<strong>EDACS</strong>: Low risk (&lt;16), Not low risk (≥16)</li>
+<li>
+<strong>GRACE</strong>: Low (≤88), Intermediate (89-110), High
+(&gt;110)</li>
+<li>
+<strong>TIMI</strong>: Very Low (0), Low (1-2), Intermediate (3-4),
+High (≥5)</li>
+<li>
+<strong>ASCVD</strong>: Low (&lt;5%), Borderline (5-7.5%),
+Intermediate (7.5-20%), High (≥20%)</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="usage-notes">Usage Notes<a class="anchor" aria-label="anchor" href="#usage-notes"></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li>These examples use simplified calculations for demonstration</li>
+<li>Always provide explicit parameter values when using the actual
+functions</li>
+<li>Consider multiple scores for comprehensive risk assessment</li>
+<li>Validate results against clinical judgment</li>
+</ol>
+<p>For detailed function usage and parameters, refer to the package
+documentation.</p>
+</div>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
