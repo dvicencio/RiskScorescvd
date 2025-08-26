@@ -6,3 +6,7 @@ inst/doc
 .Rhistory
 .RData
 renv/
+*.Rcheck/
+.Rcheck/
+*.tar.gz
+.Ruserdata

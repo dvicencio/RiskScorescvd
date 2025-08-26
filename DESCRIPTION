@@ -1,7 +1,7 @@
 Package: RiskScorescvd
 Type: Package
 Title: Cardiovascular Risk Scores Calculator
-Version: 0.2.1
+Version: 0.3.0
 Authors@R:
     c(person(given = "Daniel",
              family = "Perez-Vicencio",
@@ -33,7 +33,9 @@ Suggests:
     rmarkdown,
     tibble,
     purrr,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    ggplot2,
+    gridExtra
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 URL: https://github.com/dvicencio/RiskScorescvd, https://dvicencio.github.io/RiskScorescvd/
