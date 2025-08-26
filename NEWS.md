@@ -1,3 +1,17 @@
+# RiskScorescvd 0.3.0
+
+---
+
+### Major testing and documentation improvements
+
+- Comprehensive test suite added with 328 tests achieving 93.98% coverage
+- New vignette with practical examples and distribution plots added
+- All functions now have extensive unit tests covering edge cases and error handling
+- Package dependencies properly declared in DESCRIPTION
+- Enhanced package reliability and documentation quality
+
+---
+
 # RiskScorescvd 0.2.1
 
 ---
