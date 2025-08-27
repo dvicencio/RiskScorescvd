@@ -1,3 +1,14 @@
+# RiskScorescvd 0.3.1
+
+---
+
+### CRAN resubmission fix
+
+- Updated R version requirement from >= 3.1.0 to >= 4.1.0 to match native pipe syntax usage
+- No functional changes to package code
+
+---
+
 # RiskScorescvd 0.3.0
 
 ---

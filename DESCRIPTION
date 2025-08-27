@@ -1,7 +1,7 @@
 Package: RiskScorescvd
 Type: Package
 Title: Cardiovascular Risk Scores Calculator
-Version: 0.3.0
+Version: 0.3.1
 Authors@R:
     c(person(given = "Daniel",
              family = "Perez-Vicencio",
@@ -19,13 +19,13 @@ Authors@R:
              role = "aut",
              email = "jeremy1189.jjs@gmail.com",
              comment = c(ORCID = "0000-0002-4498-2662")))
-Description: A tool to calculate Cardiovascular Risk Scores in large data frames. Cardiovascular risk scores are statistical tools used to assess an individual's likelihood of developing a cardiovascular disease based on various risk factors, such as age, gender, blood pressure, cholesterol levels, and smoking. Here we bring together the six most commonly used in the emergency department. Using 'RiskScorescvd', you can calculate all the risk scores in an extended dataset in seconds. PCE (ASCVD) described in Goff, et al (2013) <doi:10.1161/01.cir.0000437741.48606.98>. EDACS described in Mark DG, et al (2016) <doi:10.1016/j.jacc.2017.11.064>. GRACE described in Fox KA, et al (2006) <doi:10.1136/bmj.38985.646481.55>. HEART is described in Mahler SA, et al (2017) <doi:10.1016/j.clinbiochem.2017.01.003>. SCORE2/OP described in SCORE2 working group and ESC Cardiovascular risk collaboration (2021) <doi:10.1093/eurheartj/ehab309>. TIMI described in Antman EM, et al (2000) <doi:10.1001/jama.284.7.835>. SCORE2-Diabetes described in SCORE2-Diabetes working group and ESC Cardiovascular risk collaboration (2023) <doi:10.1093/eurheartj/ehab260>. SCORE2/OP with CKD add-on described in Kunihiro M et al (2022) <doi:10.1093/eurjpc/zwac176>.   
+Description: A tool to calculate Cardiovascular Risk Scores in large data frames as published in Perez-Vicencio, et al (2024) <doi:10.1136/openhrt-2024-002755>. Cardiovascular risk scores are statistical tools used to assess an individual's likelihood of developing a cardiovascular disease based on various risk factors, such as age, gender, blood pressure, cholesterol levels, and smoking. Here we bring together the six most commonly used in the emergency department. Using 'RiskScorescvd', you can calculate all the risk scores in an extended dataset in seconds. PCE (ASCVD) described in Goff, et al (2013) <doi:10.1161/01.cir.0000437741.48606.98>. EDACS described in Mark DG, et al (2016) <doi:10.1016/j.jacc.2017.11.064>. GRACE described in Fox KA, et al (2006) <doi:10.1136/bmj.38985.646481.55>. HEART is described in Mahler SA, et al (2017) <doi:10.1016/j.clinbiochem.2017.01.003>. SCORE2/OP described in SCORE2 working group and ESC Cardiovascular risk collaboration (2021) <doi:10.1093/eurheartj/ehab309>. TIMI described in Antman EM, et al (2000) <doi:10.1001/jama.284.7.835>. SCORE2-Diabetes described in SCORE2-Diabetes working group and ESC Cardiovascular risk collaboration (2023) <doi:10.1093/eurheartj/ehab260>. SCORE2/OP with CKD add-on described in Kunihiro M et al (2022) <doi:10.1093/eurjpc/zwac176>.   
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
 Depends: 
-  R (>= 3.1.0),
+  R (>= 4.1.0),
   dplyr (>= 1.1.2),
   PooledCohort (>= 0.0.1)
 Suggests:
