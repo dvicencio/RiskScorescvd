@@ -1,7 +1,7 @@
 # Generate outputs of every changed exported function on fixed inputs.
 # Usage: Rscript gen.R <lib> <out.rds>
 args <- commandArgs(TRUE)
-lib <- args[1]; out <- args[2]
+lib <- normalizePath(args[1]); out <- args[2]
 suppressPackageStartupMessages({
   library(dplyr)
   library(RiskScorescvd, lib.loc = lib)
@@ -12,6 +12,7 @@ cat("Package version:", as.character(packageVersion("RiskScorescvd", lib.loc = l
 safe <- function(expr) {
   v <- tryCatch(suppressWarnings(suppressMessages(expr)),
                 error = function(e) "ERROR")
+  if (is.function(v)) return("FUNCTION")  # pre-existing class gap bug
   if (length(v) != 1) return(paste0("LEN", length(v)))
   if (is.factor(v)) v <- as.character(v)
   if (is.na(v)) return(NA_character_)

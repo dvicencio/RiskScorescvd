@@ -69,5 +69,10 @@ check_df("calc_scores()", old$calc_scores, new$calc_scores, s2cols, old$cohort)
 check_df("SCORE2_scores()", old$score2_scores, new$score2_scores, s2cols, old$cohort)
 check_df("SCORE2_CKD_scores()", old$score2_ckd_scores, new$score2_ckd_scores, s2cols, old$cohort)
 
+cat("\n== Pre-existing: SCORE2(classify = TRUE) returning a function (age gap 69-70) ==\n")
+cat("  old:", sum(old$score2$class == "FUNCTION", na.rm = TRUE),
+    " new:", sum(new$score2$class == "FUNCTION", na.rm = TRUE), "\n")
+cat("  CKD old:", sum(old$ckd$class == "FUNCTION", na.rm = TRUE),
+    " new:", sum(new$ckd$class == "FUNCTION", na.rm = TRUE), "\n")
 cat(sprintf("\n==== UNEXPLAINED DIFFERENCES: %d ====\n", problems))
 if (problems > 0) quit(status = 1)

@@ -1,7 +1,7 @@
 # Run the unmodified 0.3.1 test suite against the package installed in a
 # given library. Usage: Rscript run_old_tests.R <lib> <old_tests_dir>
 args <- commandArgs(TRUE)
-lib <- args[1]; dir <- args[2]
+lib <- normalizePath(args[1]); dir <- normalizePath(args[2])
 suppressPackageStartupMessages({
   library(dplyr)
   library(RiskScorescvd, lib.loc = lib)
