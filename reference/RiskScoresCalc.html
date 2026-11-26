@@ -281,8 +281,8 @@ and their classifications</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Call the function with the cohort_xx</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># SCORE2 columns are NA (with a warning) for patients under 70 with</span></span></span>
-<span class="r-in"><span><span class="co"># diabetes, because SCORE2 is not validated in people with diabetes</span></span></span>
+<span class="r-in"><span><span class="co"># SCORE2 columns are NA (with a warning) for patients under 40, and for</span></span></span>
+<span class="r-in"><span><span class="co"># patients under 70 with diabetes, which are outside SCORE2's validated use</span></span></span>
 <span class="r-in"><span><span class="va">new_data_frame</span> <span class="op">&lt;-</span> <span class="fu">calc_scores</span><span class="op">(</span>data <span class="op">=</span> <span class="va">cohort_xx</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>There were 96 warnings in `mutate()`.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> The first warning was:</span>

@@ -10,6 +10,12 @@ doi:10.1093/eurheartj/ehab761
 ). Use [SCORE2_Diabetes()]
 for these patients. For patients aged 70 and over (SCORE2-OP), diabetes is
 a predictor in the published model and is used as before.
+**Missing inputs (since 0.4.0):** if any required input is `NA`, the
+result is `NA` with a warning naming the missing input(s). SCORE2 gives
+no rule for imputing a missing predictor.
+**Vector input (since 0.4.0):** every input except `classify` can be a
+vector of length 1 or n; the result is a vector of length n, identical to
+scoring each row separately.
 formula in SCORE2 Updated Supplementary Material page  9. paper:
 &quot;SCORE2 risk prediction algorithms: new models to estimate 10-year risk of cardiovascular disease in Europe&quot;
 Age	10-year risk of fatal and non-fatal cardiovascular disease
@@ -30,6 +36,12 @@ doi:10.1093/eurheartj/ehab761
 ). Use [SCORE2_Diabetes()]
 for these patients. For patients aged 70 and over (SCORE2-OP), diabetes is
 a predictor in the published model and is used as before.
+**Missing inputs (since 0.4.0):** if any required input is `NA`, the
+result is `NA` with a warning naming the missing input(s). SCORE2 gives
+no rule for imputing a missing predictor.
+**Vector input (since 0.4.0):** every input except `classify` can be a
+vector of length 1 or n; the result is a vector of length n, identical to
+scoring each row separately.
 formula in SCORE2 Updated Supplementary Material page  9. paper:
 &quot;SCORE2 risk prediction algorithms: new models to estimate 10-year risk of cardiovascular disease in Europe&quot;
 Age	10-year risk of fatal and non-fatal cardiovascular disease
@@ -88,6 +100,12 @@ SCORE2 is not validated in people with diabetes (Hageman et al. 2022,
 ). Use [SCORE2_Diabetes()]
 for these patients. For patients aged 70 and over (SCORE2-OP), diabetes is
 a predictor in the published model and is used as before.</p>
+<p>**Missing inputs (since 0.4.0):** if any required input is `NA`, the
+result is `NA` with a warning naming the missing input(s). SCORE2 gives
+no rule for imputing a missing predictor.</p>
+<p>**Vector input (since 0.4.0):** every input except `classify` can be a
+vector of length 1 or n; the result is a vector of length n, identical to
+scoring each row separately.</p>
 <p>formula in SCORE2 Updated Supplementary Material page  9. paper:
 "SCORE2 risk prediction algorithms: new models to estimate 10-year risk of cardiovascular disease in Europe"</p>
 <p>Age	10-year risk of fatal and non-fatal cardiovascular disease</p>
@@ -124,7 +142,10 @@ a predictor in the published model and is used as before.</p>
 
 
 <dt id="arg-age">Age<a class="anchor" aria-label="anchor" href="#arg-age"></a></dt>
-<dd><p>a numeric vector of age values, in years</p></dd>
+<dd><p>a numeric vector of age values, in years. SCORE2 applies to
+ages 40-69 and SCORE2-OP to ages 70 and over; `Age &lt; 40` gives `NA`
+with a warning (<a href="https://doi.org/10.1093/eurheartj/ehab309" class="external-link">doi:10.1093/eurheartj/ehab309</a>
+).</p></dd>
 
 
 <dt id="arg-gender">Gender<a class="anchor" aria-label="anchor" href="#arg-gender"></a></dt>
@@ -160,7 +181,8 @@ under 70, `diabetes = 1` gives `NA` with a warning (see Description).</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A vector with SCORE2/OP score calculations
 and/or a vector of their classifications if indicated. `NA` (with a
-warning) for patients aged under 70 with `diabetes = 1`.</p>
+warning) for patients aged under 70 with `diabetes = 1`, under 40, or
+with any missing required input.</p>
     </div>
 
     <div class="section level2">
