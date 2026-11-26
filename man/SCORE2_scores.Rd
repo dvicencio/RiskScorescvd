@@ -63,7 +63,8 @@ cohort_xx <- data.frame(
   abn.repolarisation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
   ecg.st.depression = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
   Age = as.numeric(sample(40:85, num_rows, replace = TRUE)),
-  diabetes = sample(c(1, 0), num_rows, replace = TRUE),
+  # SCORE2 is for people without diabetes; use SCORE2_Diabetes() otherwise
+  diabetes = 0,
   smoker = sample(c(1, 0), num_rows, replace = TRUE),
   hypertension = sample(c(1, 0), num_rows, replace = TRUE),
   hyperlipidaemia = sample(c(1, 0), num_rows, replace = TRUE),
