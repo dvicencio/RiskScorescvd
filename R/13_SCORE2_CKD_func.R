@@ -30,7 +30,9 @@
 #' The underlying model was developed and validated using eligible data from 3,054,840 individuals from 34 different cohorts and 5,997,719 individuals from 34 independent cohorts, respectively, from the Chronic Kidney Disease Prognosis Consortium. https://doi.org/10.1093/eurjpc/zwac176
 #'
 #' @param Risk.region a character value to set the desired risk region calculations. Categories should include "Low", "Moderate", "High", or "Very high"
-#' @param Age a numeric vector of age values, in years
+#' @param Age a numeric vector of age values, in years. SCORE2 applies to
+#'   ages 40-69 and SCORE2-OP to ages 70 and over; `Age < 40` gives `NA`
+#'   with a warning (\doi{10.1093/eurheartj/ehab309}).
 #' @param Gender a binary character vector of Gender values. Categories should include only 'male' or 'female'
 #' @param smoker a binary numeric vector, 1 = yes and 0 = no
 #' @param systolic.bp a numeric vector of systolic blood pressure continuous values
@@ -51,7 +53,7 @@
 #' @return
 #' A vector with SCORE2/OP score calculations with CKD add-ons
 #' and/or a vector of their classifications if indicated. `NA` (with a
-#' warning) for patients aged under 70 with `diabetes = 1`.
+#' warning) for patients aged under 70 with `diabetes = 1`, or under 40.
 #'
 #' @examples
 #'
@@ -111,6 +113,11 @@
 #' @export
 
 SCORE2_CKD <- function(Risk.region, Age = Age, Gender = Gender, smoker = smoker, systolic.bp = systolic.bp, diabetes = diabetes, total.chol = total.chol, total.hdl = total.hdl, eGFR = eGFR, ACR = NA, trace = NA, addon = "ACR", classify){
+
+  # SCORE2 is not validated below age 40 (#17)
+  if (score2_age_out_of_scope(Age, "SCORE2_CKD")) {
+    return(if (isTRUE(classify)) NA_character_ else NA_real_)
+  }
 
   # SCORE2 (< 70 years) is not validated in people with diabetes (#15)
   if (score2_diabetes_out_of_scope(Age, diabetes, "SCORE2_CKD")) {

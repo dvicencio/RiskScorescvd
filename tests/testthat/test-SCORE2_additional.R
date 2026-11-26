@@ -66,7 +66,12 @@ test_that("SCORE2 error handling", {
   
   # Test invalid inputs
   expect_error(SCORE2("Invalid", 50, "male", 0, 120, 0, 5.0, 1.2))
-  expect_error(SCORE2("Low", 35, "male", 0, 120, 0, 5.0, 1.2))  # Too young
+  # Too young: NA with a warning (#17)
+  expect_warning(
+    too_young <- SCORE2("Low", 35, "male", 0, 120, 0, 5.0, 1.2, classify = FALSE),
+    "validated for ages 40"
+  )
+  expect_true(is.na(too_young))
   expect_error(SCORE2("Low", 95, "male", 0, 120, 0, 5.0, 1.2))  # Too old
   expect_error(SCORE2("Low", 50, "invalid", 0, 120, 0, 5.0, 1.2))
   expect_error(SCORE2("Low", 50, "male", 2, 120, 0, 5.0, 1.2))  # Invalid smoker
