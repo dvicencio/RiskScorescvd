@@ -5,6 +5,12 @@
 #'
 #'*Diabetes mellitus was included in the modelling since this was necessary for the recalibration approach, which relies data from the whole population, including those with diabetes. However, SCORE2 is not intended for use in individuals with diabetes and has not been validated in this population. For risk prediction in the target population of individuals without diabetes this risk factor will always be 0, meaning the coefficient can effectively be ignored.
 #'
+#' **Diabetes handling (since 0.4.0):** for patients aged under 70 (SCORE2)
+#' with `diabetes = 1`, the function returns `NA` with a warning, because
+#' SCORE2 is not validated in people with diabetes. Use [SCORE2_Diabetes()]
+#' for these patients. For patients aged 70 and over (SCORE2-OP), diabetes is
+#' a predictor in the published model and is used as before.
+#'
 #' formula in SCORE2 Updated Supplementary Material page  9. paper:
 #' "SCORE2 risk prediction algorithms: new models to estimate 10-year risk of cardiovascular disease in Europe"
 #'
@@ -27,7 +33,8 @@
 #' @param total.chol a numeric vector of total cholesterol values, in mmol/L
 #' @param total.hdl a numeric vector of total high density lipoprotein total.hdl values, in mmol/L
 #' @param classify set TRUE if wish to add a column with the scores' categories
-#' @param diabetes a binary numeric vector, 1 = yes and 0 = no
+#' @param diabetes a binary numeric vector, 1 = yes and 0 = no. For ages
+#'   under 70, `diabetes = 1` gives `NA` with a warning (see Description).
 #'
 #' @keywords
 #' SCORE2/OP Age Gender smoker systolic.bp diabetes total.chol
@@ -35,7 +42,8 @@
 #'
 #' @return
 #' A vector with SCORE2/OP score calculations
-#' and/or a vector of their classifications if indicated
+#' and/or a vector of their classifications if indicated. `NA` (with a
+#' warning) for patients aged under 70 with `diabetes = 1`.
 #'
 #' @examples
 #'
@@ -90,6 +98,11 @@
 #' @export
 
 SCORE2 <- function(Risk.region, Age = Age, Gender = Gender, smoker = smoker, systolic.bp = systolic.bp, diabetes = diabetes, total.chol = total.chol, total.hdl = total.hdl, classify){
+
+  # SCORE2 (< 70 years) is not validated in people with diabetes (#15)
+  if (score2_diabetes_out_of_scope(Age, diabetes, "SCORE2")) {
+    return(if (isTRUE(classify)) NA_character_ else NA_real_)
+  }
 
 if (Risk.region == "Low" & Age < 70 & Gender == "male"){
   scale1 <- -0.5699
@@ -298,3 +311,25 @@ else if (Risk.region == "Low" & Age < 70 & Gender == "female"){
 }
 
 
+
+# Internal helper: is this row outside SCORE2's validated population?
+#
+# SCORE2 (ages < 70) is not intended for, nor validated in, people with
+# diabetes (SCORE2 working group, Eur Heart J 2021, doi:10.1093/eurheartj/ehab309;
+# SCORE2 supplementary material). Those patients should use SCORE2-Diabetes
+# (doi:10.1093/eurheartj/ehad260). SCORE2-OP (ages >= 70) includes diabetes as
+# a predictor, so it is not affected. See GitHub issue #15.
+#
+# Returns TRUE (and warns) when Age < 70 and diabetes == 1; FALSE otherwise,
+# including when either value is NA (existing NA handling then applies).
+score2_diabetes_out_of_scope <- function(Age, diabetes, fun_name) {
+  out_of_scope <- !is.na(Age) && !is.na(diabetes) && Age < 70 && diabetes == 1
+  if (out_of_scope) {
+    warning(
+      fun_name, "(): SCORE2 (ages under 70) is not validated in people with ",
+      "diabetes, so NA was returned. Use SCORE2_Diabetes() for these patients.",
+      call. = FALSE
+    )
+  }
+  out_of_scope
+}

@@ -50,10 +50,14 @@ test_that("calc_scores function works correctly", {
   )
   
   # Test calc_scores function
-  result <- calc_scores(data = test_data)
-  
+  # Row 2 (Age 60, diabetes = 1) is outside SCORE2's validated population,
+  # so SCORE2 columns are NA with warnings (#15).
+  result <- suppressWarnings(calc_scores(data = test_data))
+
   expect_s3_class(result, "data.frame")
   expect_equal(nrow(result), 3)
+  expect_true(is.na(result$SCORE2_score[2]))
+  expect_false(is.na(result$SCORE2_score[1]))
   
   # Check that all expected score columns are present
   expected_scores <- c(
@@ -149,9 +153,14 @@ test_that("calc_scores works with single row", {
     trace = "1+"
   )
   
-  result <- calc_scores(data = single_row)
-  
+  # Age 55 with diabetes = 1: SCORE2 is NA with a warning (#15)
+  expect_warning(
+    result <- calc_scores(data = single_row),
+    "SCORE2_Diabetes"
+  ) |> suppressWarnings()
+
   expect_s3_class(result, "data.frame")
   expect_equal(nrow(result), 1)
+  expect_true(is.na(result$SCORE2_score))
   expect_true(all(c("HEART_score", "EDACS_score", "GRACE_score", "TIMI_score", "ASCVD_score") %in% names(result)))
 })

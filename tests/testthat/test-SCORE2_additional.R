@@ -36,15 +36,23 @@ test_that("SCORE2_scores comprehensive testing", {
     total.hdl = rep(c(1.0, 1.3, 1.6, 1.9), 4)
   )
   
-  result <- SCORE2_scores(data = test_data, Risk.region = "Low", classify = TRUE)
-  
+  # Rows 9-12 (Age 65, diabetes = 1) are outside SCORE2's validated
+  # population and return NA with warnings (#15)
+  result <- suppressWarnings(
+    SCORE2_scores(data = test_data, Risk.region = "Low", classify = TRUE)
+  )
+
   expect_s3_class(result, "data.frame")
   expect_equal(nrow(result), 16)
   expect_true("SCORE2_score" %in% names(result))
   expect_true("SCORE2_strat" %in% names(result))
-  
-  # Verify all scores are positive
-  expect_true(all(result$SCORE2_score > 0))
+
+  out_of_scope <- test_data$Age < 70 & test_data$diabetes == 1
+  expect_true(all(is.na(result$SCORE2_score[out_of_scope])))
+  expect_true(all(is.na(result$SCORE2_strat[out_of_scope])))
+
+  # Verify all other scores are positive
+  expect_true(all(result$SCORE2_score[!out_of_scope] > 0))
   
   # Test different risk regions
   for(region in c("Low", "Moderate", "High", "Very high")) {
