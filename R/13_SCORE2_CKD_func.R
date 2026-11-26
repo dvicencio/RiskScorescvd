@@ -47,8 +47,10 @@
 #' @param total.chol a numeric vector of total cholesterol values, in mmol/L
 #' @param total.hdl a numeric vector of total high density lipoprotein total.hdl values, in mmol/L
 #' @param classify set TRUE if wish to add a column with the scores' categories
-#' @param diabetes a binary numeric vector, 1 = yes and 0 = no. For ages
-#'   under 70, `diabetes = 1` gives `NA` with a warning (see Description).
+#' @param diabetes a binary numeric vector, 1 = yes and 0 = no. Defaults to
+#'   0 (no diabetes), the population SCORE2 is intended for. For ages under
+#'   70, `diabetes = 1` gives `NA` with a warning (see Description); an
+#'   explicit `NA` is treated as a missing input.
 #' @param eGFR a numeric vector of total estimated glomerular rate (eGFR) values, in mL/min/1.73m2
 #' @param ACR a numeric vector of total urine albumin to creatine ratio (ACR) values, in mg/g. Default set to NA
 #' @param trace a character vector of urine protein dipstick categories. Categories should include 'negative', 'trace', '1+', '2+', '3+', '4+. Default set to NA
@@ -121,7 +123,7 @@
 #'
 #' @export
 
-SCORE2_CKD <- function(Risk.region, Age = Age, Gender = Gender, smoker = smoker, systolic.bp = systolic.bp, diabetes = diabetes, total.chol = total.chol, total.hdl = total.hdl, eGFR = eGFR, ACR = NA, trace = NA, addon = "ACR", classify){
+SCORE2_CKD <- function(Risk.region, Age = Age, Gender = Gender, smoker = smoker, systolic.bp = systolic.bp, diabetes = 0, total.chol = total.chol, total.hdl = total.hdl, eGFR = eGFR, ACR = NA, trace = NA, addon = "ACR", classify){
 
   # Vector input: score each element with the one-row logic below (#18)
   args <- list(

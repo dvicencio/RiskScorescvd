@@ -111,3 +111,31 @@ test_that("SCORE2_scores handles mixed rows (#15)", {
   expect_equal(is.na(res$SCORE2_score), c(FALSE, TRUE, TRUE, FALSE, FALSE))
   expect_equal(is.na(res$SCORE2_strat), c(FALSE, TRUE, TRUE, FALSE, FALSE))
 })
+
+test_that("diabetes defaults to 0 when omitted (#15)", {
+  # SCORE2 Supplementary Table 4, low-risk region, aged 50
+  expect_no_warning(
+    m <- SCORE2(Risk.region = "Low", Age = 50, Gender = "male", smoker = 1,
+                systolic.bp = 140, total.chol = 6.3, total.hdl = 1.4,
+                classify = FALSE)
+  )
+  expect_equal(m, 6.3)
+  expect_identical(m, score2_call(50, diabetes = 0, Gender = "male"))
+
+  # SCORE2-OP: omitted diabetes equals explicit 0
+  expect_identical(
+    SCORE2("Low", 75, "male", 1, 140, total.chol = 5.5, total.hdl = 1.3, classify = FALSE),
+    SCORE2("Low", 75, "male", 1, 140, 0, 5.5, 1.3, classify = FALSE)
+  )
+
+  # Explicit values still win over the default
+  expect_warning(score2_call(50, diabetes = 1), "SCORE2_Diabetes")
+  expect_warning(score2_call(50, diabetes = NA), "missing input")
+
+  # SCORE2_CKD: omitted diabetes equals explicit 0
+  ckd_args <- list(Risk.region = "Low", Age = 60, Gender = "male", smoker = 1,
+                   systolic.bp = 140, total.chol = 6.3, total.hdl = 1.4,
+                   eGFR = 45, ACR = 150, classify = FALSE)
+  expect_identical(do.call(SCORE2_CKD, ckd_args),
+                   do.call(SCORE2_CKD, c(ckd_args, diabetes = 0)))
+})

@@ -45,8 +45,10 @@
 #' @param total.chol a numeric vector of total cholesterol values, in mmol/L
 #' @param total.hdl a numeric vector of total high density lipoprotein total.hdl values, in mmol/L
 #' @param classify set TRUE if wish to add a column with the scores' categories
-#' @param diabetes a binary numeric vector, 1 = yes and 0 = no. For ages
-#'   under 70, `diabetes = 1` gives `NA` with a warning (see Description).
+#' @param diabetes a binary numeric vector, 1 = yes and 0 = no. Defaults to
+#'   0 (no diabetes), the population SCORE2 is intended for. For ages under
+#'   70, `diabetes = 1` gives `NA` with a warning (see Description); an
+#'   explicit `NA` is treated as a missing input.
 #'
 #' @keywords
 #' SCORE2/OP Age Gender smoker systolic.bp diabetes total.chol
@@ -111,7 +113,7 @@
 #'
 #' @export
 
-SCORE2 <- function(Risk.region, Age = Age, Gender = Gender, smoker = smoker, systolic.bp = systolic.bp, diabetes = diabetes, total.chol = total.chol, total.hdl = total.hdl, classify){
+SCORE2 <- function(Risk.region, Age = Age, Gender = Gender, smoker = smoker, systolic.bp = systolic.bp, diabetes = 0, total.chol = total.chol, total.hdl = total.hdl, classify){
 
   # Vector input: score each element with the one-row logic below (#18)
   args <- list(
