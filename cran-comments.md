@@ -19,9 +19,13 @@ Main changes (see NEWS.md):
 ## Test environments
 
 * GitHub Actions: ubuntu-latest (R release, R devel), macos-latest (R release),
-  windows-latest (R release)
-* win-builder: R release and R devel
+  windows-latest (R release); `R CMD check --as-cran`: 0 errors, 0 warnings,
+  0 notes on all four
 
 ## Reverse dependencies
 
-There are currently no reverse dependencies on CRAN.
+We checked 1 reverse dependency, comparing R CMD check results with the CRAN
+version (0.3.1) and this version (0.4.0):
+
+* HealthMarkers 0.1.4: same result with both versions (its tests pass; one
+  pre-existing WARNING unrelated to this update). No new problems.
