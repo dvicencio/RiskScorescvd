@@ -1,0 +1,76 @@
+# Temporary pre-release checks for 0.4.0. Not for main.
+on:
+  push:
+    branches: ['ci/release-*']
+name: release-checks
+jobs:
+  docs-and-hygiene:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::roxygen2, any::devtools, any::spelling, any::urlchecker, any::remotes
+      - name: devtools::document() and show the diff
+        run: |
+          Rscript -e 'devtools::document()'
+          git status --short
+          git diff --stat
+          git diff -- man NAMESPACE > document.patch || true
+          echo "----- PATCH START -----"; cat document.patch; echo "----- PATCH END -----"
+      - name: Spelling
+        run: Rscript -e 'print(spelling::spell_check_package())'
+      - name: URLs
+        run: Rscript -e 'print(urlchecker::url_check())'
+      - name: Reverse dependencies on CRAN
+        run: Rscript -e 'db <- available.packages(repos = "https://cloud.r-project.org"); print(tools::package_dependencies("RiskScorescvd", db = db, reverse = TRUE, which = "all"))'
+      - name: Regression audit vs CRAN 0.3.1
+        run: |
+          mkdir -p lib_old lib_new old_tests
+          Rscript -e 'remotes::install_version("RiskScorescvd", version = "0.3.1", lib = "lib_old", repos = "https://cloud.r-project.org", dependencies = FALSE, upgrade = "never")'
+          R CMD INSTALL --library=lib_new .
+          git archive ec91c3b tests | tar -x -C old_tests
+          Rscript tools/audit/run_old_tests.R lib_new old_tests/tests/testthat
+          Rscript tools/audit/gen.R lib_old old.rds
+          Rscript tools/audit/gen.R lib_new new.rds
+          Rscript tools/audit/compare.R old.rds new.rds
+
+  check:
+    runs-on: ${{ matrix.config.os }}
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: ubuntu-latest, r: 'release'}
+          - {os: ubuntu-latest, r: 'devel'}
+          - {os: macos-latest, r: 'release'}
+          - {os: windows-latest, r: 'release'}
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
+    steps:
+      - uses: actions/checkout@v4
+      - uses: r-lib/actions/setup-pandoc@v2
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: ${{ matrix.config.r }}
+          use-public-rspm: true
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::rcmdcheck, any::roxygen2
+          needs: check
+      - name: Regenerate docs before checking
+        run: Rscript -e 'roxygen2::roxygenise()'
+      - uses: r-lib/actions/check-r-package@v2
+        with:
+          args: 'c("--no-manual", "--as-cran")'
+          error-on: '"note"'
+          upload-snapshots: true
