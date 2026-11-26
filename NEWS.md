@@ -39,6 +39,10 @@
   (SCORE2-OP includes diabetes as a predictor).
 - Thanks to @meehownow for the report.
 - SCORE2 and SCORE2-CKD examples now use patients without diabetes.
+- `diabetes` can now be omitted in `SCORE2()` and `SCORE2_CKD()`: it is then
+  assumed to be `0` (no diabetes), with a warning so the assumption is never
+  silent. Calls that pass `diabetes`, including the data-frame wrappers and
+  `calc_scores()`, are unaffected.
 
 # RiskScorescvd 0.3.1
 

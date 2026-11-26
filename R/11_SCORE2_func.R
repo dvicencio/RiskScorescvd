@@ -45,8 +45,11 @@
 #' @param total.chol a numeric vector of total cholesterol values, in mmol/L
 #' @param total.hdl a numeric vector of total high density lipoprotein total.hdl values, in mmol/L
 #' @param classify set TRUE if wish to add a column with the scores' categories
-#' @param diabetes a binary numeric vector, 1 = yes and 0 = no. For ages
-#'   under 70, `diabetes = 1` gives `NA` with a warning (see Description).
+#' @param diabetes a binary numeric vector, 1 = yes and 0 = no. If omitted,
+#'   it is assumed to be 0 (no diabetes, the population SCORE2 is intended
+#'   for) with a warning; pass it explicitly to silence this. For ages under
+#'   70, `diabetes = 1` gives `NA` with a warning (see Description); an
+#'   explicit `NA` is treated as a missing input.
 #'
 #' @keywords
 #' SCORE2/OP Age Gender smoker systolic.bp diabetes total.chol
@@ -111,7 +114,7 @@
 #'
 #' @export
 
-SCORE2 <- function(Risk.region, Age = Age, Gender = Gender, smoker = smoker, systolic.bp = systolic.bp, diabetes = diabetes, total.chol = total.chol, total.hdl = total.hdl, classify){
+SCORE2 <- function(Risk.region, Age = Age, Gender = Gender, smoker = smoker, systolic.bp = systolic.bp, diabetes = 0, total.chol = total.chol, total.hdl = total.hdl, classify){
 
   # Vector input: score each element with the one-row logic below (#18)
   args <- list(
@@ -119,7 +122,21 @@ SCORE2 <- function(Risk.region, Age = Age, Gender = Gender, smoker = smoker, sys
     systolic.bp = systolic.bp, diabetes = diabetes, total.chol = total.chol,
     total.hdl = total.hdl
   )
-  if (score2_check_lengths(args, "SCORE2") > 1L) {
+  n <- score2_check_lengths(args, "SCORE2")
+
+  # diabetes defaults to 0, but the assumption is announced (#15). Checked
+  # after the inputs are evaluated, and only in the outer call, so vector
+  # input gives a single warning.
+  if (missing(diabetes)) {
+    warning(
+      "SCORE2(): diabetes not supplied, so it was assumed to be 0 (no ",
+      "diabetes). Pass diabetes explicitly to silence this, or use ",
+      "SCORE2_Diabetes() for patients with diabetes.",
+      call. = FALSE
+    )
+  }
+
+  if (n > 1L) {
     return(do.call(
       mapply,
       c(list(FUN = SCORE2, MoreArgs = list(classify = classify),
