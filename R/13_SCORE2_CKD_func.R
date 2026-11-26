@@ -47,8 +47,9 @@
 #' @param total.chol a numeric vector of total cholesterol values, in mmol/L
 #' @param total.hdl a numeric vector of total high density lipoprotein total.hdl values, in mmol/L
 #' @param classify set TRUE if wish to add a column with the scores' categories
-#' @param diabetes a binary numeric vector, 1 = yes and 0 = no. Defaults to
-#'   0 (no diabetes), the population SCORE2 is intended for. For ages under
+#' @param diabetes a binary numeric vector, 1 = yes and 0 = no. If omitted,
+#'   it is assumed to be 0 (no diabetes, the population SCORE2 is intended
+#'   for) with a warning; pass it explicitly to silence this. For ages under
 #'   70, `diabetes = 1` gives `NA` with a warning (see Description); an
 #'   explicit `NA` is treated as a missing input.
 #' @param eGFR a numeric vector of total estimated glomerular rate (eGFR) values, in mL/min/1.73m2
@@ -132,7 +133,21 @@ SCORE2_CKD <- function(Risk.region, Age = Age, Gender = Gender, smoker = smoker,
     total.hdl = total.hdl, eGFR = eGFR, ACR = ACR, trace = trace,
     addon = addon
   )
-  if (score2_check_lengths(args, "SCORE2_CKD") > 1L) {
+  n <- score2_check_lengths(args, "SCORE2_CKD")
+
+  # diabetes defaults to 0, but the assumption is announced (#15). Checked
+  # after the inputs are evaluated, and only in the outer call, so vector
+  # input gives a single warning.
+  if (missing(diabetes)) {
+    warning(
+      "SCORE2_CKD(): diabetes not supplied, so it was assumed to be 0 (no ",
+      "diabetes). Pass diabetes explicitly to silence this, or use ",
+      "SCORE2_Diabetes() for patients with diabetes.",
+      call. = FALSE
+    )
+  }
+
+  if (n > 1L) {
     return(do.call(
       mapply,
       c(list(FUN = SCORE2_CKD, MoreArgs = list(classify = classify),
