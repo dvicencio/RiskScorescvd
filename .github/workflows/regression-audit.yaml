@@ -1,0 +1,35 @@
+# Temporary audit: compare CRAN 0.3.1 with this branch. Not for main.
+on:
+  push:
+    branches: ['audit/**']
+name: regression-audit
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::testthat, any::tibble, any::purrr, any::remotes
+      - name: Install CRAN 0.3.1 and this branch into separate libraries
+        run: |
+          mkdir -p lib_old lib_new old_tests
+          Rscript -e 'remotes::install_version("RiskScorescvd", version = "0.3.1", lib = "lib_old", repos = "https://cloud.r-project.org", dependencies = FALSE, upgrade = "never")'
+          R CMD INSTALL --library=lib_new .
+          git archive ec91c3b tests | tar -x -C old_tests
+      - name: "Control: 0.3.1 tests vs 0.3.1 package"
+        run: Rscript tools/audit/run_old_tests.R lib_old old_tests/tests/testthat
+      - name: "Audit: unmodified 0.3.1 tests vs new package"
+        run: Rscript tools/audit/run_old_tests.R lib_new old_tests/tests/testthat
+      - name: "Audit: outputs 0.3.1 vs new"
+        run: |
+          Rscript tools/audit/gen.R lib_old old.rds
+          Rscript tools/audit/gen.R lib_new new.rds
+          Rscript tools/audit/compare.R old.rds new.rds
