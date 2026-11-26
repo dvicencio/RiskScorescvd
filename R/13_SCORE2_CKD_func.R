@@ -7,7 +7,9 @@
 #'
 #' **Diabetes handling (since 0.4.0):** for patients aged under 70 (SCORE2)
 #' with `diabetes = 1`, the function returns `NA` with a warning, because
-#' SCORE2 is not validated in people with diabetes. Use [SCORE2_Diabetes()]
+#' SCORE2 is not validated in people with diabetes (Hageman et al. 2022,
+#' \doi{10.1093/eurheartj/ehab761}, Table 1 footnote; SCORE2 working group
+#' 2021, \doi{10.1093/eurheartj/ehab309}). Use [SCORE2_Diabetes()]
 #' for these patients. For patients aged 70 and over (SCORE2-OP), diabetes is
 #' a predictor in the published model and is used as before.
 #'
@@ -64,7 +66,8 @@
 #'   abn.repolarisation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
 #'   ecg.st.depression = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
 #'   Age = as.numeric(sample(40:85, num_rows, replace = TRUE)),
-#'   diabetes = sample(c(1, 0), num_rows, replace = TRUE),
+#'   # SCORE2 is for people without diabetes; use SCORE2_Diabetes() otherwise
+#'   diabetes = 0,
 #'   smoker = sample(c(1, 0), num_rows, replace = TRUE),
 #'   hypertension = sample(c(1, 0), num_rows, replace = TRUE),
 #'   hyperlipidaemia = sample(c(1, 0), num_rows, replace = TRUE),

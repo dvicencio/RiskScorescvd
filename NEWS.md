@@ -7,13 +7,16 @@
 - `SCORE2()` and `SCORE2_CKD()` now return `NA` with a warning for patients
   aged under 70 with `diabetes = 1`. SCORE2 is not intended for, or validated
   in, people with diabetes. The diabetes coefficients came from the derivation
-  model used for recalibration, not from the published risk algorithm. Use
+  model used for recalibration, not from the published risk algorithm
+  (SCORE2 working group 2021, doi:10.1093/eurheartj/ehab309; Hageman et al.
+  2022, doi:10.1093/eurheartj/ehab761, Table 1 footnote). Use
   `SCORE2_Diabetes()` for these patients.
 - `SCORE2_scores()`, `SCORE2_CKD_scores()` and `calc_scores()` inherit this:
   their SCORE2 columns are now `NA` for those rows.
 - No change for people without diabetes, or for anyone aged 70 or over
   (SCORE2-OP includes diabetes as a predictor).
 - Thanks to @meehownow for the report.
+- SCORE2 and SCORE2-CKD examples now use patients without diabetes.
 
 # RiskScorescvd 0.3.1
 
