@@ -274,18 +274,18 @@ cohort_xx <- data.frame(
 # SCORE2 columns are NA (with a warning) for patients under 70 with
 # diabetes, because SCORE2 is not validated in people with diabetes
 new_data_frame <- calc_scores(data = cohort_xx)
-#> Warning: There were 70 warnings in `mutate()`.
+#> Warning: There were 96 warnings in `mutate()`.
 #> The first warning was:
 #> ℹ In argument: `SCORE2_score = SCORE2(...)`.
-#> ℹ In row 4.
+#> ℹ In row 1.
 #> Caused by warning:
-#> ! SCORE2(): SCORE2 (ages under 70) is not validated in people with diabetes, so NA was returned. Use SCORE2_Diabetes() for these patients.
-#> ℹ Run `dplyr::last_dplyr_warnings()` to see the 69 remaining warnings.
-#> Warning: There were 70 warnings in `mutate()`.
+#> ! SCORE2(): SCORE2 is validated for ages 40 and over, so NA was returned for Age < 40.
+#> ℹ Run `dplyr::last_dplyr_warnings()` to see the 95 remaining warnings.
+#> Warning: There were 96 warnings in `mutate()`.
 #> The first warning was:
 #> ℹ In argument: `SCORE2_strat = `%>%`(...)`.
-#> ℹ In row 4.
+#> ℹ In row 1.
 #> Caused by warning:
-#> ! SCORE2(): SCORE2 (ages under 70) is not validated in people with diabetes, so NA was returned. Use SCORE2_Diabetes() for these patients.
-#> ℹ Run `dplyr::last_dplyr_warnings()` to see the 69 remaining warnings.
+#> ! SCORE2(): SCORE2 is validated for ages 40 and over, so NA was returned for Age < 40.
+#> ℹ Run `dplyr::last_dplyr_warnings()` to see the 95 remaining warnings.
 ```
