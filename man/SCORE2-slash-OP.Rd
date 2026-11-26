@@ -20,7 +20,9 @@ SCORE2(
 \arguments{
 \item{Risk.region}{a character value to set the desired risk region calculations. Categories should include "Low", "Moderate", "High", or "Very high"}
 
-\item{Age}{a numeric vector of age values, in years}
+\item{Age}{a numeric vector of age values, in years. SCORE2 applies to
+ages 40-69 and SCORE2-OP to ages 70 and over; `Age < 40` gives `NA`
+with a warning (\doi{10.1093/eurheartj/ehab309}).}
 
 \item{Gender}{a binary character vector of Gender values. Categories should include only 'male' or 'female'}
 
@@ -40,7 +42,8 @@ under 70, `diabetes = 1` gives `NA` with a warning (see Description).}
 \value{
 A vector with SCORE2/OP score calculations
 and/or a vector of their classifications if indicated. `NA` (with a
-warning) for patients aged under 70 with `diabetes = 1`.
+warning) for patients aged under 70 with `diabetes = 1`, under 40, or
+with any missing required input.
 }
 \description{
 This function implements the SCORE2 and SCORE2 older population (OP) score calculation as a vector
@@ -54,6 +57,14 @@ SCORE2 is not validated in people with diabetes (Hageman et al. 2022,
 2021, \doi{10.1093/eurheartj/ehab309}). Use [SCORE2_Diabetes()]
 for these patients. For patients aged 70 and over (SCORE2-OP), diabetes is
 a predictor in the published model and is used as before.
+
+**Missing inputs (since 0.4.0):** if any required input is `NA`, the
+result is `NA` with a warning naming the missing input(s). SCORE2 gives
+no rule for imputing a missing predictor.
+
+**Vector input (since 0.4.0):** every input except `classify` can be a
+vector of length 1 or n; the result is a vector of length n, identical to
+scoring each row separately.
 
 formula in SCORE2 Updated Supplementary Material page  9. paper:
 "SCORE2 risk prediction algorithms: new models to estimate 10-year risk of cardiovascular disease in Europe"
