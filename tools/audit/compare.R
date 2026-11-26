@@ -47,7 +47,7 @@ check_df <- function(name, o, n, score_cols, cohort) {
   if (!identical(names(o), names(n)) || nrow(o) != nrow(n)) {
     cat("  columns/rows differ!\n"); problems <<- problems + 1; return(invisible())
   }
-  exp <- expected_change(cohort, req2)
+  exp <- expected_change(cohort, setdiff(req2, "Risk.region"))  # region fixed to "Low"
   for (col in names(o)) {
     if (col %in% score_cols) {
       ok <- identical(o[[col]][!exp], n[[col]][!exp]) && all(is.na(n[[col]][exp]))
