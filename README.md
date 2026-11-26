@@ -9,7 +9,7 @@
 [![Test
 Coverage](https://img.shields.io/badge/Coverage-93.98%25-brightgreen.svg)](https://github.com/dvicencio/RiskScorescvd)
 [![downloads](http://cranlogs.r-pkg.org/badges/grand-total/RiskScorescvd?color=green)](https://cran.r-project.org/package=RiskScorescvd)
-[![Connect](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/daniel-perez-vicencio-700549a0/)
+[![Connect](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/daniel-perez-vicencio-700549a0)
 <!-- badges: end -->
 
 **Chest pain? Calculate your cardiovascular risk score.**

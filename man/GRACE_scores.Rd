@@ -32,7 +32,7 @@ presentation_hstni, cardiac.arrest, Gender, classify}
 
 \item{Age}{a numeric vector of age values, in years}
 
-\item{creat}{a continuous numeric vector of the creatine levels}
+\item{creat}{a continuous numeric vector of the creatinine levels}
 
 \item{ecg.st.depression}{a binary numeric vector, 1 = yes and 0 = no}
 
