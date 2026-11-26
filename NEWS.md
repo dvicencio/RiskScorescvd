@@ -1,6 +1,24 @@
-# RiskScorescvd (development version, planned 0.4.0)
+# RiskScorescvd 0.4.0
 
 ---
+
+This release changes `SCORE2()` / `SCORE2_CKD()` results for some patients
+(see the breaking changes below). Results for everyone else are identical to
+0.3.1, which was verified against the 0.3.1 release on a grid of more than
+35,000 input combinations and on `calc_scores()`.
+
+### Bug fix: SCORE2 classification for ages between 69 and 70
+
+- For non-integer ages between 69 and 70 (e.g. 69.5), `classify = TRUE` in
+  `SCORE2()` and `SCORE2_CKD()` returned a function instead of a risk group,
+  because the age bands were defined as `<= 69` and `>= 70`. The 50-69 band
+  now covers ages up to 70, matching the SCORE2 / SCORE2-OP age split. Risk
+  categories follow the 2021 ESC prevention guidelines
+  (doi:10.1093/eurheartj/ehab484). Whole-number ages are unaffected.
+
+### Other
+
+- Corrected the SCORE2-Diabetes DOI in DESCRIPTION (`ehad260`).
 
 ### Missing inputs in SCORE2 and SCORE2_CKD give NA with a warning (#21)
 

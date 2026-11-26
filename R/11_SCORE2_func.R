@@ -33,6 +33,11 @@
 #' | => 70 years   |   <7.5%	     |  7.5 to <15% 	 |     =>15%   |\cr
 #'
 #'
+#' Risk categories as defined in the 2021 ESC Guidelines on cardiovascular
+#' disease prevention (Visseren et al., \doi{10.1093/eurheartj/ehab484}).
+#' Ages are grouped as under 50, 50 to under 70, and 70 and over, matching
+#' the SCORE2 / SCORE2-OP age split.
+#'
 #' above classifications referred from https://www.inanutshell.ch/en/digital-doctors-bag/score2-and-score2-op/#:~:text=SCORE2%20(%C2%ABSystematic%20COronary%20Risk%20Evaluation,Society%20of%20Cardiology%20(ESC).
 #'
 #' @param Risk.region a character value to set the desired risk region calculations. Categories should include "Low", "Moderate", "High", or "Very high"
@@ -340,14 +345,14 @@ else if (Risk.region == "Low" & Age < 70 & Gender == "female"){
     class <- "High risk"
   }
 
-  else if((50  <= Age & Age <= 69) & x < 5){
+  else if((50 <= Age & Age < 70) & x < 5){
     class <- "Low risk"
   }
 
-  else if((50  <= Age & Age <= 69) & (5 <= x & x < 10)){
+  else if((50 <= Age & Age < 70) & (5 <= x & x < 10)){
     class <- "Moderate risk"
   }
-  else if((50  <= Age & Age <= 69) & x >= 10){
+  else if((50 <= Age & Age < 70) & x >= 10){
     class <- "High risk"
   }
 

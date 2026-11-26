@@ -33,6 +33,11 @@
 #' | => 70 years   |   <7.5%	     |  7.5 to <15% 	 |     =>15%   |\cr
 #'
 #'
+#' Risk categories as defined in the 2021 ESC Guidelines on cardiovascular
+#' disease prevention (Visseren et al., \doi{10.1093/eurheartj/ehab484}).
+#' Ages are grouped as under 50, 50 to under 70, and 70 and over, matching
+#' the SCORE2 / SCORE2-OP age split.
+#'
 #' above classifications referred from https://www.inanutshell.ch/en/digital-doctors-bag/score2-and-score2-op/#:~:text=SCORE2%20(%C2%ABSystematic%20COronary%20Risk%20Evaluation,Society%20of%20Cardiology%20(ESC).
 #'
 #' The underlying model was developed and validated using eligible data from 3,054,840 individuals from 34 different cohorts and 5,997,719 individuals from 34 independent cohorts, respectively, from the Chronic Kidney Disease Prognosis Consortium. https://doi.org/10.1093/eurjpc/zwac176
@@ -483,14 +488,14 @@ SCORE2_CKD <- function(Risk.region, Age = Age, Gender = Gender, smoker = smoker,
     class <- "High risk"
   }
 
-  else if((50  <= Age & Age <= 69) & ckd < 5){
+  else if((50 <= Age & Age < 70) & ckd < 5){
     class <- "Low risk"
   }
 
-  else if((50  <= Age & Age <= 69) & (5 <= ckd & ckd < 10)){
+  else if((50 <= Age & Age < 70) & (5 <= ckd & ckd < 10)){
     class <- "Moderate risk"
   }
-  else if((50  <= Age & Age <= 69) & ckd >= 10){
+  else if((50 <= Age & Age < 70) & ckd >= 10){
     class <- "High risk"
   }
 
