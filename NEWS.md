@@ -19,6 +19,8 @@ This release changes `SCORE2()` / `SCORE2_CKD()` results for some patients
 ### Other
 
 - Corrected the SCORE2-Diabetes DOI in DESCRIPTION (`ehad260`).
+- Documentation: "creatine" corrected to "creatinine" (GRACE `creat`,
+  CKD `ACR`), typo fixes, risk-category source cited, README link updated.
 
 ### Missing inputs in SCORE2 and SCORE2_CKD give NA with a warning (#21)
 

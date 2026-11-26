@@ -35,10 +35,10 @@
 #' @param previous.cabg a binary numeric vector, 1 = yes and 0 = no; renames alternative column name
 #' @param total.chol a numeric vector of total cholesterol values, in mmol/L; renames alternative column name
 #' @param total.hdl a numeric vector of total high density lipoprotein HDL values, in mmol/L; renames alternative column name
-#' @param creat a continuous numeric vector of the creatine levels
+#' @param creat a continuous numeric vector of the creatinine levels
 #' @param Ethnicity a character vector, 'white', 'black', 'asian', or other
 #' @param eGFR a numeric vector of total estimated glomerular rate (eGFR) values, in mL/min/1.73m2
-#' @param ACR a numeric vector of total urine albumin to creatine ratio (ACR) values, in mg/g. Default set to NA
+#' @param ACR a numeric vector of total urine albumin to creatinine ratio (ACR) values, in mg/g. Default set to NA
 #' @param trace a character vector of urine protein dipstick categories. Categories should include 'negative', 'trace', '1+', '2+', '3+', '4+. Default set to NA
 #'
 #'

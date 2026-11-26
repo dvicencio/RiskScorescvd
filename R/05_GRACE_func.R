@@ -6,7 +6,7 @@
 #' Age = A
 #' Heart Rate = H
 #' Systolic BP = S
-#' Creatine = C
+#' Creatinine = C
 #'
 #' killip.class class (signs/symptoms) = K
 #' No CHF = 1
@@ -50,7 +50,7 @@
 #' @param heart.rate a numeric vector of heart rate continuous values
 #' @param systolic.bp a numeric vector of systolic blood pressure continuous values
 #' @param cardiac.arrest  a binary numeric vector, 1 = yes and 0 = no
-#' @param creat a continuous numeric vector of the creatine levels
+#' @param creat a continuous numeric vector of the creatinine levels
 #' @param classify a logical parameter to indicate classification of Scores "TRUE" or none "FALSE"
 #'
 #' @keywords

@@ -46,7 +46,7 @@ explicit `NA` is treated as a missing input.}
 
 \item{eGFR}{a numeric vector of total estimated glomerular rate (eGFR) values, in mL/min/1.73m2}
 
-\item{ACR}{a numeric vector of total urine albumin to creatine ratio (ACR) values, in mg/g. Default set to NA}
+\item{ACR}{a numeric vector of total urine albumin to creatinine ratio (ACR) values, in mg/g. Default set to NA}
 
 \item{trace}{a character vector of urine protein dipstick categories. Categories should include 'negative', 'trace', '1+', '2+', '3+', '4+. Default set to NA}
 
