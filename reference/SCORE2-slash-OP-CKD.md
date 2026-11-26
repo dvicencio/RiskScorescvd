@@ -59,7 +59,7 @@ SCORE2_CKD(
   Gender = Gender,
   smoker = smoker,
   systolic.bp = systolic.bp,
-  diabetes = diabetes,
+  diabetes = 0,
   total.chol = total.chol,
   total.hdl = total.hdl,
   eGFR = eGFR,
@@ -100,8 +100,11 @@ SCORE2_CKD(
 
 - diabetes:
 
-  a binary numeric vector, 1 = yes and 0 = no. For ages under 70,
-  \`diabetes = 1\` gives \`NA\` with a warning (see Description).
+  a binary numeric vector, 1 = yes and 0 = no. If omitted, it is assumed
+  to be 0 (no diabetes, the population SCORE2 is intended for) with a
+  warning; pass it explicitly to silence this. For ages under 70,
+  \`diabetes = 1\` gives \`NA\` with a warning (see Description); an
+  explicit \`NA\` is treated as a missing input.
 
 - total.chol:
 

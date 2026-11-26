@@ -129,7 +129,7 @@ scoring each row separately.</p>
 <span>  Gender <span class="op">=</span> <span class="va">Gender</span>,</span>
 <span>  smoker <span class="op">=</span> <span class="va">smoker</span>,</span>
 <span>  systolic.bp <span class="op">=</span> <span class="va">systolic.bp</span>,</span>
-<span>  diabetes <span class="op">=</span> <span class="va">diabetes</span>,</span>
+<span>  diabetes <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  total.chol <span class="op">=</span> <span class="va">total.chol</span>,</span>
 <span>  total.hdl <span class="op">=</span> <span class="va">total.hdl</span>,</span>
 <span>  eGFR <span class="op">=</span> <span class="va">eGFR</span>,</span>
@@ -168,8 +168,11 @@ with a warning (<a href="https://doi.org/10.1093/eurheartj/ehab309" class="exter
 
 
 <dt id="arg-diabetes">diabetes<a class="anchor" aria-label="anchor" href="#arg-diabetes"></a></dt>
-<dd><p>a binary numeric vector, 1 = yes and 0 = no. For ages
-under 70, `diabetes = 1` gives `NA` with a warning (see Description).</p></dd>
+<dd><p>a binary numeric vector, 1 = yes and 0 = no. If omitted,
+it is assumed to be 0 (no diabetes, the population SCORE2 is intended
+for) with a warning; pass it explicitly to silence this. For ages under
+70, `diabetes = 1` gives `NA` with a warning (see Description); an
+explicit `NA` is treated as a missing input.</p></dd>
 
 
 <dt id="arg-total-chol">total.chol<a class="anchor" aria-label="anchor" href="#arg-total-chol"></a></dt>
