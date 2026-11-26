@@ -16,7 +16,7 @@ test_that("SCORE2_CKD function works correctly", {
   # Test classification
   result_class <- SCORE2_CKD(
     Risk.region = "Low", Age = 65, Gender = "female", smoker = 0,
-    systolic.bp = 160, diabetes = 1, total.chol = 6.0,
+    systolic.bp = 160, diabetes = 0, total.chol = 6.0,
     total.hdl = 1.0, eGFR = 30, ACR = 300, trace = "2+",
     classify = TRUE
   )

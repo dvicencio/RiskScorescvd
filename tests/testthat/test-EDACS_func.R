@@ -38,9 +38,19 @@ test_that("EDACS function works correctly", {
   expect_false(is.na(result_female))
   
   # Test edge cases
-  expect_error(EDACS(Age = NULL, Gender = "male"))
-  expect_error(EDACS(Age = 50, Gender = "invalid"))
-  expect_error(EDACS(Age = 50, Gender = "male", diabetes = 2))
+  # These calls omit required arguments, so EDACS() warns before erroring
+  expect_warning(
+    expect_error(EDACS(Age = NULL, Gender = "male")),
+    "required variables are missing"
+  )
+  expect_warning(
+    expect_error(EDACS(Age = 50, Gender = "invalid")),
+    "required variables are missing"
+  )
+  expect_warning(
+    expect_error(EDACS(Age = 50, Gender = "male", diabetes = 2)),
+    "required variables are missing"
+  )
 })
 
 test_that("EDACS_scores function works correctly", {
