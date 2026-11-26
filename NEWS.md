@@ -2,6 +2,15 @@
 
 ---
 
+### Missing inputs in SCORE2 and SCORE2_CKD give NA with a warning (#21)
+
+- If any required input is `NA`, `SCORE2()` and `SCORE2_CKD()` return `NA`
+  with a warning naming the missing input(s). A missing `Age`, `Gender` or
+  `Risk.region` previously stopped with "missing value where TRUE/FALSE
+  needed", which in `calc_scores()` stopped the whole data frame. Other
+  missing inputs already gave `NA`, but silently. `ACR` and `trace` remain
+  optional.
+
 ### New: SCORE2 and SCORE2_CKD accept vectors (#18)
 
 - `SCORE2()` and `SCORE2_CKD()` now accept vector inputs (each of length 1

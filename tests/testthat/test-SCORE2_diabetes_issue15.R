@@ -69,8 +69,8 @@ test_that("SCORE2 non-diabetic results are unchanged (#15)", {
   expect_no_warning(score2_call(69, diabetes = 0))
 })
 
-test_that("SCORE2 with NA diabetes keeps its previous NA handling (#15)", {
-  expect_no_warning(res <- score2_call(50, diabetes = NA))
+test_that("SCORE2 with NA diabetes gives NA with a missing-input warning (#15, #21)", {
+  expect_warning(res <- score2_call(50, diabetes = NA), "missing input")
   expect_true(is.na(res))
 })
 

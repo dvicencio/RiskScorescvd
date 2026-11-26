@@ -41,10 +41,9 @@ test_that("Under 40 with diabetes gives a single age warning (#17)", {
   expect_true(is.na(res))
 })
 
-test_that("SCORE2 with NA age keeps its previous behaviour (#17)", {
-  # The age check skips NA; the existing code then errors on if (NA).
-  # Explicit NA handling for missing inputs is a separate change.
-  expect_error(score2_age(NA))
+test_that("SCORE2 with NA age gives NA with a missing-input warning (#17, #21)", {
+  expect_warning(res <- score2_age(NA), "missing input\\(s\\): Age")
+  expect_identical(res, NA_real_)
 })
 
 test_that("SCORE2 results from 40 upwards are unchanged (#17)", {
