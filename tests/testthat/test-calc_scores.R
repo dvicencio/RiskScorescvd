@@ -1,3 +1,23 @@
+# Run code, collect every warning, and fail if any warning is not one of
+# the expected SCORE2 scope warnings (#15, #17, #21). Unlike
+# suppressWarnings(), this cannot hide unrelated warnings.
+expect_only_score2_warnings <- function(code) {
+  msgs <- character()
+  value <- withCallingHandlers(
+    code,
+    warning = function(w) {
+      msgs <<- c(msgs, conditionMessage(w))
+      invokeRestart("muffleWarning")
+    }
+  )
+  unexpected <- msgs[!grepl("SCORE2(_CKD)?\\(\\)", msgs)]
+  testthat::expect(
+    length(unexpected) == 0,
+    paste("Unexpected warning(s):", paste(unexpected, collapse = " | "))
+  )
+  list(value = value, warnings = msgs)
+}
+
 test_that("calc_scores function works correctly", {
   
   # Create comprehensive test data
@@ -52,7 +72,9 @@ test_that("calc_scores function works correctly", {
   # Test calc_scores function
   # Row 2 (Age 60, diabetes = 1) is outside SCORE2's validated population,
   # so SCORE2 columns are NA with warnings (#15).
-  result <- suppressWarnings(calc_scores(data = test_data))
+  out <- expect_only_score2_warnings(calc_scores(data = test_data))
+  result <- out$value
+  expect_true(any(grepl("SCORE2_Diabetes", out$warnings)))
 
   expect_s3_class(result, "data.frame")
   expect_equal(nrow(result), 3)
@@ -154,10 +176,9 @@ test_that("calc_scores works with single row", {
   )
   
   # Age 55 with diabetes = 1: SCORE2 is NA with a warning (#15)
-  expect_warning(
-    result <- calc_scores(data = single_row),
-    "SCORE2_Diabetes"
-  ) |> suppressWarnings()
+  out <- expect_only_score2_warnings(calc_scores(data = single_row))
+  result <- out$value
+  expect_true(any(grepl("SCORE2_Diabetes", out$warnings)))
 
   expect_s3_class(result, "data.frame")
   expect_equal(nrow(result), 1)
