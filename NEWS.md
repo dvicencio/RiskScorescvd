@@ -2,6 +2,12 @@
 
 ---
 
+### New: SCORE2 and SCORE2_CKD accept vectors (#18)
+
+- `SCORE2()` and `SCORE2_CKD()` now accept vector inputs (each of length 1
+  or n) and return a vector, without needing `dplyr::rowwise()`. Results are
+  identical to scoring row by row. Mismatched lengths give an informative error.
+
 ### Breaking change: SCORE2 no longer scores people under 40 (#17)
 
 - `SCORE2()` and `SCORE2_CKD()` now return `NA` with a warning for patients

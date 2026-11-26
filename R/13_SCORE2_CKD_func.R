@@ -13,6 +13,10 @@
 #' for these patients. For patients aged 70 and over (SCORE2-OP), diabetes is
 #' a predictor in the published model and is used as before.
 #'
+#' **Vector input (since 0.4.0):** every input except `classify` can be a
+#' vector of length 1 or n; the result is a vector of length n, identical to
+#' scoring each row separately.
+#'
 #' formula in SCORE2 Updated Supplementary Material page  9. paper:
 #' "SCORE2 risk prediction algorithms: new models to estimate 10-year risk of cardiovascular disease in Europe"
 #'
@@ -113,6 +117,21 @@
 #' @export
 
 SCORE2_CKD <- function(Risk.region, Age = Age, Gender = Gender, smoker = smoker, systolic.bp = systolic.bp, diabetes = diabetes, total.chol = total.chol, total.hdl = total.hdl, eGFR = eGFR, ACR = NA, trace = NA, addon = "ACR", classify){
+
+  # Vector input: score each element with the one-row logic below (#18)
+  args <- list(
+    Risk.region = Risk.region, Age = Age, Gender = Gender, smoker = smoker,
+    systolic.bp = systolic.bp, diabetes = diabetes, total.chol = total.chol,
+    total.hdl = total.hdl, eGFR = eGFR, ACR = ACR, trace = trace,
+    addon = addon
+  )
+  if (score2_check_lengths(args, "SCORE2_CKD") > 1L) {
+    return(do.call(
+      mapply,
+      c(list(FUN = SCORE2_CKD, MoreArgs = list(classify = classify),
+             SIMPLIFY = TRUE, USE.NAMES = FALSE), args)
+    ))
+  }
 
   # SCORE2 is not validated below age 40 (#17)
   if (score2_age_out_of_scope(Age, "SCORE2_CKD")) {
