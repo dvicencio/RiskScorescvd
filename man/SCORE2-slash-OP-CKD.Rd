@@ -11,7 +11,7 @@ SCORE2_CKD(
   Gender = Gender,
   smoker = smoker,
   systolic.bp = systolic.bp,
-  diabetes = diabetes,
+  diabetes = 0,
   total.chol = total.chol,
   total.hdl = total.hdl,
   eGFR = eGFR,
@@ -34,8 +34,11 @@ with a warning (\doi{10.1093/eurheartj/ehab309}).}
 
 \item{systolic.bp}{a numeric vector of systolic blood pressure continuous values}
 
-\item{diabetes}{a binary numeric vector, 1 = yes and 0 = no. For ages
-under 70, `diabetes = 1` gives `NA` with a warning (see Description).}
+\item{diabetes}{a binary numeric vector, 1 = yes and 0 = no. If omitted,
+it is assumed to be 0 (no diabetes, the population SCORE2 is intended
+for) with a warning; pass it explicitly to silence this. For ages under
+70, `diabetes = 1` gives `NA` with a warning (see Description); an
+explicit `NA` is treated as a missing input.}
 
 \item{total.chol}{a numeric vector of total cholesterol values, in mmol/L}
 
