@@ -13,6 +13,10 @@
 #' for these patients. For patients aged 70 and over (SCORE2-OP), diabetes is
 #' a predictor in the published model and is used as before.
 #'
+#' **Vector input (since 0.4.0):** every input except `classify` can be a
+#' vector of length 1 or n; the result is a vector of length n, identical to
+#' scoring each row separately.
+#'
 #' formula in SCORE2 Updated Supplementary Material page  9. paper:
 #' "SCORE2 risk prediction algorithms: new models to estimate 10-year risk of cardiovascular disease in Europe"
 #'
@@ -103,6 +107,20 @@
 #' @export
 
 SCORE2 <- function(Risk.region, Age = Age, Gender = Gender, smoker = smoker, systolic.bp = systolic.bp, diabetes = diabetes, total.chol = total.chol, total.hdl = total.hdl, classify){
+
+  # Vector input: score each element with the one-row logic below (#18)
+  args <- list(
+    Risk.region = Risk.region, Age = Age, Gender = Gender, smoker = smoker,
+    systolic.bp = systolic.bp, diabetes = diabetes, total.chol = total.chol,
+    total.hdl = total.hdl
+  )
+  if (score2_check_lengths(args, "SCORE2") > 1L) {
+    return(do.call(
+      mapply,
+      c(list(FUN = SCORE2, MoreArgs = list(classify = classify),
+             SIMPLIFY = TRUE, USE.NAMES = FALSE), args)
+    ))
+  }
 
   # SCORE2 is not validated below age 40 (#17)
   if (score2_age_out_of_scope(Age, "SCORE2")) {
@@ -361,4 +379,20 @@ score2_age_out_of_scope <- function(Age, fun_name) {
     )
   }
   out_of_scope
+}
+
+# Internal helper: check that vectorised inputs have length 1 or n, and
+# return n. Used by SCORE2() and SCORE2_CKD() (GitHub issue #18).
+score2_check_lengths <- function(args, fun_name) {
+  lens <- lengths(args)
+  n <- max(lens)
+  bad <- names(lens)[lens == 0L | !lens %in% c(1L, n)]
+  if (length(bad) > 0L) {
+    stop(
+      fun_name, "(): every input must have length 1 or the same length as ",
+      "the others (", n, "). Check: ", paste(bad, collapse = ", "), ".",
+      call. = FALSE
+    )
+  }
+  n
 }
