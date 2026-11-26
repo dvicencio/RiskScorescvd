@@ -40,6 +40,12 @@ Age 10-year risk of fatal and non-fatal cardiovascular disease
 \| :———— \| ————- \| ————— \| ———-: \|  
 \| \< 50 years \| \<2.5 \| 50 - 69 years \| \<5 \| =\> 70 years \| \<7.5
 
+Risk categories as defined in the 2021 ESC Guidelines on cardiovascular
+disease prevention (Visseren et al.,
+[doi:10.1093/eurheartj/ehab484](https://doi.org/10.1093/eurheartj/ehab484)
+). Ages are grouped as under 50, 50 to under 70, and 70 and over,
+matching the SCORE2 / SCORE2-OP age split.
+
 above classifications referred from
 https://www.inanutshell.ch/en/digital-doctors-bag/score2-and-score2-op/#:~:text=SCORE2
 

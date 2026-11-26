@@ -75,7 +75,7 @@ SCORE2_CKD_scores(
 
 - ACR:
 
-  a numeric vector of total urine albumin to creatine ratio (ACR)
+  a numeric vector of total urine albumin to creatinine ratio (ACR)
   values, in mg/g. Default set to NA
 
 - trace:

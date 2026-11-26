@@ -135,7 +135,7 @@ Asia-Pacific regions without previous CVD.
 
 ### Clinical Practice Guidelines
 
-- Marx N, Federici M, Schütt K, Müller-Wieland D, Ajjan RA,vAntunes MJ,
+- Marx N, Federici M, Schütt K, Müller-Wieland D, Ajjan RA, Antunes MJ,
   Christodorescu RM, Crawford C, Angelantonio ED, Eliasson B,
   Espinola-Klein C, Fauchier L, Halle M, Herrington WG, Kautzky-Willer
   A, Lambrinou E, Lesiak M, Lettino M, McGuire DK, Mullens W, Rocca B,

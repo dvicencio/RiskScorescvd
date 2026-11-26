@@ -49,7 +49,7 @@ GRACE_scores(
 
 - creat:
 
-  a continuous numeric vector of the creatine levels
+  a continuous numeric vector of the creatinine levels
 
 - ecg.st.depression:
 

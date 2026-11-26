@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">RiskScorescvd</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,6 +35,45 @@
       <small>Source: <a href="https://github.com/dvicencio/RiskScorescvd/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.4.0" id="riskscorescvd-040">RiskScorescvd 0.4.0<a class="anchor" aria-label="anchor" href="#riskscorescvd-040"></a></h2>
+<hr><p>This release changes <code><a href="../reference/SCORE2-slash-OP.html">SCORE2()</a></code> / <code><a href="../reference/SCORE2-slash-OP-CKD.html">SCORE2_CKD()</a></code> results for some patients (see the breaking changes below). Results for everyone else are identical to 0.3.1, which was verified against the 0.3.1 release on a grid of more than 35,000 input combinations and on <code><a href="../reference/RiskScoresCalc.html">calc_scores()</a></code>.</p>
+<div class="section level4">
+<h4 id="bug-fix-score2-classification-for-ages-between-and-0-4-0">Bug fix: SCORE2 classification for ages between 69 and 70<a class="anchor" aria-label="anchor" href="#bug-fix-score2-classification-for-ages-between-and-0-4-0"></a></h4>
+<ul><li>For non-integer ages between 69 and 70 (e.g. 69.5), <code>classify = TRUE</code> in <code><a href="../reference/SCORE2-slash-OP.html">SCORE2()</a></code> and <code><a href="../reference/SCORE2-slash-OP-CKD.html">SCORE2_CKD()</a></code> returned a function instead of a risk group, because the age bands were defined as <code>&lt;= 69</code> and <code>&gt;= 70</code>. The 50-69 band now covers ages up to 70, matching the SCORE2 / SCORE2-OP age split. Risk categories follow the 2021 ESC prevention guidelines (<a href="doi:10.1093/eurheartj/ehab484" class="uri">doi:10.1093/eurheartj/ehab484</a>). Whole-number ages are unaffected.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="other-0-4-0">Other<a class="anchor" aria-label="anchor" href="#other-0-4-0"></a></h4>
+<ul><li>Corrected the SCORE2-Diabetes DOI in DESCRIPTION (<code>ehad260</code>).</li>
+<li>Documentation: “creatine” corrected to “creatinine” (GRACE <code>creat</code>, CKD <code>ACR</code>), typo fixes, risk-category source cited, README link updated.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="missing-inputs-in-score2-and-score2_ckd-give-na-with-a-warning-0-4-0">Missing inputs in SCORE2 and SCORE2_CKD give NA with a warning (<a href="https://github.com/dvicencio/RiskScorescvd/issues/21" class="external-link">#21</a>)<a class="anchor" aria-label="anchor" href="#missing-inputs-in-score2-and-score2_ckd-give-na-with-a-warning-0-4-0"></a></h4>
+<ul><li>If any required input is <code>NA</code>, <code><a href="../reference/SCORE2-slash-OP.html">SCORE2()</a></code> and <code><a href="../reference/SCORE2-slash-OP-CKD.html">SCORE2_CKD()</a></code> return <code>NA</code> with a warning naming the missing input(s). A missing <code>Age</code>, <code>Gender</code> or <code>Risk.region</code> previously stopped with “missing value where TRUE/FALSE needed”, which in <code><a href="../reference/RiskScoresCalc.html">calc_scores()</a></code> stopped the whole data frame. Other missing inputs already gave <code>NA</code>, but silently. <code>ACR</code> and <code>trace</code> remain optional.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="new-score2-and-score2_ckd-accept-vectors-0-4-0">New: SCORE2 and SCORE2_CKD accept vectors (<a href="https://github.com/dvicencio/RiskScorescvd/issues/18" class="external-link">#18</a>)<a class="anchor" aria-label="anchor" href="#new-score2-and-score2_ckd-accept-vectors-0-4-0"></a></h4>
+<ul><li>
+<code><a href="../reference/SCORE2-slash-OP.html">SCORE2()</a></code> and <code><a href="../reference/SCORE2-slash-OP-CKD.html">SCORE2_CKD()</a></code> now accept vector inputs (each of length 1 or n) and return a vector, without needing <code><a href="https://dplyr.tidyverse.org/reference/rowwise.html" class="external-link">dplyr::rowwise()</a></code>. Results are identical to scoring row by row. Mismatched lengths give an informative error.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="breaking-change-score2-no-longer-scores-people-under-0-4-0">Breaking change: SCORE2 no longer scores people under 40 (<a href="https://github.com/dvicencio/RiskScorescvd/issues/17" class="external-link">#17</a>)<a class="anchor" aria-label="anchor" href="#breaking-change-score2-no-longer-scores-people-under-0-4-0"></a></h4>
+<ul><li>
+<code><a href="../reference/SCORE2-slash-OP.html">SCORE2()</a></code> and <code><a href="../reference/SCORE2-slash-OP-CKD.html">SCORE2_CKD()</a></code> now return <code>NA</code> with a warning for patients aged under 40. SCORE2 was developed and validated for ages 40-69 (<a href="doi:10.1093/eurheartj/ehab309" class="uri">doi:10.1093/eurheartj/ehab309</a>). The data-frame wrappers and <code><a href="../reference/RiskScoresCalc.html">calc_scores()</a></code> inherit this.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="breaking-change-score2-no-longer-scores-people-with-diabetes-under-0-4-0">Breaking change: SCORE2 no longer scores people with diabetes under 70 (<a href="https://github.com/dvicencio/RiskScorescvd/issues/15" class="external-link">#15</a>)<a class="anchor" aria-label="anchor" href="#breaking-change-score2-no-longer-scores-people-with-diabetes-under-0-4-0"></a></h4>
+<ul><li>
+<code><a href="../reference/SCORE2-slash-OP.html">SCORE2()</a></code> and <code><a href="../reference/SCORE2-slash-OP-CKD.html">SCORE2_CKD()</a></code> now return <code>NA</code> with a warning for patients aged under 70 with <code>diabetes = 1</code>. SCORE2 is not intended for, or validated in, people with diabetes. The diabetes coefficients came from the derivation model used for recalibration, not from the published risk algorithm (SCORE2 working group 2021, <a href="doi:10.1093/eurheartj/ehab309" class="uri">doi:10.1093/eurheartj/ehab309</a>; Hageman et al. 2022, <a href="doi:10.1093/eurheartj/ehab761" class="uri">doi:10.1093/eurheartj/ehab761</a>, Table 1 footnote). Use <code><a href="../reference/SCORE2_Diabetes.html">SCORE2_Diabetes()</a></code> for these patients.</li>
+<li>
+<code><a href="../reference/SCORE2_scores.html">SCORE2_scores()</a></code>, <code><a href="../reference/SCORE2_CKD_scores.html">SCORE2_CKD_scores()</a></code> and <code><a href="../reference/RiskScoresCalc.html">calc_scores()</a></code> inherit this: their SCORE2 columns are now <code>NA</code> for those rows.</li>
+<li>No change for people without diabetes, or for anyone aged 70 or over (SCORE2-OP includes diabetes as a predictor).</li>
+<li>Thanks to <a href="https://github.com/meehownow" class="external-link">@meehownow</a> for the report.</li>
+<li>SCORE2 and SCORE2-CKD examples now use patients without diabetes.</li>
+<li>
+<code>diabetes</code> can now be omitted in <code><a href="../reference/SCORE2-slash-OP.html">SCORE2()</a></code> and <code><a href="../reference/SCORE2-slash-OP-CKD.html">SCORE2_CKD()</a></code>: it is then assumed to be <code>0</code> (no diabetes), with a warning so the assumption is never silent. Calls that pass <code>diabetes</code>, including the data-frame wrappers and <code><a href="../reference/RiskScoresCalc.html">calc_scores()</a></code>, are unaffected.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.1" id="riskscorescvd-031">RiskScorescvd 0.3.1<a class="anchor" aria-label="anchor" href="#riskscorescvd-031"></a></h2><p class="text-muted">CRAN release: 2025-08-27</p>
 <hr><div class="section level4">

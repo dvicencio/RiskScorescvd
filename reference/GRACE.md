@@ -4,7 +4,7 @@ This function implements the GRACE 2.0 for 6 months outcome score
 calculation as a vector
 
 Needed variables ——————————————————– Age = A Heart Rate = H Systolic BP
-= S Creatine = C
+= S Creatinine = C
 
 killip.class class (signs/symptoms) = K No CHF = 1 Rales and/or JVD = 2
 Pulmonary edema = 3 Cardiogenic shock = 4
@@ -69,7 +69,7 @@ GRACE(
 
 - creat:
 
-  a continuous numeric vector of the creatine levels
+  a continuous numeric vector of the creatinine levels
 
 - ecg.st.depression:
 

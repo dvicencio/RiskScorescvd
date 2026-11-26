@@ -179,7 +179,7 @@ calc_scores(
 
 - creat:
 
-  a continuous numeric vector of the creatine levels
+  a continuous numeric vector of the creatinine levels
 
 - previous.cabg:
 
@@ -207,7 +207,7 @@ calc_scores(
 
 - ACR:
 
-  a numeric vector of total urine albumin to creatine ratio (ACR)
+  a numeric vector of total urine albumin to creatinine ratio (ACR)
   values, in mg/g. Default set to NA
 
 - trace:

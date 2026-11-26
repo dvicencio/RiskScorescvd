@@ -25,6 +25,11 @@ Age	10-year risk of fatal and non-fatal cardiovascular disease
 | 50 - 69 years |    &amp;lt;5
 | =&amp;gt; 70 years   |   &amp;lt;7.5
 
+Risk categories as defined in the 2021 ESC Guidelines on cardiovascular
+disease prevention (Visseren et al., doi:10.1093/eurheartj/ehab484
+).
+Ages are grouped as under 50, 50 to under 70, and 70 and over, matching
+the SCORE2 / SCORE2-OP age split.
 above classifications referred from https://www.inanutshell.ch/en/digital-doctors-bag/score2-and-score2-op/#:~:text=SCORE2
 The underlying model was developed and validated using eligible data from 3,054,840 individuals from 34 different cohorts and 5,997,719 individuals from 34 independent cohorts, respectively, from the Chronic Kidney Disease Prognosis Consortium. https://doi.org/10.1093/eurjpc/zwac176"><meta property="og:description" content="This function implements the SCORE2 and SCORE2 older population (OP) score calculation as a vector plus the ckd add-ons as suggested on the https://doi.org/10.1093/eurjpc/zwac216 publication
 *Diabetes mellitus was included in the modelling since this was necessary for the recalibration approach, which relies data from the whole population, including those with diabetes. However, SCORE2 is not intended for use in individuals with diabetes and has not been validated in this population. For risk prediction in the target population of individuals without diabetes this risk factor will always be 0, meaning the coefficient can effectively be ignored.
@@ -52,6 +57,11 @@ Age	10-year risk of fatal and non-fatal cardiovascular disease
 | 50 - 69 years |    &amp;lt;5
 | =&amp;gt; 70 years   |   &amp;lt;7.5
 
+Risk categories as defined in the 2021 ESC Guidelines on cardiovascular
+disease prevention (Visseren et al., doi:10.1093/eurheartj/ehab484
+).
+Ages are grouped as under 50, 50 to under 70, and 70 and over, matching
+the SCORE2 / SCORE2-OP age split.
 above classifications referred from https://www.inanutshell.ch/en/digital-doctors-bag/score2-and-score2-op/#:~:text=SCORE2
 The underlying model was developed and validated using eligible data from 3,054,840 individuals from 34 different cohorts and 5,997,719 individuals from 34 independent cohorts, respectively, from the Chronic Kidney Disease Prognosis Consortium. https://doi.org/10.1093/eurjpc/zwac176"><meta property="og:image" content="https://dvicencio.github.io/RiskScorescvd/logo.png"></head><body># https://github.com/r-lib/pkgdown/issues/2704
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -61,7 +71,7 @@ The underlying model was developed and validated using eligible data from 3,054,
 
     <a class="navbar-brand me-2" href="../index.html">RiskScorescvd</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -117,6 +127,11 @@ scoring each row separately.</p>
 | 50 - 69 years |    &lt;5<!-- %        |   5 to &lt;10%	   |     =&gt;10%   |\cr -->
 | =&gt; 70 years   |   &lt;7.5<!-- %	     |  7.5 to &lt;15% 	 |     =&gt;15%   |\cr --></p>
 
+<p>Risk categories as defined in the 2021 ESC Guidelines on cardiovascular
+disease prevention (Visseren et al., <a href="https://doi.org/10.1093/eurheartj/ehab484" class="external-link">doi:10.1093/eurheartj/ehab484</a>
+).
+Ages are grouped as under 50, 50 to under 70, and 70 and over, matching
+the SCORE2 / SCORE2-OP age split.</p>
 <p>above classifications referred from https://www.inanutshell.ch/en/digital-doctors-bag/score2-and-score2-op/#:~:text=SCORE2<!-- %20(%C2%ABSystematic%20COronary%20Risk%20Evaluation,Society%20of%20Cardiology%20(ESC). --></p>
 <p>The underlying model was developed and validated using eligible data from 3,054,840 individuals from 34 different cohorts and 5,997,719 individuals from 34 independent cohorts, respectively, from the Chronic Kidney Disease Prognosis Consortium. https://doi.org/10.1093/eurjpc/zwac176</p>
     </div>
@@ -188,7 +203,7 @@ explicit `NA` is treated as a missing input.</p></dd>
 
 
 <dt id="arg-acr">ACR<a class="anchor" aria-label="anchor" href="#arg-acr"></a></dt>
-<dd><p>a numeric vector of total urine albumin to creatine ratio (ACR) values, in mg/g. Default set to NA</p></dd>
+<dd><p>a numeric vector of total urine albumin to creatinine ratio (ACR) values, in mg/g. Default set to NA</p></dd>
 
 
 <dt id="arg-trace">trace<a class="anchor" aria-label="anchor" href="#arg-trace"></a></dt>
