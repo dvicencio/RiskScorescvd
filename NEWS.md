@@ -2,6 +2,13 @@
 
 ---
 
+### Breaking change: SCORE2 no longer scores people under 40 (#17)
+
+- `SCORE2()` and `SCORE2_CKD()` now return `NA` with a warning for patients
+  aged under 40. SCORE2 was developed and validated for ages 40-69
+  (doi:10.1093/eurheartj/ehab309). The data-frame wrappers and `calc_scores()`
+  inherit this.
+
 ### Breaking change: SCORE2 no longer scores people with diabetes under 70 (#15)
 
 - `SCORE2()` and `SCORE2_CKD()` now return `NA` with a warning for patients

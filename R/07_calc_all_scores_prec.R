@@ -101,8 +101,8 @@
 #'
 #' # Call the function with the cohort_xx
 #'
-#' # SCORE2 columns are NA (with a warning) for patients under 70 with
-#' # diabetes, because SCORE2 is not validated in people with diabetes
+#' # SCORE2 columns are NA (with a warning) for patients under 40, and for
+#' # patients under 70 with diabetes, which are outside SCORE2's validated use
 #' new_data_frame <- calc_scores(data = cohort_xx)
 #'
 #' @name RiskScoresCalc

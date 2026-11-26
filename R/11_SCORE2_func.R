@@ -28,7 +28,9 @@
 #' above classifications referred from https://www.inanutshell.ch/en/digital-doctors-bag/score2-and-score2-op/#:~:text=SCORE2%20(%C2%ABSystematic%20COronary%20Risk%20Evaluation,Society%20of%20Cardiology%20(ESC).
 #'
 #' @param Risk.region a character value to set the desired risk region calculations. Categories should include "Low", "Moderate", "High", or "Very high"
-#' @param Age a numeric vector of age values, in years
+#' @param Age a numeric vector of age values, in years. SCORE2 applies to
+#'   ages 40-69 and SCORE2-OP to ages 70 and over; `Age < 40` gives `NA`
+#'   with a warning (\doi{10.1093/eurheartj/ehab309}).
 #' @param Gender a binary character vector of Gender values. Categories should include only 'male' or 'female'
 #' @param smoker a binary numeric vector, 1 = yes and 0 = no
 #' @param systolic.bp a numeric vector of systolic blood pressure continuous values
@@ -45,7 +47,7 @@
 #' @return
 #' A vector with SCORE2/OP score calculations
 #' and/or a vector of their classifications if indicated. `NA` (with a
-#' warning) for patients aged under 70 with `diabetes = 1`.
+#' warning) for patients aged under 70 with `diabetes = 1`, or under 40.
 #'
 #' @examples
 #'
@@ -101,6 +103,11 @@
 #' @export
 
 SCORE2 <- function(Risk.region, Age = Age, Gender = Gender, smoker = smoker, systolic.bp = systolic.bp, diabetes = diabetes, total.chol = total.chol, total.hdl = total.hdl, classify){
+
+  # SCORE2 is not validated below age 40 (#17)
+  if (score2_age_out_of_scope(Age, "SCORE2")) {
+    return(if (isTRUE(classify)) NA_character_ else NA_real_)
+  }
 
   # SCORE2 (< 70 years) is not validated in people with diabetes (#15)
   if (score2_diabetes_out_of_scope(Age, diabetes, "SCORE2")) {
@@ -332,6 +339,24 @@ score2_diabetes_out_of_scope <- function(Age, diabetes, fun_name) {
     warning(
       fun_name, "(): SCORE2 (ages under 70) is not validated in people with ",
       "diabetes, so NA was returned. Use SCORE2_Diabetes() for these patients.",
+      call. = FALSE
+    )
+  }
+  out_of_scope
+}
+
+# Internal helper: is this row below SCORE2's validated age range?
+#
+# SCORE2 was developed and validated for ages 40-69 (SCORE2 working group,
+# Eur Heart J 2021, doi:10.1093/eurheartj/ehab309, Aims). Ages under 40 are
+# extrapolation, so NA is returned with a warning. See GitHub issue #17.
+# No upper bound is applied to SCORE2-OP (ages >= 70) until one can be cited.
+score2_age_out_of_scope <- function(Age, fun_name) {
+  out_of_scope <- !is.na(Age) && Age < 40
+  if (out_of_scope) {
+    warning(
+      fun_name, "(): SCORE2 is validated for ages 40 and over, so NA was ",
+      "returned for Age < 40.",
       call. = FALSE
     )
   }

@@ -50,7 +50,11 @@ test_that("SCORE2_CKD function works correctly", {
   
   # Test edge cases
   expect_error(SCORE2_CKD(Risk.region = "Invalid", Age = 50))
-  expect_error(SCORE2_CKD(Risk.region = "Low", Age = 30))  # Too young
+  # Too young: warns (#17), then errors because other arguments are missing
+  expect_warning(
+    expect_error(SCORE2_CKD(Risk.region = "Low", Age = 30)),
+    "validated for ages 40"
+  )
   expect_error(SCORE2_CKD(Risk.region = "Low", Age = 50, Gender = "invalid"))
 })
 
