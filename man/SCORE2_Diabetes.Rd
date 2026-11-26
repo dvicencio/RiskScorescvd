@@ -168,7 +168,7 @@ SCORE2_Diabetes(
 \subsection{Clinical Practice Guidelines}{
 \itemize{
   \item Marx N, Federici M, Schütt K, Müller-Wieland D,
-        Ajjan RA,vAntunes MJ, Christodorescu RM, Crawford C,
+        Ajjan RA, Antunes MJ, Christodorescu RM, Crawford C,
         Angelantonio ED, Eliasson B, Espinola-Klein C,
         Fauchier L, Halle M, Herrington WG,
         Kautzky-Willer A, Lambrinou E, Lesiak M,

@@ -27,7 +27,7 @@
 #' 45 to 65 years old = 1
 #' 65 years or older = 2
 #'
-#' Risk facrtor -
+#' Risk factor -
 #' Currently treated diabetes mellitus, /
 #' current or recent (<90 days) smoker, /
 #' diagnosed and/or treated hypertension, /
@@ -218,7 +218,7 @@
       TRUE ~ NA_real_
     )
 
-    # 4. Risk facrtor -
+    # 4. Risk factor -
     # No risk factors                              0
     # 1 to 2									                    +1
     # >3 OR known atherosclerotic disease 				+2

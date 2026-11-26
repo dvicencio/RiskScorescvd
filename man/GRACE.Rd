@@ -26,7 +26,7 @@ GRACE(
 
 \item{Age}{a numeric vector of age values, in years}
 
-\item{creat}{a continuous numeric vector of the creatine levels}
+\item{creat}{a continuous numeric vector of the creatinine levels}
 
 \item{ecg.st.depression}{a binary numeric vector, 1 = yes and 0 = no}
 
@@ -49,7 +49,7 @@ Needed variables --------------------------------------------------------
 Age = A
 Heart Rate = H
 Systolic BP = S
-Creatine = C
+Creatinine = C
 
 killip.class class (signs/symptoms) = K
 No CHF = 1

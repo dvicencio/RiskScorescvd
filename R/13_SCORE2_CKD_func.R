@@ -58,7 +58,7 @@
 #'   70, `diabetes = 1` gives `NA` with a warning (see Description); an
 #'   explicit `NA` is treated as a missing input.
 #' @param eGFR a numeric vector of total estimated glomerular rate (eGFR) values, in mL/min/1.73m2
-#' @param ACR a numeric vector of total urine albumin to creatine ratio (ACR) values, in mg/g. Default set to NA
+#' @param ACR a numeric vector of total urine albumin to creatinine ratio (ACR) values, in mg/g. Default set to NA
 #' @param trace a character vector of urine protein dipstick categories. Categories should include 'negative', 'trace', '1+', '2+', '3+', '4+. Default set to NA
 #' @param addon set the add-on you wish to calculate. Categories should include only 'ACR' or 'trace'. Default set to 'ACR'
 #'
