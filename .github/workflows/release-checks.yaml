@@ -77,3 +77,35 @@ jobs:
           args: 'c("--no-manual", "--as-cran")'
           error-on: '"note"'
           upload-snapshots: true
+
+  revdep-HealthMarkers:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      _R_CHECK_FORCE_SUGGESTS_: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: r-lib/actions/setup-pandoc@v2
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::remotes
+      - name: Check HealthMarkers against CRAN 0.3.1 and against this branch
+        run: |
+          Rscript -e 'install.packages("HealthMarkers", dependencies = TRUE)'
+          Rscript -e 'cat("HealthMarkers", as.character(packageVersion("HealthMarkers")), "\n"); print(tools::package_dependencies("HealthMarkers", db = available.packages(), which = "all")[[1]])'
+          grep -rn "RiskScorescvd\|SCORE2" $(Rscript -e 'cat(system.file(package = "HealthMarkers"))')/R 2>/dev/null | head -20 || true
+          Rscript -e 'download.packages("HealthMarkers", destdir = ".", type = "source")'
+          mkdir -p old new
+          echo "======== HealthMarkers vs RiskScorescvd 0.3.1 (CRAN) ========"
+          R CMD check --no-manual --as-cran HealthMarkers_*.tar.gz -o old > old.txt 2>&1 || true
+          tail -25 old.txt
+          R CMD INSTALL .
+          Rscript -e 'cat("RiskScorescvd now", as.character(packageVersion("RiskScorescvd")), "\n")'
+          echo "======== HealthMarkers vs RiskScorescvd 0.4.0 (this branch) ========"
+          R CMD check --no-manual --as-cran HealthMarkers_*.tar.gz -o new > new.txt 2>&1 || true
+          tail -25 new.txt
+          echo "======== Status lines ========"
+          grep "^Status" old.txt new.txt
