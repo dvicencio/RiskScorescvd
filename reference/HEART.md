@@ -1,0 +1,159 @@
+# History, ECG, Age, Risk factors and Troponin (HEART) risk score function
+
+This function implements the HEART score calculation as a vector
+
+History - Absence of history for coronary ischemia: nonspecific = 0
+Nonspecific + suspicious elements: moderately suspicious = 1 Mainly
+suspicious elements (middle- or left-sided, / heavy chest pain,
+radiation, / and/or relief of symptoms by sublingual nitrates): = 2
+
+EGG - Normal ECG according to Minnesota criteria (what's this criteria?)
+= 0 Repolarization abnormalities without / significant ST-segment
+depression or elevation = 1 Presence of a bundle branch block or
+pacemaker rhythm, / typical abnormalities indicative of left ventricular
+hypertrophy, / repolarization abnormalities probably caused by digoxin
+use, / or in case of unchanged known repolarization disturbances. = 1
+Significant ST-segment depressions / or elevations in absence of a
+bundle branch block, / left ventricular hypertrophy, or the use of
+digoxin = 2
+
+Age - Younger than 45 = 0 45 to 65 years old = 1 65 years or older = 2
+
+Risk facrtor - Currently treated diabetes mellitus, / current or recent
+(\<90 days) smoker, / diagnosed and/or treated hypertension, / diagnosed
+hypercholesterolemia, / family history of coronary artery disease,
+obesity (body mass index BMI \>30), or a history of significant
+atherosclerosis, / (coronary revascularization, myocardial infarction,
+stroke, / or peripheral arterial disease, / irrespective of the risk
+factors for coronary artery disease) None of the above = 0 One or two of
+the above = 1 Three or more of the above = 2
+
+Troponin T or I - Below the threshold for positivity = 0 A Between 1 and
+3 times the threshold for positivity = 1 A higher than 3 times the
+threshold for positivity = 2 A
+
+Two possible outcomes: 0-3 = Low risk 4-6 = Moderate risk Over 7 = High
+risk
+
+The HEART score: A guide to its application in the emergency department
+paper reference Website:
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6005932/
+
+## Usage
+
+``` r
+HEART(
+  typical_symptoms.num = typical_symptoms.num,
+  ecg.normal = ecg.normal,
+  abn.repolarisation = abn.repolarisation,
+  ecg.st.depression = ecg.st.depression,
+  Age = Age,
+  diabetes = diabetes,
+  smoker = smoker,
+  hypertension = hypertension,
+  hyperlipidaemia = hyperlipidaemia,
+  family.history = family.history,
+  atherosclerotic.disease = atherosclerotic.disease,
+  presentation_hstni = presentation_hstni,
+  Gender = Gender,
+  classify = classify
+)
+```
+
+## Arguments
+
+- typical_symptoms.num:
+
+  a numeric vector of the number of typical symptoms
+
+- ecg.normal:
+
+  a binary numeric vector, 1 = yes and 0 = no
+
+- abn.repolarisation:
+
+  a binary numeric vector, 1 = yes and 0 = no
+
+- ecg.st.depression:
+
+  a binary numeric vector, 1 = yes and 0 = no
+
+- Age:
+
+  a numeric vector of age values, in years
+
+- diabetes:
+
+  a binary numeric vector, 1 = yes and 0 = no
+
+- smoker:
+
+  a binary numeric vector, 1 = yes and 0 = no
+
+- hypertension:
+
+  a binary numeric vector, 1 = yes and 0 = no
+
+- hyperlipidaemia:
+
+  a binary numeric vector, 1 = yes and 0 = no
+
+- family.history:
+
+  a binary numeric vector, 1 = yes and 0 = no
+
+- atherosclerotic.disease:
+
+  a binary numeric vector, 1 = yes and 0 = no
+
+- presentation_hstni:
+
+  a continuous numeric vector of the troponin levels
+
+- Gender:
+
+  a binary character vector of sex values. Categories should include
+  only 'male' or 'female'
+
+- classify:
+
+  a logical parameter to indicate classification of Scores "TRUE" or
+  none "FALSE"
+
+## Value
+
+A vector with HEART score calculations and/or a vector of their
+classifications if indicated
+
+## Examples
+
+``` r
+
+# Create a data frame or list with the necessary variables
+# Set the number of rows
+num_rows <- 100
+# Create a larger dataset with 100 rows
+cohort_xx <- data.frame(
+  typical_symptoms.num = as.numeric(sample(0:6, num_rows, replace = TRUE)),
+  ecg.normal = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  abn.repolarisation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  ecg.st.depression = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  Age = as.numeric(sample(30:80, num_rows, replace = TRUE)),
+  diabetes = sample(c(1, 0), num_rows, replace = TRUE),
+  smoker = sample(c(1, 0), num_rows, replace = TRUE),
+  hypertension = sample(c(1, 0), num_rows, replace = TRUE),
+  hyperlipidaemia = sample(c(1, 0), num_rows, replace = TRUE),
+  family.history = sample(c(1, 0), num_rows, replace = TRUE),
+  atherosclerotic.disease = sample(c(1, 0), num_rows, replace = TRUE),
+  presentation_hstni = as.numeric(sample(10:100, num_rows, replace = TRUE)),
+  Gender = sample(c("male", "female"), num_rows, replace = TRUE)
+)
+
+# Call the function with the cohort_xx
+
+ results <- cohort_xx %>% rowwise() %>%
+ mutate(HEART_score = HEART(typical_symptoms.num, ecg.normal,
+ abn.repolarisation, ecg.st.depression, Age, diabetes, smoker, hypertension,
+ hyperlipidaemia, family.history, atherosclerotic.disease,
+ presentation_hstni, Gender, classify = FALSE))
+```

@@ -1,0 +1,152 @@
+# ASCVD (Atherosclerotic Cardiovascular Disease) Risk Algorithm including Known ASCVD from AHA/ACC function
+
+This function implements the ASCVD score calculation as a vector
+
+Scored using 3 steps
+
+Step 1: High-Risk Criteria: History of ASCVD  
+History of ASCVD - History of acute coronary syndrome (ACS), myocardial
+infarction (MI), stable angina, coronary/other arterial
+revascularization, stroke, transient ischemic attack, or Peripheral
+Arterial Disease (PAD) from atherosclerosis
+
+Step 2: High-Risk Criteria:  
+Extreme LDL  
+LDL Cholesterol \>= 190mg/dL (4.92 mmol/L)
+
+Step 3: ASCVD Risk Criteria:  
+Only Apply When LDL 70-189mg/dL (1.81-4.90 mmol/L)  
+
+Age  
+Diabetes  
+Total cholesterol  
+HDL cholesterol  
+Systolic BP  
+Treatment for Hypertension  
+Smoker  
+Race  
+Black British as Black; everything else as White
+
+Three possible outcome
+
+High risk - Intensity Statin Therapy  
+Moderate risk- Intensity Statin Therapy  
+Low risk - Intensity Statin Therapy
+
+## Usage
+
+``` r
+ASCVD(
+  Gender = Gender,
+  Ethnicity = Ethnicity,
+  Age = Age,
+  total.chol = total.chol,
+  total.hdl = total.hdl,
+  systolic.bp = systolic.bp,
+  hypertension = hypertension,
+  smoker = smoker,
+  diabetes = diabetes,
+  classify = FALSE
+)
+```
+
+## Arguments
+
+- Gender:
+
+  a binary character vector of sex values. Categories should include
+  only 'male' or 'female'
+
+- Ethnicity:
+
+  a character vector, 'white', 'black', 'asian', or other
+
+- Age:
+
+  a numeric vector of age values, in years
+
+- total.chol:
+
+  a numeric vector of total cholesterol values, in mmol/L
+
+- total.hdl:
+
+  a numeric vector of total high density lipoprotein HDL values, in
+  mmol/L
+
+- systolic.bp:
+
+  a numeric vector of systolic blood pressure continuous values
+
+- hypertension:
+
+  a binary numeric vector, 1 = yes and 0 = no
+
+- smoker:
+
+  a binary numeric vector, 1 = yes and 0 = no
+
+- diabetes:
+
+  a binary numeric vector, 1 = yes and 0 = no
+
+- classify:
+
+  a logical parameter to indicate classification of Scores "TRUE" or
+  none "FALSE"
+
+## Value
+
+A vector with ASCVD score calculations and/or a vector of their
+classifications if indicated
+
+## Examples
+
+``` r
+
+# Create a data frame or list with the necessary variables
+# Set the number of rows
+num_rows <- 100
+
+# Create a larger dataset with 100 rows
+cohort_xx <- data.frame(
+  typical_symptoms.num = as.numeric(sample(0:6, num_rows, replace = TRUE)),
+  ecg.normal = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  abn.repolarisation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  ecg.st.depression = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  Age = as.numeric(sample(30:80, num_rows, replace = TRUE)),
+  diabetes = sample(c(1, 0), num_rows, replace = TRUE),
+  smoker = sample(c(1, 0), num_rows, replace = TRUE),
+  hypertension = sample(c(1, 0), num_rows, replace = TRUE),
+  hyperlipidaemia = sample(c(1, 0), num_rows, replace = TRUE),
+  family.history = sample(c(1, 0), num_rows, replace = TRUE),
+  atherosclerotic.disease = sample(c(1, 0), num_rows, replace = TRUE),
+  presentation_hstni = as.numeric(sample(10:100, num_rows, replace = TRUE)),
+  Gender = sample(c("male", "female"), num_rows, replace = TRUE),
+  sweating = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  pain.radiation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  pleuritic = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  palpation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  ecg.twi = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  second_hstni = as.numeric(sample(1:200, num_rows, replace = TRUE)),
+  killip.class = as.numeric(sample(1:4, num_rows, replace = TRUE)),
+  systolic.bp = as.numeric(sample(0:300, num_rows, replace = TRUE)),
+  heart.rate = as.numeric(sample(0:300, num_rows, replace = TRUE)),
+  creat = as.numeric(sample(0:4, num_rows, replace = TRUE)),
+  cardiac.arrest = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  previous.pci = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  previous.cabg = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  aspirin = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  number.of.episodes.24h = as.numeric(sample(0:20, num_rows, replace = TRUE)),
+  total.chol = as.numeric(sample(2:6, num_rows, replace = TRUE)),
+  total.hdl = as.numeric(sample(2:5, num_rows, replace = TRUE)),
+  Ethnicity = sample(c("white", "black", "asian", "other"), num_rows, replace = TRUE)
+)
+
+
+# Call the function with the cohort_xx
+
+results <- cohort_xx %>% rowwise() %>%
+ mutate(ASCVD_score = ASCVD(Gender, Ethnicity, Age, total.chol, total.hdl,
+ systolic.bp,hypertension, smoker, diabetes, classify = FALSE))
+```

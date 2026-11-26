@@ -1,0 +1,176 @@
+# Emergency Department Assessment of Chest Pain Score (EDACS) function
+
+This function implements the EDACS score calculation as a vector
+
+Age - 18-45 = 2  
+46-50 = 4  
+51-55 = 6  
+56-60 = 8  
+61-65 = 10  
+66-70 = 12  
+71-75 = 14  
+76-80 = 16  
+81-85 = 18  
+\>=86 = 20  
+
+Sex -  
+Female = 0  
+Male = 6  
+
+Known coronary artery disease or \>=3 risk factors\*  
+The risk factors only apply to patients 18-50-  
+no = 0  
+yes = 4  
+
+Symptoms and signs  
+Diaphoresis no = 0 yes = 3  
+Pain radiates to arm, shoulder, neck, or jaw no = 0 yes = 5  
+Pain occurred or worsened with inspiration no = 0 yes = -4  
+Pain is reproduced by palpation no = 0 yes = -6  
+
+Two possible outcomes  
+
+Low risk cohort:  
+EDACS \<16 and  
+EKG shows no new ischemia and  
+0-hr and 2-hr troponin both negative.  
+Not low risk cohort:  
+EDACS \>=16 or  
+EKG shows new ischemia or  
+0-hr or 2-hr troponin positive.
+
+## Usage
+
+``` r
+EDACS(
+  Age = Age,
+  Gender = Gender,
+  diabetes = diabetes,
+  smoker = smoker,
+  hypertension = hypertension,
+  hyperlipidaemia = hyperlipidaemia,
+  family.history = family.history,
+  sweating = sweating,
+  pain.radiation = pain.radiation,
+  pleuritic = pleuritic,
+  palpation = palpation,
+  ecg.st.depression = ecg.st.depression,
+  ecg.twi = ecg.twi,
+  presentation_hstni = presentation_hstni,
+  second_hstni = second_hstni,
+  classify = FALSE
+)
+```
+
+## Arguments
+
+- Age:
+
+  a numeric vector of age values, in years
+
+- Gender:
+
+  a binary character vector of sex values. Categories should include
+  only 'male' or 'female'.
+
+- diabetes:
+
+  a binary numeric vector, 1 = yes and 0 = no
+
+- smoker:
+
+  a binary numeric vector, 1 = yes and 0 = no
+
+- hypertension:
+
+  a binary numeric vector, 1 = yes and 0 = no
+
+- hyperlipidaemia:
+
+  a binary numeric vector, 1 = yes and 0 = no
+
+- family.history:
+
+  a binary numeric vector, 1 = yes and 0 = no
+
+- sweating:
+
+  a binary numeric vector, 1 = yes and 0 = no
+
+- pain.radiation:
+
+  a binary numeric vector, 1 = yes and 0 = no
+
+- pleuritic:
+
+  a binary numeric vector, 1 = yes and 0 = no
+
+- palpation:
+
+  a binary numeric vector, 1 = yes and 0 = no
+
+- ecg.st.depression:
+
+  a binary numeric vector, 1 = yes and 0 = no
+
+- ecg.twi:
+
+  a binary numeric vector, 1 = yes and 0 = no
+
+- presentation_hstni:
+
+  a continuous numeric vector of the troponin levels
+
+- second_hstni:
+
+  a binary numeric vector, 1 = yes and 0 = no
+
+- classify:
+
+  a logical parameter to indicate classification of scores "TRUE" or
+  none "FALSE"
+
+## Value
+
+A vector with EDACS score calculations and/or a vector of their
+classifications if indicated
+
+## Examples
+
+``` r
+
+# Create a data frame or list with the necessary variables
+# Set the number of rows
+num_rows <- 100
+
+# Create a larger dataset with 100 rows
+cohort_xx <- data.frame(
+  typical_symptoms.num = as.numeric(sample(0:6, num_rows, replace = TRUE)),
+  ecg.normal = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  abn.repolarisation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  ecg.st.depression = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  Age = as.numeric(sample(30:80, num_rows, replace = TRUE)),
+  diabetes = sample(c(1, 0), num_rows, replace = TRUE),
+  smoker = sample(c(1, 0), num_rows, replace = TRUE),
+  hypertension = sample(c(1, 0), num_rows, replace = TRUE),
+  hyperlipidaemia = sample(c(1, 0), num_rows, replace = TRUE),
+  family.history = sample(c(1, 0), num_rows, replace = TRUE),
+  atherosclerotic.disease = sample(c(1, 0), num_rows, replace = TRUE),
+  presentation_hstni = as.numeric(sample(10:100, num_rows, replace = TRUE)),
+  Gender = sample(c("male", "female"), num_rows, replace = TRUE),
+  sweating = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  pain.radiation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  pleuritic = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  palpation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  ecg.twi = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  second_hstni = as.numeric(sample(1:200, num_rows, replace = TRUE))
+)
+
+# Call the function with the cohort_xx
+
+results <- cohort_xx %>% rowwise() %>% mutate(EDACS_score = EDACS(Age,
+Gender, diabetes, smoker, hypertension, hyperlipidaemia, family.history,
+sweating, pain.radiation, pleuritic, palpation, ecg.st.depression, ecg.twi,
+presentation_hstni, second_hstni, classify = FALSE))
+
+```

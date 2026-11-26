@@ -1,0 +1,291 @@
+# Six commonly used cardiovascular risk scores for the prediction of major cardiac events (MACE)
+
+This function implements seven cardiovascular risk scores row wise in a
+data frame with the required variables. It would then retrieve a data
+frame with two extra columns for each risk score including their
+calculations and classifications
+
+## Usage
+
+``` r
+calc_scores(
+  data,
+  typical_symptoms.num = typical_symptoms.num,
+  ecg.normal = ecg.normal,
+  abn.repolarisation = abn.repolarisation,
+  ecg.st.depression = ecg.st.depression,
+  Age = Age,
+  diabetes = diabetes,
+  smoker = smoker,
+  hypertension = hypertension,
+  hyperlipidaemia = hyperlipidaemia,
+  family.history = family.history,
+  atherosclerotic.disease = atherosclerotic.disease,
+  presentation_hstni = presentation_hstni,
+  Gender = Gender,
+  sweating = sweating,
+  pain.radiation = pain.radiation,
+  pleuritic = pleuritic,
+  palpation = palpation,
+  ecg.twi = ecg.twi,
+  second_hstni = second_hstni,
+  killip.class = killip.class,
+  heart.rate = heart.rate,
+  systolic.bp = systolic.bp,
+  aspirin = aspirin,
+  number.of.episodes.24h = number.of.episodes.24h,
+  previous.pci = previous.pci,
+  creat = creat,
+  previous.cabg = previous.cabg,
+  total.chol = total.chol,
+  total.hdl = total.hdl,
+  Ethnicity = Ethnicity,
+  eGFR = eGFR,
+  ACR = NA,
+  trace = NA
+)
+```
+
+## Arguments
+
+- data:
+
+  A data frame with all the variables needed for calculation:
+
+- typical_symptoms.num:
+
+  a numeric vector of the number of typical symptoms; renames
+  alternative column name
+
+- ecg.normal:
+
+  a binary numeric vector, 1 = yes and 0 = no; renames alternative
+  column name
+
+- abn.repolarisation:
+
+  a binary numeric vector, 1 = yes and 0 = no; renames alternative
+  column name
+
+- ecg.st.depression:
+
+  a binary numeric vector, 1 = yes and 0 = no; renames alternative
+  column name
+
+- Age:
+
+  a numeric vector of age values, in years; renames alternative column
+  name
+
+- diabetes:
+
+  a binary numeric vector, 1 = yes and 0 = no; renames alternative
+  column name
+
+- smoker:
+
+  a binary numeric vector, 1 = yes and 0 = no; renames alternative
+  column name
+
+- hypertension:
+
+  a binary numeric vector, 1 = yes and 0 = no; renames alternative
+  column name
+
+- hyperlipidaemia:
+
+  a binary numeric vector, 1 = yes and 0 = no; renames alternative
+  column name
+
+- family.history:
+
+  a binary numeric vector, 1 = yes and 0 = no; renames alternative
+  column name
+
+- atherosclerotic.disease:
+
+  a binary numeric vector, 1 = yes and 0 = no; renames alternative
+  column name
+
+- presentation_hstni:
+
+  a continuous numeric vector of the troponin levels; renames
+  alternative column name
+
+- Gender:
+
+  a binary character vector of sex values. Categories should include
+  only 'male' or 'female'; renames alternative column name
+
+- sweating:
+
+  a binary numeric vector, 1 = yes and 0 = no; renames alternative
+  column name
+
+- pain.radiation:
+
+  a binary numeric vector, 1 = yes and 0 = no; renames alternative
+  column name
+
+- pleuritic:
+
+  a binary numeric vector, 1 = yes and 0 = no; renames alternative
+  column name
+
+- palpation:
+
+  a binary numeric vector, 1 = yes and 0 = no; renames alternative
+  column name
+
+- ecg.twi:
+
+  a binary numeric vector, 1 = yes and 0 = no; renames alternative
+  column name
+
+- second_hstni:
+
+  a binary numeric vector, 1 = yes and 0 = no; renames alternative
+  column name
+
+- killip.class:
+
+  a numeric vector of killip class values, 1 to 4; renames alternative
+  column name
+
+- heart.rate:
+
+  a numeric vector of heart rate continuous values; renames alternative
+  column name
+
+- systolic.bp:
+
+  a numeric vector of systolic blood pressure continuous values; renames
+  alternative column name
+
+- aspirin:
+
+  a binary numeric vector, 1 = yes and 0 = no; renames alternative
+  column name
+
+- number.of.episodes.24h:
+
+  a numeric vector of number of angina episodes in 24 hours; renames
+  alternative column name
+
+- previous.pci:
+
+  a binary numeric vector, 1 = yes and 0 = no; renames alternative
+  column name
+
+- creat:
+
+  a continuous numeric vector of the creatine levels
+
+- previous.cabg:
+
+  a binary numeric vector, 1 = yes and 0 = no; renames alternative
+  column name
+
+- total.chol:
+
+  a numeric vector of total cholesterol values, in mmol/L; renames
+  alternative column name
+
+- total.hdl:
+
+  a numeric vector of total high density lipoprotein HDL values, in
+  mmol/L; renames alternative column name
+
+- Ethnicity:
+
+  a character vector, 'white', 'black', 'asian', or other
+
+- eGFR:
+
+  a numeric vector of total estimated glomerular rate (eGFR) values, in
+  mL/min/1.73m2
+
+- ACR:
+
+  a numeric vector of total urine albumin to creatine ratio (ACR)
+  values, in mg/g. Default set to NA
+
+- trace:
+
+  a character vector of urine protein dipstick categories. Categories
+  should include 'negative', 'trace', '1+', '2+', '3+', '4+. Default set
+  to NA
+
+## Value
+
+a data frame with two extra columns including all the cardiovascular
+risk score calculations and their classifications
+
+## Examples
+
+``` r
+
+# Create a data frame or list with the necessary variables
+# Set the number of rows
+num_rows <- 100
+
+# Create a larger dataset with 100 rows
+cohort_xx <- data.frame(
+  typical_symptoms.num = as.numeric(sample(0:6, num_rows, replace = TRUE)),
+  ecg.normal = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  abn.repolarisation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  ecg.st.depression = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  Age = as.numeric(sample(30:80, num_rows, replace = TRUE)),
+  diabetes = sample(c(1, 0), num_rows, replace = TRUE),
+  smoker = sample(c(1, 0), num_rows, replace = TRUE),
+  hypertension = sample(c(1, 0), num_rows, replace = TRUE),
+  hyperlipidaemia = sample(c(1, 0), num_rows, replace = TRUE),
+  family.history = sample(c(1, 0), num_rows, replace = TRUE),
+  atherosclerotic.disease = sample(c(1, 0), num_rows, replace = TRUE),
+  presentation_hstni = as.numeric(sample(10:100, num_rows, replace = TRUE)),
+  Gender = sample(c("male", "female"), num_rows, replace = TRUE),
+  sweating = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  pain.radiation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  pleuritic = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  palpation = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  ecg.twi = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  second_hstni = as.numeric(sample(1:200, num_rows, replace = TRUE)),
+  killip.class = as.numeric(sample(1:4, num_rows, replace = TRUE)),
+  systolic.bp = as.numeric(sample(0:300, num_rows, replace = TRUE)),
+  heart.rate = as.numeric(sample(0:300, num_rows, replace = TRUE)),
+  creat = as.numeric(sample(0:4, num_rows, replace = TRUE)),
+  cardiac.arrest = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  previous.pci = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  previous.cabg = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  aspirin = as.numeric(sample(c(0, 1), num_rows, replace = TRUE)),
+  number.of.episodes.24h = as.numeric(sample(0:20, num_rows, replace = TRUE)),
+  total.chol = as.numeric(sample(2:6, num_rows, replace = TRUE)),
+  total.hdl = as.numeric(sample(2:5, num_rows, replace = TRUE)),
+  Ethnicity = sample(c("white", "black", "asian", "other"), num_rows, replace = TRUE),
+  eGFR = as.numeric(sample(15:120, num_rows, replace = TRUE)),
+  ACR = as.numeric(sample(5:1500, num_rows, replace = TRUE)),
+  trace = sample(c("trace", "1+", "2+", "3+", "4+"), num_rows, replace = TRUE)
+)
+
+
+
+# Call the function with the cohort_xx
+
+# SCORE2 columns are NA (with a warning) for patients under 70 with
+# diabetes, because SCORE2 is not validated in people with diabetes
+new_data_frame <- calc_scores(data = cohort_xx)
+#> Warning: There were 70 warnings in `mutate()`.
+#> The first warning was:
+#> ℹ In argument: `SCORE2_score = SCORE2(...)`.
+#> ℹ In row 4.
+#> Caused by warning:
+#> ! SCORE2(): SCORE2 (ages under 70) is not validated in people with diabetes, so NA was returned. Use SCORE2_Diabetes() for these patients.
+#> ℹ Run `dplyr::last_dplyr_warnings()` to see the 69 remaining warnings.
+#> Warning: There were 70 warnings in `mutate()`.
+#> The first warning was:
+#> ℹ In argument: `SCORE2_strat = `%>%`(...)`.
+#> ℹ In row 4.
+#> Caused by warning:
+#> ! SCORE2(): SCORE2 (ages under 70) is not validated in people with diabetes, so NA was returned. Use SCORE2_Diabetes() for these patients.
+#> ℹ Run `dplyr::last_dplyr_warnings()` to see the 69 remaining warnings.
+```
