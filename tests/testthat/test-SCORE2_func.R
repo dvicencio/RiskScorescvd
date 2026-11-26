@@ -322,7 +322,8 @@ test_that("SCORE2 function works on invalid inputs", {
       suppressMessages()
   )
 
-  # Smoker is NA, making the patient classification as NA
+  # Smoker is NA, making the patient classification NA with a warning (#21)
+  testthat::expect_warning(
   na_classification <- RiskScorescvd::SCORE2(
     Risk.region = "Low",
     Age = 75,
@@ -332,7 +333,9 @@ test_that("SCORE2 function works on invalid inputs", {
     diabetes = 0,
     total.chol = 5.5,
     total.hdl = 1.3,
-    classify = TRUE)
+    classify = TRUE),
+    "missing input\\(s\\): smoker"
+  )
 
   testthat::expect_equal(
     is.na(na_classification),

@@ -13,6 +13,10 @@
 #' for these patients. For patients aged 70 and over (SCORE2-OP), diabetes is
 #' a predictor in the published model and is used as before.
 #'
+#' **Missing inputs (since 0.4.0):** if any required input is `NA`, the
+#' result is `NA` with a warning naming the missing input(s). SCORE2 gives
+#' no rule for imputing a missing predictor.
+#'
 #' **Vector input (since 0.4.0):** every input except `classify` can be a
 #' vector of length 1 or n; the result is a vector of length n, identical to
 #' scoring each row separately.
@@ -51,7 +55,8 @@
 #' @return
 #' A vector with SCORE2/OP score calculations
 #' and/or a vector of their classifications if indicated. `NA` (with a
-#' warning) for patients aged under 70 with `diabetes = 1`, or under 40.
+#' warning) for patients aged under 70 with `diabetes = 1`, under 40, or
+#' with any missing required input.
 #'
 #' @examples
 #'
@@ -120,6 +125,16 @@ SCORE2 <- function(Risk.region, Age = Age, Gender = Gender, smoker = smoker, sys
       c(list(FUN = SCORE2, MoreArgs = list(classify = classify),
              SIMPLIFY = TRUE, USE.NAMES = FALSE), args)
     ))
+  }
+
+  # Missing required inputs give NA with a warning (#21)
+  required <- list(
+    Risk.region = Risk.region, Age = Age, Gender = Gender, smoker = smoker,
+    systolic.bp = systolic.bp, diabetes = diabetes, total.chol = total.chol,
+    total.hdl = total.hdl
+  )
+  if (score2_missing_inputs(required, "SCORE2")) {
+    return(if (isTRUE(classify)) NA_character_ else NA_real_)
   }
 
   # SCORE2 is not validated below age 40 (#17)
@@ -395,4 +410,22 @@ score2_check_lengths <- function(args, fun_name) {
     )
   }
   n
+}
+
+# Internal helper: are any required inputs missing (NA)?
+#
+# SCORE2/SCORE2-OP give no rule for imputing a missing predictor, so NA is
+# returned with a warning naming the missing inputs. Without this, a missing
+# Age, Gender or Risk.region stopped with "missing value where TRUE/FALSE
+# needed". See GitHub issue #21.
+score2_missing_inputs <- function(args, fun_name) {
+  missing_inputs <- names(args)[vapply(args, function(x) is.na(x), logical(1))]
+  if (length(missing_inputs) > 0L) {
+    warning(
+      fun_name, "(): NA returned because of missing input(s): ",
+      paste(missing_inputs, collapse = ", "), ".",
+      call. = FALSE
+    )
+  }
+  length(missing_inputs) > 0L
 }

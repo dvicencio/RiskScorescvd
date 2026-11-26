@@ -13,6 +13,10 @@
 #' for these patients. For patients aged 70 and over (SCORE2-OP), diabetes is
 #' a predictor in the published model and is used as before.
 #'
+#' **Missing inputs (since 0.4.0):** if any required input is `NA`, the
+#' result is `NA` with a warning naming the missing input(s). SCORE2 gives
+#' no rule for imputing a missing predictor.
+#'
 #' **Vector input (since 0.4.0):** every input except `classify` can be a
 #' vector of length 1 or n; the result is a vector of length n, identical to
 #' scoring each row separately.
@@ -57,7 +61,8 @@
 #' @return
 #' A vector with SCORE2/OP score calculations with CKD add-ons
 #' and/or a vector of their classifications if indicated. `NA` (with a
-#' warning) for patients aged under 70 with `diabetes = 1`, or under 40.
+#' warning) for patients aged under 70 with `diabetes = 1`, under 40, or
+#' with any missing required input.
 #'
 #' @examples
 #'
@@ -131,6 +136,16 @@ SCORE2_CKD <- function(Risk.region, Age = Age, Gender = Gender, smoker = smoker,
       c(list(FUN = SCORE2_CKD, MoreArgs = list(classify = classify),
              SIMPLIFY = TRUE, USE.NAMES = FALSE), args)
     ))
+  }
+
+  # Missing required inputs give NA with a warning (#21)
+  required <- list(
+    Risk.region = Risk.region, Age = Age, Gender = Gender, smoker = smoker,
+    systolic.bp = systolic.bp, diabetes = diabetes, total.chol = total.chol,
+    total.hdl = total.hdl, eGFR = eGFR
+  )
+  if (score2_missing_inputs(required, "SCORE2_CKD")) {
+    return(if (isTRUE(classify)) NA_character_ else NA_real_)
   }
 
   # SCORE2 is not validated below age 40 (#17)
