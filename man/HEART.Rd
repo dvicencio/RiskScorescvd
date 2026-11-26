@@ -81,7 +81,7 @@ Younger than 45 = 0
 45 to 65 years old = 1
 65 years or older = 2
 
-Risk facrtor -
+Risk factor -
 Currently treated diabetes mellitus, /
 current or recent (<90 days) smoker, /
 diagnosed and/or treated hypertension, /

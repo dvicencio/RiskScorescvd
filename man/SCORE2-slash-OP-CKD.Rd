@@ -46,7 +46,7 @@ explicit `NA` is treated as a missing input.}
 
 \item{eGFR}{a numeric vector of total estimated glomerular rate (eGFR) values, in mL/min/1.73m2}
 
-\item{ACR}{a numeric vector of total urine albumin to creatine ratio (ACR) values, in mg/g. Default set to NA}
+\item{ACR}{a numeric vector of total urine albumin to creatinine ratio (ACR) values, in mg/g. Default set to NA}
 
 \item{trace}{a character vector of urine protein dipstick categories. Categories should include 'negative', 'trace', '1+', '2+', '3+', '4+. Default set to NA}
 
@@ -92,6 +92,11 @@ Age	10-year risk of fatal and non-fatal cardiovascular disease
 | 50 - 69 years |    <5%        |   5 to <10%	   |     =>10%   |\cr
 | => 70 years   |   <7.5%	     |  7.5 to <15% 	 |     =>15%   |\cr
 
+
+Risk categories as defined in the 2021 ESC Guidelines on cardiovascular
+disease prevention (Visseren et al., \doi{10.1093/eurheartj/ehab484}).
+Ages are grouped as under 50, 50 to under 70, and 70 and over, matching
+the SCORE2 / SCORE2-OP age split.
 
 above classifications referred from https://www.inanutshell.ch/en/digital-doctors-bag/score2-and-score2-op/#:~:text=SCORE2%20(%C2%ABSystematic%20COronary%20Risk%20Evaluation,Society%20of%20Cardiology%20(ESC).
 
